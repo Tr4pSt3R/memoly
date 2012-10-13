@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  note: MyString
+  page: 
+  rating: 
+  title: MyString
+  author: MyString
+  ISBN: MyString
+  expires_on: 2012-10-14 00:27:33
+
+two:
+  note: MyString
+  page: 
+  rating: 
+  title: MyString
+  author: MyString
+  ISBN: MyString
+  expires_on: 2012-10-14 00:27:33

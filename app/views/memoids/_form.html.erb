@@ -1,0 +1,45 @@
+<%= form_for(@memoid) do |f| %>
+  <% if @memoid.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@memoid.errors.count, "error") %> prohibited this memoid from being saved:</h2>
+
+      <ul>
+      <% @memoid.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :note %><br />
+    <%= f.text_field :note %>
+  </div>
+  <div class="field">
+    <%= f.label :page %><br />
+    <%= f.text_field :page %>
+  </div>
+  <div class="field">
+    <%= f.label :rating %><br />
+    <%= f.text_field :rating %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :author %><br />
+    <%= f.text_field :author %>
+  </div>
+  <div class="field">
+    <%= f.label :ISBN %><br />
+    <%= f.text_field :ISBN %>
+  </div>
+  <div class="field">
+    <%= f.label :expires_on %><br />
+    <%= f.datetime_select :expires_on %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

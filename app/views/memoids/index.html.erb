@@ -1,0 +1,35 @@
+<h1>Listing memoids</h1>
+
+<table>
+  <tr>
+    <th>Note</th>
+    <th>Page</th>
+    <th>Rating</th>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Isbn</th>
+    <th>Expires on</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @memoids.each do |memoid| %>
+  <tr>
+    <td><%= memoid.note %></td>
+    <td><%= memoid.page %></td>
+    <td><%= memoid.rating %></td>
+    <td><%= memoid.title %></td>
+    <td><%= memoid.author %></td>
+    <td><%= memoid.ISBN %></td>
+    <td><%= memoid.expires_on %></td>
+    <td><%= link_to 'Show', memoid %></td>
+    <td><%= link_to 'Edit', edit_memoid_path(memoid) %></td>
+    <td><%= link_to 'Destroy', memoid, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Memoid', new_memoid_path %>
