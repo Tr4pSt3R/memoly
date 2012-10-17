@@ -1,4 +1,8 @@
 Memoly::Application.routes.draw do
+  root :to => "home#index"
+
+  get "home/index"
+
   resources :memoids
 
   # The priority is based upon order of creation:

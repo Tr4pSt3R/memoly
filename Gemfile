@@ -7,6 +7,9 @@ gem 'rails', '3.2.3'
 
 gem 'sqlite3'
 gem 'therubyracer'
+gem 'bootstrap-sass'
+gem 'pry'
+gem 'pry-doc'
 
 # Gems used only for assets and not required
 # in production environments by default.

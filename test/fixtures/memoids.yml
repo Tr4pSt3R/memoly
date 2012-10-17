@@ -2,18 +2,18 @@
 
 one:
   note: MyString
-  page: 
-  rating: 
+  page: 1
+  rating: 1
   title: MyString
   author: MyString
   ISBN: MyString
-  expires_on: 2012-10-14 00:27:33
+  expires_on: 2012-10-14 00:46:57
 
 two:
   note: MyString
-  page: 
-  rating: 
+  page: 1
+  rating: 1
   title: MyString
   author: MyString
   ISBN: MyString
-  expires_on: 2012-10-14 00:27:33
+  expires_on: 2012-10-14 00:46:57
