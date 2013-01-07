@@ -20,6 +20,10 @@ Memoly::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  #Ensure you have defined default url options in your environments files. Here 
+  #   is an example of default_url_options appropriate for a development environment
+  #config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
 
