@@ -1,4 +1,7 @@
 <h1>Home</h1>
+	<%#= binding.pry %>
+	<% @memoids = Memoid.all %>
+	<%= render :template => 'memoids/index' %>
 <p>
 	<%#= binding.pry %>
 	<%#= link_to(current_user.memoid.first.note, memoid) %>

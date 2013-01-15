@@ -1,4 +1,4 @@
-<h1>Listing memoids</h1>
+<h1>Listing All Memolies</h1>
 
 <table>
   <tr>
@@ -7,7 +7,8 @@
     <th>Rating</th>
     <th>Title</th>
     <th>Author</th>
-    <th>Isbn</th>
+    <th>ISBN</th>
+    <th>Shared?</th>
     <th>Expires on</th>
     <th></th>
     <th></th>
@@ -23,6 +24,7 @@
     <td><%= memoid.author %></td>
     <td><%= memoid.ISBN %></td>
     <td><%= memoid.expires_on %></td>
+    <td><%= memoid.public %></td>
     <td><%= link_to 'Show', memoid %></td>
     <td><%= link_to 'Edit', edit_memoid_path(memoid) %></td>
     <td><%= link_to 'Destroy', memoid, confirm: 'Are you sure?', method: :delete %></td>

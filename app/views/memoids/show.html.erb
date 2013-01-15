@@ -1,10 +1,19 @@
 <p id="notice"><%= notice %></p>
+<p>
+  <b>Title:</b>
+  <%= @memoid.title %>
+</p>
 
 <p>
   <b>Note:</b>
   <%= @memoid.note %>
 </p>
 
+<p>
+  <b>Shared:</b>
+  <%= @memoid.public %>
+</p>
+<!--
 <p>
   <b>Page:</b>
   <%= @memoid.page %>
@@ -13,11 +22,6 @@
 <p>
   <b>Rating:</b>
   <%= @memoid.rating %>
-</p>
-
-<p>
-  <b>Title:</b>
-  <%= @memoid.title %>
 </p>
 
 <p>
@@ -34,7 +38,7 @@
   <b>Expires on:</b>
   <%= @memoid.expires_on %>
 </p>
-
+-->
 
 <%= link_to 'Edit', edit_memoid_path(@memoid) %> |
 <%= link_to 'Back', memoids_path %>

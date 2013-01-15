@@ -9,6 +9,6 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :firstname, :lastname
 
-  # A user can have many memooids through id
+  # A user can have many memoids through id
   has_many :memoid
 end

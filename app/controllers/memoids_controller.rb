@@ -44,7 +44,7 @@ class MemoidsController < ApplicationController
 
     respond_to do |format|
       if @memoid.save
-        format.html { redirect_to @memoid, notice: 'Memoid was successfully created.' }
+        format.html { redirect_to @memoid, notice: 'Your Memoly was successfully created.' }
         format.json { render json: @memoid, status: :created, location: @memoid }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class MemoidsController < ApplicationController
 
     respond_to do |format|
       if @memoid.update_attributes(params[:memoid])
-        format.html { redirect_to @memoid, notice: 'Memoid was successfully updated.' }
+        format.html { redirect_to @memoid, notice: 'Your Memoly was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

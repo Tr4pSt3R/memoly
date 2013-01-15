@@ -12,29 +12,33 @@
   <% end %>
   <div class="form_content">
     <div class="field">
-      <%= f.label :note %><br />
-      <%= f.text_area :note, :rows => 5, :columns => 40 %>
-    </div>
-    <div class="field">
-      <%= f.label :page %><br />
-      <%= f.number_field :page %>
-    </div>
-    <div class="field">
-      <%= f.label :rating %><br />
-      <%= f.number_field :rating %>
-    </div>
-    <div class="field">
       <%= f.label :title %><br />
       <%= f.text_field :title %>
     </div>
     <div class="field">
-      <%= f.label :author %><br />
-      <%= f.text_field :author %>
+      <%= f.label :note %><br />
+      <%= f.text_area :note, :rows => 5, :columns => 40 %>
     </div>
     <div class="field">
-      <%= f.label :ISBN, "ISBN" %><br />
-      <%= f.text_field :ISBN %>
+      <%= f.check_box :public %>
+      <%= f.label :public, "Do Not Share", :style => "display:inline" %> 
     </div>
+    <!--div class="field">
+      <%#= f.label :page %><br />
+      <%#= f.number_field :page %>
+    </div-->
+    <!--div class="field">
+      <%#= f.label :rating %><br />
+      <%#= f.number_field :rating %>
+    </div-->
+    <!--div class="field">
+      <%#= f.label :author %><br />
+      <%#= f.text_field :author %>
+    </div-->
+    <!--div class="field">
+      <%#= f.label :ISBN, "ISBN" %><br />
+      <%#= f.text_field :ISBN %>
+    </div-->
     <!--div class="field">
       <%#= f.label :expires_on %><br />
       <%#= f.datetime_select :expires_on %>

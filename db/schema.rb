@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121025172930) do
+ActiveRecord::Schema.define(:version => 20130109211048) do
 
   create_table "memoids", :force => true do |t|
     t.text     "note",       :limit => 255
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20121025172930) do
     t.datetime "expires_on"
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
+    t.boolean  "public"
   end
 
   create_table "users", :force => true do |t|
