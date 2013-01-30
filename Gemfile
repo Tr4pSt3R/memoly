@@ -25,8 +25,8 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :tests do
-	
+group :tests, :development do
+	gem "redis", "~> 3.0.2"
 end
 
 

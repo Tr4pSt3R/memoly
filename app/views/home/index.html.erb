@@ -1,9 +1,11 @@
-<h1>Home</h1>
-	<%#= binding.pry %>
-	<% @memoids = Memoid.all %>
-	<%= render :template => 'memoids/index' %>
-<p>
-	<%#= binding.pry %>
-	<%#= link_to(current_user.memoid.first.note, memoid) %>
-	<%#= @memoid.first.author %>
-</p>
+<div class="page-wrap">
+    <div class="box">
+      <div class="front">
+        <button class="show-me">FLIP</button>
+      </div>
+      
+      <div class="back">       
+        <button class="show-me">Flip Back</button> 
+      </div>
+    </div>
+</div>

@@ -1,16 +1,94 @@
-body {
-  background-color: #fff;
-  color: #333;
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
+/* Define variables here */
+$default_font_family: verdana, arial, helvetica, sans-serif;
+
+/*Define Mixins here */ 
+@mixin rounded-corners($radius) {
+  text-align: center;
+  background-color: #4099FF;
+  border-radius: $radius;
+  height: 30px;
+  width: 15;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
 }
 
-p, ol, ul, td {
+@mixin centerize{
+  width: 720px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin 
+
+
+
+body{
+  @include centerize;
+  font-family: $default_font_family;
+}
+
+h1 {
+    .resize {
+      width: -50em;
+      height:-50em;
+    }
+}
+
+div.circularity{
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 30px;
+  background-color: #FFFBBB; 
+    p.number {
+      font-size: 48;
+    }
+}
+
+$size: 70px;
+
+.chart {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.value-wrap {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  background: black;
+}
+
+.value {
+  color: #54a2dd;
+  height: #{$size - 10};
+  width: #{$size - 10};
+  text-align: center;
+  background: white;
+  border-radius: 50%;
+  position: relative;
+  top: 5px;
+  left: 5px;
+  font: bold 32px/#{$size - 10} Sans-Serif;
+}
+
+div.app_summary{
+  
+}
+
+div.start_button{
+  color: #FFF;
+  font-weight: body;
+  @include rounded-corners(15px);
+}
+
+
+/*p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
-}
+}*/
 
 pre {
   background-color: #eee;
