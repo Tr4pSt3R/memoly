@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Filename:</b>
+  <%= @turbo_memoid.filename %>
+</p>
+
+<p>
+  <b>Filetype:</b>
+  <%= @turbo_memoid.filetype %>
+</p>
+
+
+<%= link_to 'Edit', edit_turbo_memoid_path(@turbo_memoid) %> |
+<%= link_to 'Back', turbo_memoids_path %>

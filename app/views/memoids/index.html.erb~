@@ -3,14 +3,27 @@
 <table>
   <tr>
     <th>Note</th>
-    <th>Published</th>
+    <th>Page</th>
+    <th>Rating</th>
+    <th>Title</th>
+    <th>Author</th>
+    <th>ISBN</th>
+    <th>Shared?</th>
+    <th>Expires on</th>
+    <th></th>
     <th></th>
     <th></th>
   </tr>
 
 <% @memoids.each do |memoid| %>
   <tr>
-    <td><%= link_to memoid.note, memoid %></td>
+    <td><%= memoid.note %></td>
+    <td><%= memoid.page %></td>
+    <td><%= memoid.rating %></td>
+    <td><%= memoid.title %></td>
+    <td><%= memoid.author %></td>
+    <td><%= memoid.ISBN %></td>
+    <td><%= memoid.expires_on %></td>
     <td><%= memoid.public %></td>
     <td><%= link_to 'Show', memoid %></td>
     <td><%= link_to 'Edit', edit_memoid_path(memoid) %></td>

@@ -12,6 +12,7 @@ gem 'pry-doc'
 gem 'devise' 
 gem 'mail'
 gem 'jquery-rails'
+gem 'blogit'
 
 # Gems used only for assets and not required
 # in production environments by default.

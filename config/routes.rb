@@ -1,4 +1,7 @@
 Memoly::Application.routes.draw do
+  resources :turbo_memoids
+
+  mount Blogit::Engine => "/blog"
   
   match 'register' => 'alpha_users#new'
   resources :alpha_users

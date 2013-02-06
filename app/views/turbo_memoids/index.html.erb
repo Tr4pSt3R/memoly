@@ -1,0 +1,25 @@
+<h1>Listing turbo_memoids</h1>
+
+<table>
+  <tr>
+    <th>Filename</th>
+    <th>Filetype</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @turbo_memoids.each do |turbo_memoid| %>
+  <tr>
+    <td><%= turbo_memoid.filename %></td>
+    <td><%= turbo_memoid.filetype %></td>
+    <td><%= link_to 'Show', turbo_memoid %></td>
+    <td><%= link_to 'Edit', edit_turbo_memoid_path(turbo_memoid) %></td>
+    <td><%= link_to 'Destroy', turbo_memoid, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Turbo memoid', new_turbo_memoid_path %>

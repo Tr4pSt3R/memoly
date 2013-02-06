@@ -11,4 +11,5 @@ class User < ActiveRecord::Base
 
   # A user can have many memoids through id
   has_many :memoid
+  blogs
 end

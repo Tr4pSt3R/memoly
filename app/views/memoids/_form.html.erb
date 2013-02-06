@@ -11,18 +11,21 @@
     </div>
   <% end %>
   <div class="form_content">
+    <!--div class="field">
+      <%#= f.label :title %><br />
+      <%#= f.text_field :title %>
+    </div-->
     <div class="field">
-      <%= f.label :title %><br />
-      <%= f.text_field :title %>
+      <%= f.text_area :note, :placeholder => "Add memoid", :rows => 5, :columns => 100 %>
     </div>
     <div class="field">
-      <%= f.label :note %><br />
-      <%= f.text_area :note, :rows => 5, :columns => 40 %>
+      <%= f.label :public, "Do not share", :style => "display: inline-block;"  %>
+      <%= f.check_box :public%>
     </div>
-    <div class="field">
-      <%= f.check_box :public %>
-      <%= f.label :public, "Do Not Share", :style => "display:inline" %> 
+    <div class="submit">
+      <%= f.submit "create", :class => "btn btn-info" %>
     </div>
+<% end %>
     <!--div class="field">
       <%#= f.label :page %><br />
       <%#= f.number_field :page %>
@@ -43,8 +46,34 @@
       <%#= f.label :expires_on %><br />
       <%#= f.datetime_select :expires_on %>
     </div-->
-    <div class="actions">
-      <%= f.submit %>
+    <!--<div class="actions">
+      <%#= f.submit "create memoid" %>
     </div>
   </div>
-<% end %>
+
+  <form>
+    <fieldset>
+      <legend> Memoly </legend>
+      <%#= f.text_area :note, :placeholder => "Add memoid"%>
+      <label class="checkbox">
+        <%#= f.label :public, "Do not share" %>
+        <%#= f.check_box :public, :type => "checkbox" %>
+      </label>
+      <%#= f.submit "create", :class => "btn btn-info" %>
+    </fieldset>
+  </form>
+
+
+<form>
+  <fieldset>
+    <legend>New Memoly</legend>
+    <input type="text_area" placeholder="Type something…">
+    <label class="checkbox">
+      <input type="checkbox"> Check me out
+    </label>
+    <button type="submit" class="btn">Submit</button>
+  </fieldset>
+</form> -->
+
+
+

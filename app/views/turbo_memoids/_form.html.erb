@@ -1,0 +1,21 @@
+<%= form_for(@turbo_memoid) do |f| %>
+  <% if @turbo_memoid.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@turbo_memoid.errors.count, "error") %> prohibited this turbo_memoid from being saved:</h2>
+
+      <ul>
+      <% @turbo_memoid.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.file_field :uploaded_file %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
