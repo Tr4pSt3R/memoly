@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="assets/bootstrap-responsive.css" rel="stylesheet">
     <title><%= content_for?(:title) ? yield(:title) : "Memoly" %></title>
     <meta name="description" content="">
     <meta name="author" content="">
@@ -19,18 +20,22 @@
         </div>
       </nav>
     </header-->
-   <p class="notice"><%= notice %></p>
-   <p class="alert"><%= alert %></p>
+   <!-- <p class="notice"><%= notice %></p>
+   <p class="alert"><%= alert %></p> -->
     <div id="main" role="main">
       <div class="container">
         <div class="content">
            <div class="row">
-            <div class="span12">
+            <!--div class="span12 offset0"></div-->
               <%= render 'layouts/messages' %>
               <%= yield %>
-            </div>
+            
           </div>
-          <footer>
+          <footer class="footer">
+            <hr>
+            <div class="container">
+              <p>&copy;<%= Time.now.year %> MemolyApp. All rights reserved. </p>
+            </div>
           </footer>
         </div>
       </div> <!--! end of .container -->

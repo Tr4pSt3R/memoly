@@ -1,0 +1,23 @@
+<h1>Listing alpha_users</h1>
+
+<table>
+  <tr>
+    <th>Email</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @alpha_users.each do |alpha_user| %>
+  <tr>
+    <td><%= alpha_user.email %></td>
+    <td><%= link_to 'Show', alpha_user %></td>
+    <td><%= link_to 'Edit', edit_alpha_user_path(alpha_user) %></td>
+    <td><%= link_to 'Destroy', alpha_user, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Alpha user', new_alpha_user_path %>

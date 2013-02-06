@@ -1,13 +1,13 @@
 Memoly::Application.routes.draw do
   
-
+  match 'register' => 'alpha_users#new'
+  resources :alpha_users
   devise_for :users
 
   root :to => "home#index"
-
   get "home/index"
 
-  # resources :memoids
+  resources :memoids
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

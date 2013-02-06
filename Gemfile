@@ -7,11 +7,11 @@ gem 'rails', '3.2.3'
 
 gem 'sqlite3'
 gem 'therubyracer'
-gem 'bootstrap-sass'
 gem 'pry'
 gem 'pry-doc'
 gem 'devise' 
 gem 'mail'
+gem 'jquery-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -25,12 +25,20 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :tests, :development do
-	gem "redis", "~> 3.0.2"
+group :test do
+	gem 'shoulda-matchers'
 end
 
+group :tests, :development do
+	gem "redis", "~> 3.0.2"
+	gem "rspec-rails", "~> 2.0"
+end
 
-gem 'jquery-rails'
+group :development do
+	gem 'better_errors'
+	gem 'binding_of_caller'
+	gem 'meta_request'
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -48,5 +56,5 @@ gem 'jquery-rails'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :production do
-	gem 'mysql2'
+#	gem 'mysql2'
 end

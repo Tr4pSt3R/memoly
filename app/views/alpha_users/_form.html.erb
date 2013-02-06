@@ -1,0 +1,39 @@
+<%= form_for(@alpha_user) do |f| %>
+  <div>
+    <% if @alpha_user.errors.any? %>
+      <div id="error_explanation">
+        <h2><small><%= pluralize(@alpha_user.errors.count, "error") %> prohibited this email from being saved:</small></h2>
+
+        <ul>
+        <% @alpha_user.errors.full_messages.each do |msg| %>
+          <li><small><%= msg %></small></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+  <!--
+    <span class="field">
+      <%#= f.email_field :email, :placeholder => "email..."  %>
+    </span>
+    <span class="actions">
+      <%#= f.submit "remind me", :class => "btn btn-large btn-primary"%>
+    </span>
+
+    <div class="input-append">
+      <input class="span2" id="appendedInputButton" type="text">
+      <button class="btn" type="button">Remind Me</button>
+    </div>
+  -->
+
+    <div class="input-append">
+      <%= f.email_field :email, 
+                        :class => "span3",
+                        :id => "appendedInputButton", 
+                        :type => "email" %>
+      <%= f.submit "Remind me", 
+                        :class => "btn btn-info" %>
+    </div>
+    
+  
+<% end %>
