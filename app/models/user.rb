@@ -11,5 +11,10 @@ class User < ActiveRecord::Base
 
   # A user can have many memoids through id
   has_many :memoid
+  # alias :login_required
   blogs
+
+  def username
+    self.firstname
+  end
 end
