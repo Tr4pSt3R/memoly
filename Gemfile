@@ -13,7 +13,8 @@ gem 'devise'
 gem 'mail'
 gem 'jquery-rails'
 gem 'blogit'
-
+gem 'whenever', require: false
+gem 'ledermann-rails-settings', :require => 'rails-settings'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
