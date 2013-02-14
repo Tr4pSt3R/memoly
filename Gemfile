@@ -58,5 +58,5 @@ end
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :production do
-#	gem 'mysql2'
+	gem 'mysql2'
 end

@@ -17,4 +17,5 @@ class User < ActiveRecord::Base
   def username
     self.firstname
   end
+  # /home/jones/Memoly/.elasticbeanstalk/optionsettings.Memoly-env
 end
