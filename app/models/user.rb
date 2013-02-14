@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   attr_accessible :firstname, :lastname
 
   # A user can have many memoids through id
-  has_many :memoid
+  has_many :memoids #not dependent: :destroy
   # alias :login_required
   blogs
 
