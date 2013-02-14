@@ -40,7 +40,7 @@ class MemoidsController < ApplicationController
   # POST /memoids
   # POST /memoids.json
   def create
-    @memoid = Memoid.new(params[:memoid])
+    # @memoid = Memoid.new(params[:memoid])
 
     respond_to do |format|
       if @memoid.save
