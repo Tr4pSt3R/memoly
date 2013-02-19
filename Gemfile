@@ -59,6 +59,6 @@ end
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
-# group :production do
-# 	gem 'mysql2'
-# end
+group :production do
+	gem 'mysql2'
+end
