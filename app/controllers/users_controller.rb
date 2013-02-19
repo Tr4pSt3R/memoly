@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /users
   # GET /users.json
   def index
@@ -46,7 +48,7 @@ class UsersController < ApplicationController
       if @user.save
 
         # UserMailer.welcome_mail(@user).deliver
-        binding.pry
+        # binding.pry
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else

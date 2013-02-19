@@ -29,6 +29,8 @@ end
 
 group :test do
 	gem 'shoulda-matchers'
+	gem 'cucumber-rails', :require => false
+	gem 'database_cleaner'
 end
 
 group :tests, :development do
@@ -57,6 +59,6 @@ end
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
-group :production do
-	gem 'mysql2'
-end
+# group :production do
+# 	gem 'mysql2'
+# end

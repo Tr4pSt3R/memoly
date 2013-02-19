@@ -23,4 +23,12 @@ describe MemoidsController do
     @user = User.create(:firstname => "Jones", :email => "mightyj@hotmail.co.uk")
     @memoid = @user.memoids.build(:note => "brew install automake")
   end
+
+  it "should be able to create memoid associated with a user" do
+     @user.memoids.should_not be_empty
+  end
+
+  it "should only be allowed to be created if a user is logged in" do
+    current_user.memoids.shoul
+  end
 end
