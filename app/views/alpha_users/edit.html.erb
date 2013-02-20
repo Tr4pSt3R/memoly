@@ -1,6 +1,21 @@
-<h1>Editing alpha_user</h1>
+<div class="hero-unit offset1">
+	<h1 class=""> <span id="head0"></span> <%= image_tag("MemolyLogo.png", :width  => "250px", 
+									:height => "100%", 
+									:alt 	=> "Memoly logo")%></h1>
 
-<%= render 'form' %>
+	<div class="offset1">
+		<%= image_tag("DeviceOutlines.png", :width  => "500px", 
+										:height => "100%", 
+										:alt 	=> "compatible devices")%>
+	</div>
 
-<%= link_to 'Show', @alpha_user %> |
-<%= link_to 'Back', alpha_users_path %>
+	<p>Just some tweaks...</p>
+	<p class=""><%= render 'form'%></p>
+	<p>
+		<p>
+			<%= link_to 'Show', @alpha_user %> |
+		<%= link_to 'Back', alpha_users_path %>
+		</p>
+	</p>
+</div>
+
