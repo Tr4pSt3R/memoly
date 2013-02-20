@@ -12,7 +12,10 @@
 	<div class="span7 offset3">
 		<div class="media">
 		    <a class="pull-left" href="#">
-			    <img class="media-object" src="1.png" width="50px">
+		    	<%= image_tag("1.png", 	:width=>"50px", 
+		    							:class=>"media-object",
+		    							:alt=>"first item")%>
+			    <!--img class="media-object" src="1.png" width="50px"-->
 		    </a>
 		    <div class="media-body">
 			    <h3 class="media-heading media-heading-0">Choose Time To Revise</h3>
@@ -26,7 +29,9 @@
 
 	    <div class="media">
 		    <a class="pull-left" href="#">
-			    <img class="media-object" src="2.png" width="50px">
+			    <%= image_tag("2.png", 	:width=>"50px", 
+		    							:class=>"media-object",
+		    							:alt=>"second item")%>
 		    </a>
 		    <div class="media-body">
 			    <h3 class="media-heading media-heading-0">Add condensed notes into Memoly</h3>
@@ -40,7 +45,9 @@
 
 	    <div class="media">
 		    <a class="pull-left" href="#">
-			    <img class="media-object" src="3.png" width="50px">
+			    <%= image_tag("3.png", 	:width=>"50px", 
+		    							:class=>"media-object",
+		    							:alt=>"third item")%>
 		    </a>
 		    <div class="media-body">
 			    <h3 class="media-heading media-heading-0">Receive scientifically-spaced revision</h3>
