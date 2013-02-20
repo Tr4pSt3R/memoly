@@ -1,10 +1,47 @@
-<p id="notice"><%= notice %></p>
+<div class="hero-unit offset1">
+	<h1 class=""> <span id="head0">Thank You from</span> <%= image_tag("MemolyLogo.png", :width  => "250px", 
+									:height => "100%", 
+									:alt 	=> "Memoly logo")%></h1>
 
-<p>
-  <b>Email:</b>
-  <%= @alpha_user.email %>
-</p>
+	<div class="offset1">
+		<%= image_tag("DeviceOutlines.png", :width  => "500px", 
+										:height => "100%", 
+										:alt 	=> "compatible devices")%>
+	</div>
+
+	<p>MemolyApp can't wait to help you devour knowledge</p>
+	<p class=""><%= @alpha_user.email %></p>
+	<p>
+		<a href=<%= home_index_path %> class="btn btn-info btn-large">
+			Go Home
+		</a>
+	</p>
+</div>
+
+<!--div class="span-box0 span12">
+	<% if notice %>
+		<p class="alert alert-info"><%= notice %></p>
+	<%end%>
+
+	<h1 class="offset1"><span id="head0">Revise more effectively with</span> <%= image_tag("MemolyLogo.png", 	:width  => "250px", 
+										:height => "100%", 
+										:alt 	=> "Memoly logo")%></h1>
+
+		<div class="offset2">
+			<%= image_tag("DeviceOutlines.png", :width  => "500px", 
+											:height => "100%", 
+											:alt 	=> "compatible devices")%>
+		</div>
+	<div class="span6 offset2 body_text0">
+		<p>
+		</p>
+		<p>
+		  <strong>Email:</strong><%= @alpha_user.email %>
+		</p>
+		<%= link_to 'Edit', edit_alpha_user_path(@alpha_user) %> |
+		<%= link_to 'Back', alpha_users_path %>
+	</div>
+</div-->
 
 
-<%= link_to 'Edit', edit_alpha_user_path(@alpha_user) %> |
-<%= link_to 'Back', alpha_users_path %>
+
