@@ -14,7 +14,7 @@
 /log/*.log
 /tmp
 .elasticbeanstalk/
-Gemfile.locks
+Gemfile.lock
 brakeman_output.html
 /config/initializers/secret_token.rb
 /config/initializers/setup_mail.rb
