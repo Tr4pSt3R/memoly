@@ -15,3 +15,6 @@
 /tmp
 .elasticbeanstalk/
 Gemfile.locks
+brakeman_output.html
+/config/initializers/secret_token.rb
+/config/initializers/setup_mail.rb
