@@ -4,7 +4,7 @@ Memoly::Application.routes.draw do
   # mount Blogit::Engine => "/blog"
   
   match 'register' => 'alpha_users#new'
-  resources :alpha_users
+  resources :alpha_users 
   # , :only => [:new, :show, :edit, :create]
   # devise_for :users
 

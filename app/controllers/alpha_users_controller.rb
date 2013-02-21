@@ -1,5 +1,5 @@
 class AlphaUsersController < ApplicationController
-  load_and_authorize_resource
+  # load_and_authorize_resource
   # GET /alpha_users
   # GET /alpha_users.json
   def index
