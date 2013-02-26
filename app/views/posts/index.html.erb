@@ -15,7 +15,7 @@
   <% @posts.each do |post| %>
     <h2><%= link_to post.title, post  %></h2>
     <small> Posted <%= time_ago_in_words post.created_at %> ago</small>
-    <p><%= truncate post.text %></p>
+    <p><%= truncate post.text  %></p>
   <% end %> 
 
 </div>

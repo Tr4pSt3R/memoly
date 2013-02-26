@@ -1,6 +1,8 @@
 Memoly::Application.routes.draw do
   root :to => "home#index"
 
+  devise_for :users
+  
   resources :posts do 
     resources :comments
   end
@@ -14,7 +16,7 @@ Memoly::Application.routes.draw do
   
    
   # , :only => [:new, :show, :edit, :create]
-  devise_for :users
+  
 
   
   # get "home/index"
