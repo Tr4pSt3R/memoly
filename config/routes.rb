@@ -1,18 +1,28 @@
 Memoly::Application.routes.draw do
-  # resources :turbo_memoids
+  root :to => "home#index"
 
+  resources :posts do 
+    resources :comments
+  end
+
+  match 'register' => 'alpha_users#new'
+  resources :alpha_users
+  
+  # resources :turbo_memoids
   # mount Blogit::Engine => "/blog"
   
-  match 'register' => 'alpha_users#new'
-  resources :alpha_users 
+  
+   
   # , :only => [:new, :show, :edit, :create]
-  # devise_for :users
+  devise_for :users
 
-  root :to => "home#index"
-  get "home/index"
+  
+  # get "home/index"
 
-  # resources :users
-  # resources :memoids
+  # resources :users 
+  # do
+  #   resources :memoids
+  # end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -12,7 +12,6 @@ gem 'pry-doc'
 gem 'devise' 
 gem 'mail'
 gem 'jquery-rails'
-gem 'blogit'
 gem 'whenever', require: false
 gem 'ledermann-rails-settings', :require => 'rails-settings'
 gem 'brakeman'

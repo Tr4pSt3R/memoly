@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+<p>
+	<h2><%= @post.title %></h2>
+	<small> Posted <%= time_ago_in_words @post.created_at %> ago</small><br />
+	<%= @post.text %>
+</p>
+
+<p>
+	<%= link_to 'Edit', edit_post_path(@post) %> |
+	<%= link_to 'Back', posts_path %> | 
+	<%= link_to 'Delete', @post, :method => :delete, :confirm => "Are you sure you want to delete post?" %> 
+</p>
+
+<h3>Comments</h3>
+<div>
+	<ul>
+		<%= @post.comments.each do |comment| %>
+			<li>
+				<%= comment.text %> 
+				<small> 
+					Commented <%= time_ago_in_words comment.created_at %> ago
+				</small>
+			</li>
+		<% end %>
+	</ul>
+</div>
+
+<div>
+	<%= form_for [@post, @post.comments.build] do |f| %>
+		<p><%= f.text_area :text, :size => '40x10' %></p>
+		<p><%= f.submit "Post comment" %></p>
+	<% end %>
+</div>
+
+
+
+
+<%#= form_for(@menu_items, :url => restaurant_menu_items_path(@menu_items.restaurant)) do |f| %>

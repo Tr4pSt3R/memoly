@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130217215946) do
+ActiveRecord::Schema.define(:version => 20130225162351) do
 
   create_table "alpha_users", :force => true do |t|
     t.string   "email"
@@ -19,30 +19,12 @@ ActiveRecord::Schema.define(:version => 20130217215946) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "blog_comments", :force => true do |t|
-    t.string   "name",       :null => false
-    t.string   "email",      :null => false
-    t.string   "website"
-    t.text     "body",       :null => false
-    t.integer  "post_id",    :null => false
-    t.string   "state"
+  create_table "comments", :force => true do |t|
+    t.integer  "post_id"
+    t.text     "text"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  add_index "blog_comments", ["post_id"], :name => "index_blog_comments_on_post_id"
-
-  create_table "blog_posts", :force => true do |t|
-    t.string   "title",                         :null => false
-    t.text     "body",                          :null => false
-    t.integer  "blogger_id"
-    t.string   "blogger_type"
-    t.integer  "comments_count", :default => 0, :null => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-  end
-
-  add_index "blog_posts", ["blogger_type", "blogger_id"], :name => "index_blog_posts_on_blogger_type_and_blogger_id"
 
   create_table "memoids", :force => true do |t|
     t.text     "note",       :limit => 255
@@ -58,6 +40,13 @@ ActiveRecord::Schema.define(:version => 20130217215946) do
     t.integer  "user_id"
   end
 
+  create_table "posts", :force => true do |t|
+    t.string   "title"
+    t.text     "text"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "settings", :force => true do |t|
     t.string   "var",                       :null => false
     t.text     "value"
@@ -68,23 +57,6 @@ ActiveRecord::Schema.define(:version => 20130217215946) do
   end
 
   add_index "settings", ["target_type", "target_id", "var"], :name => "index_settings_on_target_type_and_target_id_and_var", :unique => true
-
-  create_table "taggings", :force => true do |t|
-    t.integer  "tag_id"
-    t.integer  "taggable_id"
-    t.string   "taggable_type"
-    t.integer  "tagger_id"
-    t.string   "tagger_type"
-    t.string   "context"
-    t.datetime "created_at"
-  end
-
-  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
-
-  create_table "tags", :force => true do |t|
-    t.string "name"
-  end
 
   create_table "turbo_memoids", :force => true do |t|
     t.datetime "created_at", :null => false

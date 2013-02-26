@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   # A user can have many memoids through id
   has_many :memoids #not dependent: :destroy
   # alias :login_required
-  blogs
+  
 
   def username
     self.firstname

@@ -1,4 +1,5 @@
 class MemoidsController < ApplicationController
+  before_filter :authenticate_user!, :except => [:new, :show]
   # GET /memoids
   # GET /memoids.json
   def index
