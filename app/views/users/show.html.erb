@@ -6,15 +6,19 @@
 			</header>
 		</div>
 		<div class="span10">
-			<h1><span id="head0">Profile</span></h1>
+			<h1>
+				<span id="head0">Profile</span>
+			</h1>
 
-			<div class="span-box0 span12 offset2">
-				<%#= render 'form' %>
+			<div class="span-box0 span12 offset0">
+				<%= form_for [@user, @user.memoids.build] do |f| %>
+					<%= f.text_area :note, :size => "40x10", :placeholder => "Enter memoid..."  %>
+					<p><%= f.submit "Add memoid", :class => "btn btn-info" %></p>
+				<% end %>
 			</div>
-
-			</br >
-
-			<%= link_to '<- Back', user_memoids_path %>
+			<p>
+				<%#= link_to '<- Back', user_path %>
+			</p>
 		</div>
 	</div>
 </div>
