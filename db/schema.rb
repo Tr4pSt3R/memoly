@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130225162351) do
+ActiveRecord::Schema.define(:version => 20130304094931) do
 
   create_table "alpha_users", :force => true do |t|
     t.string   "email"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(:version => 20130225162351) do
   create_table "comments", :force => true do |t|
     t.integer  "post_id"
     t.text     "text"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "groups", :force => true do |t|
+    t.string   "name"
+    t.string   "scope"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -46,6 +53,19 @@ ActiveRecord::Schema.define(:version => 20130225162351) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "rails_admin_histories", :force => true do |t|
+    t.text     "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month",      :limit => 2
+    t.integer  "year",       :limit => 5
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
   create_table "settings", :force => true do |t|
     t.string   "var",                       :null => false

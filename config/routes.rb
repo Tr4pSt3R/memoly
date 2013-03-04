@@ -1,4 +1,7 @@
 Memoly::Application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+  # resources :groups
+
   root :to => "home#index"
 
   devise_for :users
@@ -11,6 +14,8 @@ Memoly::Application.routes.draw do
 
   match 'register' => 'alpha_users#new'
   resources :alpha_users
+
+  resources :users, :only => [:show]
 
   resources :users do
     resources :memoids

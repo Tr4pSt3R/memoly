@@ -16,6 +16,7 @@ gem 'whenever', require: false
 gem 'ledermann-rails-settings', :require => 'rails-settings'
 gem 'brakeman'
 gem 'cancan'
+gem 'rails_admin'
 
 # Gems used only for assets and not required
 # in production environments by default.

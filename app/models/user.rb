@@ -11,11 +11,19 @@ class User < ActiveRecord::Base
 
   # A user can have many memoids through id
   has_many :memoids #not dependent: :destroy
+  has_many :posts
+  has_many :comments, :through => :posts  
+  has_settings
+  has_many :groups
   # alias :login_required
   
 
   def username
-    self.firstname
+    firstname ||= "Jones"
+    lastname ||= "Agyemang"
+      return firstname+" "+lastname
   end
+
+
   # /home/jones/Memoly/.elasticbeanstalk/optionsettings.Memoly-env
 end

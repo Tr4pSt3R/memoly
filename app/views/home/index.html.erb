@@ -1,5 +1,5 @@
 <div class="span-box0 span12">
-	<h1 class="offset1"> <span id="head0">Revise more effectively with</span> <%= image_tag("MemolyLogo.png", :width  => "250px", 
+	<h1 class="offset0"> <span id="head0">Revise more effectively with</span> <%= image_tag("MemolyLogo.png", :width  => "250px", 
 									:height => "100%", 
 									:alt 	=> "Memoly logo")%></h1>
 
@@ -8,61 +8,69 @@
 										:height => "100%", 
 										:alt 	=> "compatible devices")%>
 	</div>
-	
-	<div class="span7 offset3">
-		<div class="media">
-		    <a class="pull-left" href="#">
-		    	<%= image_tag("1.png", 	:width=>"50px", 
-		    							:class=>"media-object",
-		    							:alt=>"first item")%>
-			    <!--img class="media-object" src="1.png" width="50px"-->
-		    </a>
-		    <div class="media-body">
-			    <h3 class="media-heading media-heading-0">Choose Time To Revise</h3>
-			    	     
-			    <!-- Nested media object -->
-			    <div class="media media-0 ">
-			    For example 19:30 when I am on the bus
-			    </div>
-		    </div>
-	    </div>
 
-	    <div class="media">
-		    <a class="pull-left" href="#">
-			    <%= image_tag("2.png", 	:width=>"50px", 
-		    							:class=>"media-object",
-		    							:alt=>"second item")%>
-		    </a>
-		    <div class="media-body">
-			    <h3 class="media-heading media-heading-0">Add condensed notes into Memoly</h3>
-			         
-			    <!-- Nested media object -->
-			    <div class="media media-0">
-			    Manually or through bulk uploads
-			    </div>
+	<div class="container-fluid">
+	    <div class="row-fluid">
+		    <div class="span5"><!--560x315 -->
+			    <iframe width="370" height="315" src="http://www.youtube.com/embed/E2YP8Ln1MNU" frameborder="0" allowfullscreen></iframe>
 		    </div>
-	    </div>
+		    <div class="span7">
+				<div class="media">
+				    <a class="pull-left" href="#">
+				    	<%= image_tag("1.png", 	:width=>"45px", 
+				    							:class=>"media-object",
+				    							:alt=>"first item")%>
+					    <!--img class="media-object" src="1.png" width="50px"-->
+				    </a>
+				    <div class="media-body">
+					    <h3 class="media-heading media-heading-0">Choose Time To Revise</h3>
+					    	     
+					    <!-- Nested media object -->
+					    <div class="media media-0 ">
+					    For example 19:30 when I am on the bus
+					    </div>
+				    </div>
+			    </div>
 
-	    <div class="media">
-		    <a class="pull-left" href="#">
-			    <%= image_tag("3.png", 	:width=>"50px", 
-		    							:class=>"media-object",
-		    							:alt=>"third	 item")%>
-		    </a>
-		    <div class="media-body">
-			    <h3 class="media-heading media-heading-0">Receive scientifically-spaced revision</h3>
-			         
-			    <!-- Nested media object -->
-			    <div class="media media-0">
-			    Never will you cram again
+			    <div class="media">
+				    <a class="pull-left" href="#">
+					    <%= image_tag("2.png", 	:width=>"45px", 
+				    							:class=>"media-object",
+				    							:alt=>"second item")%>
+				    </a>
+				    <div class="media-body">
+					    <h3 class="media-heading media-heading-0">Add condensed notes into Memoly</h3>
+					         
+					    <!-- Nested media object -->
+					    <div class="media media-0">
+					    Manually or through bulk uploads
+					    </div>
+				    </div>
 			    </div>
-		    </div>
-	    </div></br >
-	</div>
-	<p class="span4 offset4">
-		<a  href= <%= new_alpha_user_path %>
-			class="btn btn-large btn-info">
-			Start Free Trial
-		</a>
-	</p>
+
+			    <div class="media">
+				    <a class="pull-left" href="#">
+					    <%= image_tag("3.png", 	:width=>"45px", 
+				    							:class=>"media-object",
+				    							:alt=>"third	 item")%>
+				    </a>
+				    <div class="media-body">
+					    <h3 class="media-heading media-heading-0">Receive scientifically-spaced revision</h3>
+					         
+					    <!-- Nested media object -->
+					    <div class="media media-0">
+					    Never will you cram again
+					    </div>
+				    </div>
+			    </div></br >
+			</div>
+			<p class="span4 offset6">
+				<a  href= <%= new_alpha_user_path %>
+					class="btn btn-large btn-info">
+					Start Free Trial
+				</a>
+			</p>
+		</div>
+	    </div>
+    </div>
 </div>
