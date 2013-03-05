@@ -1,0 +1,8 @@
+<header><h4>User Settings</h4></header>	
+	<%= form_for(@user) do |f| %>
+		<%= f.label :release_time, "My Preferred Revision Time: " %>
+		<%= f.text_field :release_time, :size => "5x5", :placeholder => "example 18:49" %>
+		<div class="submit">
+			<%= f.submit "Save settings", :class => "btn btn-info" %>
+		</div>
+	<% end %>

@@ -6,18 +6,22 @@ class MemoidsController < ApplicationController
   def create
     @user = User.find_by_id(params[:user_id])
     @memoid = @user.memoids.build(params[:memoid])
-    @memoid.settings[:release_time] = ""
+    
+    #Replace with a call_back
+    @memoid.release_dates = Settings.multipliers.map {|x| Time.now.to_date + x.days}
 
     respond_to do |format|
       if @memoid.save
-        format.html { redirect_to @user, notice: 'Your Memoly was successfully created.' }
+        format.html { redirect_to @user, notice: 'Your Memoid was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
-        format.html { redirect_to @user, alert: 'Failed to create Memoly' }
+        format.html { redirect_to @user, alert: 'Failed to create Memoid' }
         format.json { render json: @memoid.errors, status: :unprocessable_entity }
       end
     end
   end
+
+
   # GET /memoids
   # GET /memoids.json
   # def index

@@ -1,17 +1,13 @@
 class Memoid < ActiveRecord::Base
-  attr_accessible :ISBN, 
-                  :author, 
-                  :expires_on, 
-                  :note, 
-                  :page, 
-                  :rating, 
-                  :title, 
-                  :public
+  attr_accessible :note, :public
+  attr_accessible :release_dates
 
   validates :note, :presence => true
   
   #Each Memoid is uniquely attributed to a user
   belongs_to :user
+
+  #Each Memoid has many settings
   has_settings 
 
   def due_in_next_hour?
@@ -50,6 +46,6 @@ class Memoid < ActiveRecord::Base
       end
     end
 
-    settings_attr_accessors :release_time, :multiplier
+    settings_attr_accessors :release_dates
 
 end

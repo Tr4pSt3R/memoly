@@ -24,12 +24,11 @@
 			</header>
 		</div>
 		<div class="span7">
-			<h1>
-				<span id="head0"></span>
-			</h1>
-			<%#= render 'memoids/form', current_user.memoids.build  %> 
-			
-			<div class="span-box0 span12 offset0">
+			<div class="span-box0 span12 offset1">
+				<%= render "user_settings" %>
+			</div>
+			<div class="span-box0 span12 offset1">
+				<h4>Add...</h4>
 				<%= form_for [@user, @memoid = @user.memoids.build] do |f| %>
 					<% if @memoid.errors.any? %>
 						<div id="error_explanation">
@@ -41,25 +40,17 @@
 							    <% end %>
 						    </ul>
 						</div>
-					<% end %>
-					<%= f.text_area :note, :size => "40x4", :placeholder => "Enter memoid..."  %>
+					<% end %> <!--#error_probe-->
+
+
+					<p><%= f.text_area :note, :size => "40x4", :placeholder => "Enter memoid..."  %></p>
 					<p>
 						<%= f.check_box :public %>
 						<%= f.label :public, "Public", :class => "btn" %>
 					</p>
-					<div>
-						<header><h4>Settings</h4></header>
-						<%= f.select_time @memoid%>
-						<%#= f.time_select '@memoid', :value => 'release_time' %>
-						<%#= binding.pry %>
-					</div>
 					<p><%= f.submit "Add memoid", :class => "btn btn-info" %></p>
 				<% end %>
 			</div>
-
-			<p>
-				<%#= link_to '<- Back', user_path %>
-			</p>
 		</div>
 	</div>
 </div>

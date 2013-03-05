@@ -1,5 +1,5 @@
 class AlphaUsersController < ApplicationController
-  before_filter :authenticate_user!, :except => [:new, :show]
+  # before_filter :authenticate_user!, :except => [:new, :show]
   # load_and_authorize_resource
   # GET /alpha_users
   # GET /alpha_users.json

@@ -1,25 +1,25 @@
 Memoly::Application.routes.draw do
-  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+  # mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   # resources :groups
 
   root :to => "home#index"
 
-  devise_for :users
+  # devise_for :users
   # resources :users, :only => [:show]
   # match 'users/:id' => 'users#show'
   
-  resources :posts do 
-    resources :comments
-  end
+  # resources :posts do 
+  #   resources :comments
+  # end
 
   match 'register' => 'alpha_users#new'
-  resources :alpha_users
+  resources :alpha_users, :except => [:index]
 
-  resources :users, :only => [:show]
+  # resources :users, :only => [:show]
 
-  resources :users do
-    resources :memoids
-  end
+  # resources :users do
+  #   resources :memoids
+  # end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
