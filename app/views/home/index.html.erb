@@ -5,14 +5,14 @@
 
 	<div class="offset2">
 		<%= image_tag("DeviceOutlines.png", :width  => "500px", 
-										:height => "100%", 
-										:alt 	=> "compatible devices")%>
+											:height => "100%", 
+											:alt 	=> "compatible devices") %>
 	</div>
 
 	<div class="container-fluid">
 	    <div class="row-fluid">
 		    <div class="span5"><!--560x315 -->
-			    <iframe width="370" height="315" src="http://www.youtube.com/embed/E2YP8Ln1MNU" frameborder="0" allowfullscreen></iframe>
+			    <iframe width="380" height="315" src="http://www.youtube.com/embed/E2YP8Ln1MNU" frameborder="0" allowfullscreen></iframe>
 		    </div>
 		    <div class="span7">
 				<div class="media">
@@ -24,10 +24,9 @@
 				    </a>
 				    <div class="media-body">
 					    <h3 class="media-heading media-heading-0">Choose Time To Revise</h3>
-					    	     
 					    <!-- Nested media object -->
 					    <div class="media media-0 ">
-					    For example 19:30 when I am on the bus
+						    For example 19:30 when I am on the bus
 					    </div>
 				    </div>
 			    </div>
@@ -40,10 +39,9 @@
 				    </a>
 				    <div class="media-body">
 					    <h3 class="media-heading media-heading-0">Add condensed notes into Memoly</h3>
-					         
 					    <!-- Nested media object -->
 					    <div class="media media-0">
-					    Manually or through bulk uploads
+						    Manually or through bulk uploads
 					    </div>
 				    </div>
 			    </div>
@@ -56,19 +54,18 @@
 				    </a>
 				    <div class="media-body">
 					    <h3 class="media-heading media-heading-0">Receive scientifically-spaced revision</h3>
-					         
 					    <!-- Nested media object -->
 					    <div class="media media-0">
-					    Never will you cram again
+						    Never will you cram again
 					    </div>
 				    </div>
 			    </div></br >
 			</div>
 			<p class="span4 offset6">
-				<a  href= <%= new_alpha_user_path %>
-					class="btn btn-large btn-info">
-					Start Free Trial
-				</a>
+				<%= link_to "Start Free Trial", new_alpha_user_path, :class => "btn btn-large btn-info" %>
+				<!--<a href=""></a>href= <%= new_alpha_user_path %> class="btn btn-large btn-info">
+					Start Free Trial 
+				</a> -->
 			</p>
 		</div>
 	    </div>
