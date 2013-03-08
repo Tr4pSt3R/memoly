@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_many :memoids #not dependent: :destroy
   has_many :posts
   has_many :comments, :through => :posts  
-  has_settings
+  # has_settings
   has_many :groups
   # alias :login_required
   
