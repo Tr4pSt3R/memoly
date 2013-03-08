@@ -8,7 +8,7 @@ class Memoid < ActiveRecord::Base
   belongs_to :user
 
   #Each Memoid has many settings
-  has_settings 
+  # has_settings 
 
   def due_in_next_hour?
   	s = seconds_until_next_release_date
@@ -28,24 +28,24 @@ class Memoid < ActiveRecord::Base
     return z
   end
 
-  private
-  	def seconds_until_next_release_date
-  		(Time.current - next_due_date).abs
-    end
+  # private
+  # 	def seconds_until_next_release_date
+  # 		(Time.current - next_due_date).abs
+  #   end
 
-    def self.settings_attr_accessors(*args)
-      args.each do |method_name|
-        eval "
-          def #{method_name}
-            self.settings.send(:#{method_name})
-          end
-          def #{method_name}=(value)
-            self.settings.send(:#{method_name}=, value)
-          end
-        "
-      end
-    end
+  #   def self.settings_attr_accessors(*args)
+  #     args.each do |method_name|
+  #       eval "
+  #         def #{method_name}
+  #           self.settings.send(:#{method_name})
+  #         end
+  #         def #{method_name}=(value)
+  #           self.settings.send(:#{method_name}=, value)
+  #         end
+  #       "
+  #     end
+  #   end
 
-    settings_attr_accessors :release_dates
+  #   settings_attr_accessors :release_dates
 
 end
