@@ -14,10 +14,25 @@ class User < ActiveRecord::Base
   has_many :memoids #not dependent: :destroy
   has_many :posts
   has_many :comments, :through => :posts  
-  # has_settings
+  # has_settings :settings
   has_many :groups
   # alias :login_required
   
+  def role?(role)
+    return !!roles.find_by_name(role.to_s)
+  end
+
+  def make_admin
+    roles << Role.admin
+  end
+
+  def revoke_admin
+    roles.delete(Role.admin) if roles.include?(Role.admin)
+  end
+
+  def admin?
+    role?(:admin)
+  end
 
   def username
     firstname ||= "Jones"

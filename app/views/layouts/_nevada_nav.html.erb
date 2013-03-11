@@ -4,22 +4,22 @@
 		<ul class="nav">
 			<li class="active"><a href=<%= new_alpha_user_path %>>Jump in!</a></li>
 		</ul>
-		<!--
+		
 		<div class="offset7">
 			<ul class="nav">
-				<# if user_signed_in? %>
-					<li class="active" style="display: inline-block	;">
-						<a href=<%#= user_path(current_user) %> ><%#= image_tag("icons/user3.svg", :size => "17x17") %></a>
+				<% if user_signed_in? %>
+					<li class="active" style="display: inline-block;">
+						<a href=<%= user_path(current_user) %> ><%= image_tag("icons/user3.svg", :size => "17x17") %></a>
 					</li>
 					<li>
-						<a href=""><%#= image_tag("icons/cog2.svg", :size => "17x17") %></a>
+						<a href=""><%= image_tag("icons/cog2.svg", :size => "17x17") %></a>
 					</li>
-					<li class="active"><%#= link_to "Sign out", destroy_user_session_path, :method => :delete, :confirm => "Are you sure you want to sign out?" %></li>
-				<%# else %>
-					<li class="active"><%#= link_to "Sign Up", new_user_registration_path %></li>
-					<li class="active"><%#= link_to "Sign in", new_user_session_path %></li>
-				<%# end %>
+					<li class="active"><%= link_to "Sign out", destroy_user_session_path, :method => :delete, :confirm => "Are you sure you want to sign out?" %></li>
+				<% else %>
+					<li class="active"><%= link_to "Sign Up", new_user_registration_path %></li>
+					<li class="active"><%= link_to "Sign in", new_user_session_path %></li>
+				<% end %>
 			</ul>
-		</div> -->
+		</div>
 	</div>
-</div>
+</div
