@@ -18,3 +18,5 @@ Gemfile.lock
 brakeman_output.html
 config/initializers/secret_token.rb
 config/initializers/setup_mail.rb
+app/assets/stylesheets/.DS_Store
+public/assets/.DS_Store
