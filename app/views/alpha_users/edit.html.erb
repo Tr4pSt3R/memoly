@@ -1,13 +1,5 @@
 <div class="hero-unit offset1">
-	<h1 class=""> <span id="head0"></span> <%= image_tag("MemolyLogo.png", :width  => "250px", 
-									:height => "100%", 
-									:alt 	=> "Memoly logo")%></h1>
-
-	<div class="offset1">
-		<%= image_tag("DeviceOutlines.png", :width  => "500px", 
-										:height => "100%", 
-										:alt 	=> "compatible devices")%>
-	</div>
+	<%= render 'layouts/banner' %>
 
 	<p>Just some tweaks...</p>
 	<p class=""><%= render 'form'%></p>

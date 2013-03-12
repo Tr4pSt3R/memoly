@@ -1,13 +1,5 @@
 <div class="hero-unit offset1">
-	<h1 class=""> <span id="head0">Thank You from</span> <%= image_tag("MemolyLogo.png", :width  => "250px", 
-									:height => "100%", 
-									:alt 	=> "Memoly logo")%></h1>
-
-	<div class="offset1">
-		<%= image_tag("DeviceOutlines.png", :width  => "500px", 
-										:height => "100%", 
-										:alt 	=> "compatible devices")%>
-	</div>
+	<%= render 'layouts/banner' %>
 
 	<p>MemolyApp can't wait to help you devour knowledge</p>
 	<p class=""><%= @alpha_user.email %></p>
