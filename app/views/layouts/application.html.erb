@@ -13,23 +13,13 @@
   </head>
   <body>
     <div class="container">
-      <%#= render 'layouts/nevada_nav' %>
+        <%= yield %>
     </div>
-    <div id="main" role="main">
+    <footer class="footer">
+      <hr>
       <div class="container">
-        <div class="content">
-           <div class="row">
-              <%#= render 'layouts/messages' %>
-              <%= yield %>
-          </div>
-          <footer class="footer">
-            <hr>
-            <div class="container">
-              <p>&copy;<%= Time.now.year %> MemolyApp. All rights reserved. </p>
-            </div>
-          </footer>
-        </div>
-      </div> <!--! end of .container -->
-    </div> <!--! end of #main -->
+        <p>&copy;<%= Time.now.year %> MemolyApp. All rights reserved. </p>
+      </div>
+    </footer>
   </body>
 </html>
