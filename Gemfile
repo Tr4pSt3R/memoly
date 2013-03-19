@@ -17,6 +17,7 @@ gem 'ledermann-rails-settings', :require => 'rails-settings'
 gem 'brakeman'
 gem 'cancan'
 gem 'rails_admin'
+gem 'html-pipeline'
 
 # Gems used only for assets and not required
 # in production environments by default.
