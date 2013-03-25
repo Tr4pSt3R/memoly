@@ -6,26 +6,73 @@
 		<p class="alert"> <%= alert %> </p>
 	<% end %>
 </div>
+<%#= binding.pry %>
 <div class="container-fluid">
 	<div class="row-fluid">
-		<div class="span5">
+		<div class="span4 offset1">
 			<header>
 				<h3><%#= image_tag("icons/user3.svg", :size => "25x25") %><%= @user.username %></h3>
-				
+
 				<h4>My Public Memoids</h4>
 					<% @user.memoids.each do |m| %>
-						<p><%= m.note if m.public == true %></p>
+						<blockquote>
+							<p>
+								<%= link_to "*", [@user, m], :method => :delete, :confirm => "Are you sure?" %>
+								<%= m.note if m.public == true %></p>
+							<small>by <%= @user.username %> <cite title="Source Title"><%= time_ago_in_words m.created_at %> ago</cite></small>
+						</blockquote>
 					<% end %>
 
+				<!--
 				<h4>My Private Memoids</h4>
-					<% @user.memoids.each do |m| %>
-						<p><%= m.note if m.public == false %></p> 
+					<% @user.memoids.each do |k| %>
+						<blockquote>
+							<p>	
+								<%= link_to "*", user_memoid_path(k), :confirm => "Are you sure?", method: :delete%>
+								<%= k.note if k.public == false %>
+							</p>
+							<small>by <%= @user.username %> <cite title="Source Title"><%= time_ago_in_words k.created_at %> ago</cite></small>
+						</blockquote>
 					<% end %>
+				-->
 			</header>
 		</div>
 		<div class="span7">
 			<div class="span-box0 span12 offset1">
-				<%= render "user_settings" %>
+				<h4>Revision Time</h4>
+				<%#= binding.pry %>
+				<%= form_for [@user, @releasetime = @user.build_releasetime] do |f| %>
+					<% if @releasetime.errors.any? %>
+						<div id="error_explanation">
+						    <h2><%= pluralize(@releasetime.errors.count, "error") %> prohibited this Release from being saved:</h2>
+
+						    <ul>
+							    <% @releasetime.errors.full_messages.each do |msg| %>
+							      <li><%= msg %></li>
+							    <% end %>
+						    </ul>
+						</div>
+					<% end %> <!--#error_probe-->
+
+					<p>
+						<% if @user.releasetime.ping_time %>
+							Current Release Time
+							<%#= binding.pry %>
+							<%= @user.releasetime.ping_time.to_s %>
+						<% else %>
+							<div class="alert alert-info">
+								Best thinking time...?
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+							</div>
+						<% end %>
+					</p>
+					<p>
+						<%= f.time_select :ping_time %>
+					</p>
+					<p>
+						<%= f.submit "Add time", :class => "btn btn-info" %>
+					</p>
+				<% end %>
 			</div>
 			<div class="span-box0 span12 offset1">
 				<h4>Add...</h4>

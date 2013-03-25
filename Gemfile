@@ -13,7 +13,7 @@ gem 'devise'
 gem 'mail'
 gem 'jquery-rails'
 gem 'whenever', require: false
-gem 'ledermann-rails-settings', :require => 'rails-settings'
+gem 'ledermann-rails-settings', "~>1.2.1", :require => 'rails-settings'
 gem 'brakeman'
 gem 'cancan'
 gem 'rails_admin'

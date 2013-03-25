@@ -1,7 +1,9 @@
 <header><h4>User Settings</h4></header>	
+<%#= binding.pry %>
 	<%= form_for(@user) do |f| %>
 		<%= f.label :release_time, "My Preferred Revision Time: " %>
-		<%= f.text_field :release_time, :size => "5x5", :placeholder => "example 18:49" %>
+		<%#= f.time_field :ping_time %>
+		<%#= f.time_select :release_time, :ignore_date => true %>
 		<div class="submit">
 			<%= f.submit "Save settings", :class => "btn btn-info" %>
 		</div>

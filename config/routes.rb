@@ -4,17 +4,22 @@ Memoly::Application.routes.draw do
 
   root :to => "home#index"
 
-  # devise_for :users 
+  devise_for :users 
 
-  # resources :users do 
-  #   resources :posts do
-  #     resources :comments
-  #   end
-  # end
+  resources :users do 
+    resources :posts do
+      resources :comments
+    end
+  end
 
-  # resources :users do
-  #   resources :memoids
-  # end
+  resources :users do
+    resources :memoids
+  end
+  
+  resources :users do
+    resources :releasetime
+  end
+
   # resources :users, :only => [:show]
   # match 'users/:id' => 'users#show'
   
@@ -23,8 +28,7 @@ Memoly::Application.routes.draw do
   # end
 
   match 'register' => 'alpha_users#new'
-  resources :alpha_users
-  # , :except => [:index]
+  resources :alpha_users, :except => [:index]
 
   # resources :users, :only => [:show]
 
