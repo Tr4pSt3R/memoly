@@ -74,13 +74,6 @@ ActiveRecord::Schema.define(:version => 20130321153125) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "releasetimes", :force => true do |t|
-    t.datetime "ping_time"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "user_id"
-  end
-
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false

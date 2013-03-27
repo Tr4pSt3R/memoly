@@ -1,24 +1,24 @@
 Memoly::Application.routes.draw do
-  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+  # mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   # resources :groups
 
   root :to => "home#index"
 
-  devise_for :users 
+  # devise_for :users 
 
-  resources :users do 
-    resources :posts do
-      resources :comments
-    end
-  end
+  # resources :users do 
+  #   resources :posts do
+  #     resources :comments
+  #   end
+  # end
 
-  resources :users do
-    resources :memoids
-  end
+  # resources :users do
+  #   resources :memoids
+  # end
   
-  resources :users do
-    resources :releasetime
-  end
+  # resources :users do
+  #   resources :releasetime
+  # end
 
   # resources :users, :only => [:show]
   # match 'users/:id' => 'users#show'
