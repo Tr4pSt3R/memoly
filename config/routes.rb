@@ -28,7 +28,8 @@ Memoly::Application.routes.draw do
   # end
 
   match 'register' => 'alpha_users#new'
-  # resources :alpha_users, :except => [:index]
+  resources :alpha_users
+  # , :except => [:index]
 
   # resources :users, :only => [:show]
 
