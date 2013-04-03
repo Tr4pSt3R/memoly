@@ -1,43 +1,27 @@
-<div class="hero-unit offset1">
-	<%= render 'layouts/hero_banner' %>
+<div class="container-fluid">
+	<div class="hero-unit hero-unit1 center" style="height: 2.1em;">
+		<%= render 'layouts/hero_banner' %></br >
 
-	<p>MemolyApp can't wait to help you devour knowledge</p>
-	<p class=""><%= @alpha_user.email %></p>
-	<p>
-		<a href=<%= root_path %> class="btn btn-info btn-large">
-			Go Home
-		</a>
-		<p>
-			<%= link_to 'Edit', edit_alpha_user_path(@alpha_user) %> |
-		<%= link_to 'Back', alpha_users_path %>
-		</p>
-	</p>
-</div>
-
-<!--div class="span-box0 span12">
-	<% if notice %>
-		<p class="alert alert-info"><%= notice %></p>
-	<%end%>
-
-	<h1 class="offset1"><span id="head0">Revise more effectively with</span> <%= image_tag("MemolyLogo.png", 	:width  => "250px", 
-										:height => "100%", 
-										:alt 	=> "Memoly logo")%></h1>
-
-		<div class="offset2">
-			<%= image_tag("DeviceOutlines.png", :width  => "500px", 
-											:height => "100%", 
-											:alt 	=> "compatible devices")%>
+		<div class="row-fluid span12">
+			<blockquote>
+				<p>	
+					Whatever we possess becomes of double value when we have the opportunity to share it with others
+				</p>
+				<small>by Jean-Nicholas Bouilly <cite title="Source Title">(24 January 1763 – 14 April 1842) French Playwright</cite></small>
+			</blockquote>
 		</div>
-	<div class="span6 offset2 body_text0">
-		<p>
+		<p class="row-fluid span12">
+			<%= @alpha_user.email %> | <%= link_to 'Change', edit_alpha_user_path(@alpha_user) %>
 		</p>
-		<p>
-		  <strong>Email:</strong><%= @alpha_user.email %>
+
+		<p class="row-fluid span12">
+			MemolyApp can't wait to help you devour and share knowledge
+		</p><br/ >
+		<p class="row-fluid span12">
+			<a  href=<%= root_path %> 
+				class="btn btn-info btn-large">
+						Go Home
+					</a>
 		</p>
-		<%= link_to 'Edit', edit_alpha_user_path(@alpha_user) %> |
-		<%= link_to 'Back', alpha_users_path %>
 	</div>
-</div-->
-
-
-
+</div>
