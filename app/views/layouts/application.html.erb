@@ -15,15 +15,29 @@
     <div class="container">
         <%#= render "layouts/nevada_nav.html.erb" %>
         <%= yield %>
-    </div>
-    <footer class="footer span12">
+    </div><!--end_of_main_body_container-->
+    <footer class="footer span12 center">
       <hr>
-      <div class="container-fluid">
-        <p style="text-align: center;">
+      <div class="span7 center">
+        <a href="http://www.telegraph.co.uk/technology/technology-video/9670385/Boris-Johnson-visits-London-Startup-Weekend.html">
+        <%= image_tag "Memoly-SW-Telegraph.png" %>
+      </a>
+      </div>
+      
+      <div class="container center">
+        <p class="centerise_text">
+          <%= link_to "Terms and Conditions", terms_path %>
+          | 
+          <%= link_to "Privacy Policy", privacy_path %> 
+          | 
+          <%= link_to "Contact Us", contact_path %>
+        </p>
+        <p class="centerise_text">
           &copy;<%= Time.now.year %> MemolyApp. All rights reserved.
         </p>
       </div>
-    </footer>
+    </footer><!--end_of_footer-->
+
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-39829789-1']);
