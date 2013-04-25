@@ -15,10 +15,9 @@ Memoly::Application.routes.draw do
   #   end
   # end
 
-  resources :users do
-    resources :memoids
-    resources :releasetime
-  end
+  # resources :users do
+  #   resources :memoids
+  # end
   
   # resources :users do
   #   resources :releasetime

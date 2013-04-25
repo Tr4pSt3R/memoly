@@ -54,8 +54,7 @@
 						</div>
 					<% end %> <!--#error_probe-->
 
-					<div>
-						<%= @user.releasetime.ping_time if @user.releasetime.ping_time %>
+					<p>
 						<% if @user.releasetime.ping_time %>
 							Current Release Time
 							<%#= binding.pry %>
@@ -66,8 +65,8 @@
 								<button type="button" class="close" data-dismiss="alert">&times;</button>
 							</div>
 						<% end %>
-					</div>
-					<div class="">
+					</p>
+					<p>
 						<%= f.time_select :ping_time %>
 					</p>
 					<p>

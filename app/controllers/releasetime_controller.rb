@@ -1,13 +1,11 @@
 class ReleasetimeController < ApplicationController
 
-	# POST /releasetimes
-	# POST /releasetimes.json
 	def create
 		@user = User.find_by_id(params[:user_id])
 		@releasetime = @user.build_releasetime(params[:releasetime])
 		
 		respond_to do |format|
-		  if @releasetime.save
+		  if @p_time.save
 		    format.html { redirect_to @user, notice: 'Your Release Time was successfully created.' }
 		    format.json { render json: @user, status: :created, location: @user }
 		  else

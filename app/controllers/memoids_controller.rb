@@ -7,6 +7,9 @@ class MemoidsController < ApplicationController
     @user = User.find_by_id(params[:user_id])
     @memoid = @user.memoids.build(params[:memoid])
     
+    #Replace with a call_back
+    # @memoid.release_dates = Settings.multipliers.map {|x| Time.now.to_date + x.days}
+
     respond_to do |format|
       if @memoid.save
         format.html { redirect_to @user, notice: 'Your Memoid was successfully created.' }

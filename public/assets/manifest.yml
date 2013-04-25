@@ -1,16 +1,10 @@
 ---
-1-40x40.png: 1-40x40.png
-1-40x40/index.png: 1-40x40.png
 1.png: 1.png
 1/index.png: 1.png
-2-40x40.png: 2-40x40.png
-2-40x40/index.png: 2-40x40.png
 2.png: 2.png
 2/index.png: 2.png
 2ndPage.psd: 2ndPage.psd
 2ndPage/index.psd: 2ndPage.psd
-3-40x40.png: 3-40x40.png
-3-40x40/index.png: 3-40x40.png
 3.png: 3.png
 3/index.png: 3.png
 DeviceOutlines.png: DeviceOutlines.png
