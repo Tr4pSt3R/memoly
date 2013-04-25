@@ -20841,7 +20841,7 @@ $.support.pjax =
 $.support.pjax ? enable() : disable()
 
 })(jQuery);
-jQuery(function($) {
+(function($) {
   window.NestedFormEvents = function() {
     this.addFields = $.proxy(this.addFields, this);
     this.removeFields = $.proxy(this.removeFields, this);
@@ -20864,7 +20864,7 @@ jQuery(function($) {
       // or for an edit form:
       // project[tasks_attributes][0][assignments_attributes][1]
       if (context) {
-        var parentNames = context.match(/[a-z_]+_attributes/g) || [];
+        var parentNames = context.match(/[a-z_]+_attributes(?=\]\[(new_)?\d+\])/g) || [];
         var parentIds   = context.match(/[0-9]+/g) || [];
 
         for(var i = 0; i < parentNames.length; i++) {
@@ -20882,8 +20882,8 @@ jQuery(function($) {
 
       // Make a unique ID for the new child
       var regexp  = new RegExp('new_' + assoc, 'g');
-      var new_id  = new Date().getTime();
-      content     = content.replace(regexp, new_id);
+      var new_id  = this.newId();
+      content     = $.trim(content.replace(regexp, new_id));
 
       var field = this.insertFields(content, assoc, link);
       // bubble up event upto document (through form)
@@ -20892,8 +20892,16 @@ jQuery(function($) {
         .trigger({ type: 'nested:fieldAdded:' + assoc, field: field });
       return false;
     },
+    newId: function() {
+      return new Date().getTime();
+    },
     insertFields: function(content, assoc, link) {
-      return $(content).insertBefore(link);
+      var target = $(link).data('target');
+      if (target) {
+        return $(content).appendTo($(target));
+      } else {
+        return $(content).insertBefore(link);
+      }
     },
     removeFields: function(e) {
       var $link = $(e.currentTarget),
@@ -20916,7 +20924,7 @@ jQuery(function($) {
   $(document)
     .delegate('form a.add_nested_fields',    'click', nestedFormEvents.addFields)
     .delegate('form a.remove_nested_fields', 'click', nestedFormEvents.removeFields);
-});
+})(jQuery);
 
 // http://plugins.jquery.com/project/closestChild
 /*

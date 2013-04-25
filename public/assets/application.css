@@ -8388,3 +8388,6 @@ body {
 .h3 {
   line-space: 0;
 }
+.centerise_text {
+  text-align: center;
+}
