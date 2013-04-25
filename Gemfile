@@ -6,7 +6,7 @@ gem 'rails', '3.2.11'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-gem 'therubyracer'
+gem 'therubyracer', "~>0.11.4"
 gem 'pry'
 gem 'pry-doc'
 gem 'devise' 
@@ -19,6 +19,7 @@ gem 'cancan'
 gem 'rails_admin'
 gem 'html-pipeline'
 gem 'twitter-bootstrap-rails'
+gem 'libv8', '>3.11.8'
 gem 'less-rails'
 
 # Gems used only for assets and not required
@@ -36,11 +37,16 @@ group :test do
 	gem 'shoulda-matchers'
 	gem 'cucumber-rails', :require => false
 	gem 'database_cleaner'
+	gem 'faker'
+	gem 'capybara'
+	gem 'guard-rspec'
+	gem 'launchy'
 end
 
 group :tests, :development do
 	gem "redis", "~> 3.0.2"
 	gem "rspec-rails", "~> 2.0"
+	gem "factory_girl_rails"
 end
 
 group :development do
