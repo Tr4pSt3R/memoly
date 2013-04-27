@@ -9,6 +9,7 @@ Memoly::Application.routes.draw do
   get "privacy", to: "info#privacy"
   get "terms", to: "info#terms"
   get "contact", to: "info#contact"
+  get "about", to: "info#about"
   # resources :users do 
   #   resources :posts do
   #     resources :comments
