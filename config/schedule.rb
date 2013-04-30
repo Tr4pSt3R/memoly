@@ -19,3 +19,8 @@
 
 # Learn more: http://github.com/javan/whenever
 
+set :output, "#{path}/log/cron.log"
+
+every :hour do 
+    runner "echo 'Welcome to Project Godyilz'"
+end
