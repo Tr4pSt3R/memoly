@@ -1,0 +1,8 @@
+require 'spec_helper'
+
+describe User do
+	describe "Associations" do 
+		it { should have_one(:releasetime) }
+		it { should have_many(:memoids) }
+	end
+end

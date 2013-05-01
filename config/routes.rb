@@ -1,4 +1,7 @@
 Memoly::Application.routes.draw do
+  resources :releasetimes
+
+
   # mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   # resources :groups
 

@@ -1,4 +1,4 @@
 class ReleaseDate < ActiveRecord::Base
-	# belongs_to :user
+	belongs_to :memoid
   	attr_accessible :ping_date, :memoid_id
 end
