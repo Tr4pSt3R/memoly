@@ -1,12 +1,19 @@
 require 'spec_helper'
 
 describe Memoid do
-	describe "#Memoid associations" do 
+	context "#Validations" do
+		it { should validate_presence_of :user_id }
+		it { should validate_presence_of :note }
+	end
+	
+	describe "#Memoid associations" do
+		it { should have_many(:release_dates) } 
 		it { should belong_to(:user) }
-		it { should have_many(:releasedates) }
 	end
 
-	# before(:each) do
-	# 	@m = Memoid.create(:note => "Release of Memoid hounds is not illgal")
-	# end
+	context "on save" do
+		it "should have the release dates worked out, by default" do
+			pending "testing"
+		end
+	end
 end

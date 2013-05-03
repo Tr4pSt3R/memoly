@@ -60,14 +60,15 @@ module Memoly
 
     # Use RSpec to generate starter files for our application's test suite
     config.generators do |g|
-        g.test_frameork :rspec, 
+        g.test_framework :rspec, 
             :fixtures => true, 
             :view_specs => false, 
             :helper_specs => false, 
             :routing_specs => false, 
             :controller_specs => true, 
             :request_specs => true
-        g.fixture_replacement :factory_girl, :dir => "spec/factories"
+        # g.fixture_replacement :factory_girl, :dir => "spec/"
+        # g.factory_girl dir: 'custom/dir/for/factories'
     end
   end
 end

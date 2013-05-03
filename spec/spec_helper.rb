@@ -10,6 +10,14 @@ require 'capybara/rspec'
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
+  # If repeating "FactoryGirl" is too verbose,
+  # you can mix the syntax methods
+  config.include FactoryGirl::Syntax::Methods 
+
+  # https://github.com/plataformatec/devise/wiki/How-To%30a-Controllers-tests-with-Rails-3-%28and-rspec%29
+  config.include Devise::TestHelpers, :type => :controller
+  config.extend ControllerMacros, :type => :controller
+
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
