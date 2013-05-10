@@ -37,43 +37,7 @@
 				-->
 			</header>
 		</div>
-		<div class="span7">
-			<div class="span-box0 span12 offset1">
-				<h4>Revision Time</h4>
-				<%#= binding.pry %>
-				<%= form_for [@user, @releasetime = @user.build_releasetime] do |f| %>
-					<% if @releasetime.errors.any? %>
-						<div id="error_explanation">
-						    <h2><%= pluralize(@releasetime.errors.count, "error") %> prohibited this Release from being saved:</h2>
-
-						    <ul>
-							    <% @releasetime.errors.full_messages.each do |msg| %>
-							      <li><%= msg %></li>
-							    <% end %>
-						    </ul>
-						</div>
-					<% end %> <!--#error_probe-->
-
-					<p>
-						<% if @user.releasetime.ping_time %>
-							Current Release Time
-							<%#= binding.pry %>
-							<%= @user.releasetime.ping_time.to_s %>
-						<% else %>
-							<div class="alert alert-info">
-								Best thinking time...?
-								<button type="button" class="close" data-dismiss="alert">&times;</button>
-							</div>
-						<% end %>
-					</p>
-					<p>
-						<%= f.time_select :ping_time %>
-					</p>
-					<p>
-						<%= f.submit "Add time", :class => "btn btn-info" %>
-					</p>
-				<% end %>
-			</div>
+		<section class="add_memoid">
 			<div class="span-box0 span12 offset1">
 				<h4>Add...</h4>
 				<%= form_for [@user, @memoid = @user.memoids.build] do |f| %>
@@ -98,6 +62,7 @@
 					<p><%= f.submit "Add memoid", :class => "btn btn-info" %></p>
 				<% end %>
 			</div>
+		</section>
 		</div>
 	</div>
 </div>

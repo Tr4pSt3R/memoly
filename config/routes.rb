@@ -15,13 +15,18 @@ Memoly::Application.routes.draw do
     resources :posts do
       resources :comments
     end
+
+    resources :memoids
+
+    resources :releasetimes
   end
 
 
-resources :releasetimes
-  # resources :users do
-  #   resources :memoids
-  # end
+
+
+# resources :users do
+#   resources :memoids
+# end
   
   # resources :users do
   #   resources :releasetime
@@ -37,7 +42,7 @@ resources :releasetimes
   match 'register' => 'alpha_users#new'
   resources :alpha_users, :except => [:index]
 
-  # resources :users, :only => [:show]
+  resources :users, :only => [:show]
 
  
 

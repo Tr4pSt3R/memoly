@@ -1,5 +1,5 @@
 class Memoid < ActiveRecord::Base 
-  attr_accessible :note, :public
+  attr_accessible :title, :note, :public
 
   # Validations
   validates :note, :presence => true

@@ -36,20 +36,20 @@ end
 group :test do
 	gem 'shoulda-matchers'
 	gem 'cucumber-rails', :require => false
-	gem 'database_cleaner'
-	gem 'faker'
-	gem 'capybara'
 	gem 'guard-rspec'
 	gem 'launchy'
+	gem "factory_girl_rails", "~> 4.0"
+	# A gem providing "time travel", "time freezing" and "time acceleration" 
+	# capabilities, making it dead simple to test time-dependent code
+	# gem "timecop"
 end
 
 group :tests, :development do
 	gem "redis", "~> 3.0.2"
 	gem "rspec-rails", "~> 2.0"
-end
-
-group :test do 
-	gem "factory_girl_rails", "~> 4.0"
+	gem "faker"
+	gem 'capybara'
+	gem 'database_cleaner'
 end
 
 group :development do
@@ -57,6 +57,8 @@ group :development do
 	gem 'binding_of_caller'
 	gem 'meta_request'
 end
+
+ 
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

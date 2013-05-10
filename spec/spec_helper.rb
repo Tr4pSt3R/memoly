@@ -5,6 +5,7 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rspec'
 
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
@@ -14,9 +15,11 @@ RSpec.configure do |config|
   # you can mix the syntax methods
   config.include FactoryGirl::Syntax::Methods 
 
+  config.include Capybara::DSL
+
   # https://github.com/plataformatec/devise/wiki/How-To%30a-Controllers-tests-with-Rails-3-%28and-rspec%29
-  config.include Devise::TestHelpers, :type => :controller
-  config.extend ControllerMacros, :type => :controller
+  # config.include Devise::TestHelpers, :type => :controller
+  # config.extend ControllerMacros, :type => :controller
 
   # ## Mock Framework
   #

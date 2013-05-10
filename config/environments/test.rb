@@ -1,4 +1,10 @@
 Memoly::Application.configure do
+  config.gem "rspec",           :lib => false, :version => ">=2.13.0"
+  config.gem "rspec-rails",     :lib => false, :version => ">=2.13.0"
+  config.gem "capybara",        :lib => false, :version => ">=2.1.0"
+  config.gem "cucumber",        :lib => false, :version => ">=1.2.5"
+  config.gem "cucumber-rails",  :lib => false, :version => ">=1.3.1"
+
   # Settings specified here will take precedence over those in config/application.rb
 
   # The test environment is used exclusively to run your application's

@@ -1,0 +1,32 @@
+describe "Users" do
+	before :each do 
+		@user = FactoryGirl.create(:user, :email => "devise@gitmail.com")
+	end
+
+	context "GET /users/sign_up" do 
+		it "should be able to sign me up" do 
+			visit '/users/sign_up'
+			within(".register") do
+				fill_in "Email",	:with => Faker::Internet.email
+				fill_in "Password",	:with => "seekreet"
+				fill_in "Password confirmation", :with => "seekreet"
+			end
+			click_on "Sign up"
+			# save_and_open_page
+			page.should have_content "Welcome! You have signed up successfully."
+		end
+	end
+
+	describe "GET /users/sign_in" do
+		it "should be able to sign me in" do
+		  visit '/users/sign_in'
+		  within(".session") do 
+		  	fill_in "Email", 	:with => "devise@gitmail.com"
+		  	fill_in "Password", :with => "testtest"
+		  end
+
+		  click_on "Sign in"
+		  page.should have_content "Signed in successfully."
+		end
+	end
+end
