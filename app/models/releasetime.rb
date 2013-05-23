@@ -1,4 +1,4 @@
 class Releasetime < ActiveRecord::Base
-attr_accessible :pingtime
-
+	belongs_to :user
+	attr_accessible :pingtime
 end

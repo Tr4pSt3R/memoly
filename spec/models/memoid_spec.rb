@@ -12,8 +12,12 @@ describe Memoid do
 	end
 
 	context "on save" do
-		it "should have the release dates worked out, by default" do
-			pending "testing"
+		it "workout default release dates" do
+			user 	= create :user
+			memoid 	= user.memoids.build( attributes_for :memoid )
+			memoid.save!
+			binding.pry 
+			memoid.release_dates.should_not be_empty
 		end
 	end
 end

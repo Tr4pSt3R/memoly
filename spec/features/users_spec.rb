@@ -27,4 +27,26 @@ feature "Signing up" do
 		click_on "Sign in"
 		page.should have_content "Signed in successfully." #change returned msg in devise/i8n
 	end
+
+	scenario "Sign in with incorrect email address" do
+		visit '/users/sign_in'
+		within(".session") do 
+			fill_in "Email", 	:with => "faked@gitmail.com"
+			fill_in "Password", :with => "testtest"
+		end
+
+		click_on "Sign in"
+		page.should have_content "Invalid email or password" #change returned msg in devise/i8n
+	end
+
+	scenario "Sign in with incorrect password" do
+		visit '/users/sign_in'
+		within(".session") do 
+			fill_in "Email", 	:with => "devise@gitmail.com"
+			fill_in "Password", :with => "tubular_untrue"
+		end
+
+		click_on "Sign in"
+		page.should have_content "Invalid email or password" #change returned msg in devise/i8n
+	end
 end

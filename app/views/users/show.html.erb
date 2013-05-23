@@ -1,91 +1,31 @@
-<div>
-	<% if notice %>
-		<p class="notice"> <%= notice %> </p>
-	<% end %>
-	<% if alert %>
-		<p class="alert"> <%= alert %> </p>
-	<% end %>
-</div>
-<%#= binding.pry %>
-<div class="container-fluid">
-	<div class="row-fluid">
-		<div class="span4 offset1">
-			<header>
-				<h3><%#= image_tag("icons/user3.svg", :size => "25x25") %><%= @user.username %></h3>
-
-				<h4>My Public Memoids</h4>
-					<% @user.memoids.each do |m| %>
-						<blockquote>
-							<p>
-								<%= link_to "*", [@user, m], :method => :delete, :confirm => "Are you sure?" %>
-								<%= m.note if m.public == true %></p>
-							<small>by <%= @user.username %> <cite title="Source Title"><%= time_ago_in_words m.created_at %> ago</cite></small>
-						</blockquote>
-					<% end %>
-
-				<!--
-				<h4>My Private Memoids</h4>
-					<% @user.memoids.each do |k| %>
-						<blockquote>
-							<p>	
-								<%= link_to "*", user_memoid_path(k), :confirm => "Are you sure?", method: :delete%>
-								<%= k.note if k.public == false %>
-							</p>
-							<small>by <%= @user.username %> <cite title="Source Title"><%= time_ago_in_words k.created_at %> ago</cite></small>
-						</blockquote>
-					<% end %>
-				-->
-			</header>
-		</div>
-		<section class="add_memoid">
-			<div class="span-box0 span12 offset1">
-				<h4>Add...</h4>
-				<%= form_for [@user, @memoid = @user.memoids.build] do |f| %>
-					<% if @memoid.errors.any? %>
-						<div id="error_explanation">
-						    <h2><%= pluralize(@memoid.errors.count, "error") %> prohibited this Memoly from being saved:</h2>
-
-						    <ul>
-							    <% @memoid.errors.full_messages.each do |msg| %>
-							      <li><%= msg %></li>
-							    <% end %>
-						    </ul>
-						</div>
-					<% end %> <!--#error_probe-->
-
-
-					<p><%= f.text_area :note, :size => "40x4", :placeholder => "Enter memoid..."  %></p>
-					<p>
-						<%= f.check_box :public %>
-						<%= f.label :public, "Public", :class => "btn" %>
-					</p>
-					<p><%= f.submit "Add memoid", :class => "btn btn-info" %></p>
-				<% end %>
+<div class="add_memoid">
+	<%= form_for @user do |f| %>	
+		<h4>Memoid</h4>
+		<%= f.fields_for :memoids, @user.memoids.build do |m| %>
+			<div>
+				<%= m.label :note, "Note" %>
+					<%= m.text_area :note, 
+									:size => "40x4", 
+									:placeholder => "Enter memoid..."  %>
 			</div>
-		</section>
-		</div>
-	</div>
+			<div class="actions">
+				<%= m.submit "Add memoid"%>
+			</div>
+		<% end %>		
+	<% end %>
 </div>
 
-
-
-
-
-
-
-<!-- <p id="notice"><%= notice %></p>
-
-<p>
-  <b>Firstname:</b>
-  <%= @user.firstname %>
-</p>
-
-<p>
-  <b>Lastname:</b>
-  <%= @user.lastname %>
-</p>
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
- -->
+<div class="add-time">
+	<%= form_for @user do |f| %>
+		<h4>Release Time</h4>
+		<%= f.fields_for :releasetime do |r_builder| %>
+			<div>
+				<%= r_builder.label :pingtime, "Time" %>
+				<%= r_builder.time_select :pingtime %>
+			</div>
+			<div class="submit">
+				<%= r_builder.submit "Add Time" %>
+			</div>
+		<% end %>
+	<% end %>
+</div>

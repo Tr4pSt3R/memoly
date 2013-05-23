@@ -7,21 +7,29 @@ feature "Add Memoid" do
 
     scenario "having not signed in" do 
       visit user_path(@user)
-      save_and_open_page
-      within(".add_memoid") do 
-        fill_in(:note, "$git brew automake")
-        check(:public, true)
+      
+      page.should have_content "Sign in"
+    end
+
+    scenario "should be able to add memoid once I have signed in" do       
+      sign_in
+      within(".add_memoid") do
+        # save_and_open_page
+        fill_in "Note", :with => "$brew install automake"
       end
       click_on "Add memoid"
 
-      page.should have_content "Failed"
+      page.should have_content("Your Memoid was successfully created")
     end
 
-    # scenario "I add a memoid" do
-    #   visit user_path(@user)
-    #   save_and_open_page
-    #   within(".add_memoid") do 
-    #     fill_in(:note, "")
-    #   end
-    # end
+    private 
+      def sign_in 
+        visit new_user_session_path
+          within(".session") do 
+            fill_in "Email",  :with => @user.email
+            fill_in "Password", :with => "testtest"
+          end
+
+        click_on "Sign in"
+      end
 end

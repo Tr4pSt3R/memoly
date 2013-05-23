@@ -12,4 +12,11 @@ class Memoid < ActiveRecord::Base
   def public?
     self.public
   end
+
+  private
+    def calculate_default_release_dates(memoid)
+      default_dates = ReleaseDate::DEFAULT_DATES.dup
+      default_dates.map! { |x| memoid.created_at + x.days}
+      default_dates.map {|date| ReleaseDate.create!(:ping_date => date, :memoid_id => memoid.id)}     
+    end
 end

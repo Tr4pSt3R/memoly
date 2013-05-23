@@ -8,25 +8,27 @@ class User < ActiveRecord::Base
           :rememberable, 
           :trackable, 
           :validatable
-
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :firstname, :lastname
-  attr_accessible :release_time
-  # has_settings do |s|
-  #   s.key :release_time, :defaults => { :time => '00:00'}
-  # end
-
-  # A user can have many memoids through id
+  #Assocs 
   has_many :memoids #not dependent: :destroy
   has_many :posts
   has_many :comments, :through => :posts  
   has_many :groups
-  # alias :login_required
-  has_settings
-  has_one :releasetime
+  has_one  :releasetime
+  # nested attrs
+  accepts_nested_attributes_for :releasetime, :memoids
+  # Mass-assignables
+  attr_accessible :firstname, 
+                  :lastname,
+                  :email, 
+                  :password, 
+                  :password_confirmation, 
+                  :remember_me, 
+                  :releasetime_attributes, 
+                  :memoids_attributes
   
-  
+
+  # has_settings
+    
   def role?(role)
     return !!roles.find_by_name(role.to_s)
   end

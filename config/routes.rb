@@ -4,7 +4,11 @@ Memoly::Application.routes.draw do
 
   root :to => "home#index"
 
-  devise_for :users 
+  devise_for :users
+
+  devise_scope :users do
+    get "/users/sign_out" => "sessions#destroy"
+  end
 
   get "privacy", to: "info#privacy"
   get "terms", to: "info#terms"
@@ -15,11 +19,11 @@ Memoly::Application.routes.draw do
     resources :posts do
       resources :comments
     end
-
     resources :memoids
-
     resources :releasetimes
   end
+
+
 
 
 
