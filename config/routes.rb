@@ -2,16 +2,16 @@ require 'sidekiq/web'
 Memoly::Application.routes.draw do
   resources :topics
 
-
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   mount Sidekiq::Web, at: '/sidekiq'
 
   root :to => "home#index"
 
-  devise_for :users
+  devise_for :users, :controllers => { :sessions => "users/sessions" }
 
   devise_scope :users do
     # get "/users/sign_out" => "sessions#destroy"
+    # get "sign_in", :to => "users/sessions#new"
   end
 
   get "privacy",  to: "info#privacy"

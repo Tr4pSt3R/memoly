@@ -2,7 +2,13 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  using_access_control
+
+  # before_filter :set_current_authorized_user
+
+  def set_current_authorized_user
+    Authorization.current_user = current_user
+  end
+  
   devise  :database_authenticatable, 
           :registerable,
           :recoverable, 

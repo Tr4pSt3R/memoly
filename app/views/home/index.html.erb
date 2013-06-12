@@ -9,6 +9,12 @@
 	</p>
 </header>
 <div class="container">
+	<% if notice then %>
+		<div class="alert">
+			<%= notice %>
+		</div>
+	<% end -%>
+	
 	<div class="row-fluid summary">
 		<div class="span4">
 			<%= image_tag("alarm.svg", :class => "summarise")%>
