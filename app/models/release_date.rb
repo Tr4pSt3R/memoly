@@ -1,6 +1,6 @@
 class ReleaseDate < ActiveRecord::Base
 	belongs_to :memoid
-  	attr_accessible :ping_date, :memoid_id
+  	attr_accessible :ping_date, :memoid_id, :released
 
   	# after_create :calculate_default_dates
 

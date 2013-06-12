@@ -1,4 +1,14 @@
 class ReleasetimesController < ApplicationController
+	def new
+		@user = User.find_by_id(params[:id])
+		@releasetime = @user.build_releasetime
+		
+		respond_to do |format|
+			format.html # new.html.erb
+			format.json { render json: @user.releasetime}
+		end
+	end
+
 	def create
 		@user = User.find_by_id(params[:user_id])
 		@releasetime = @user.build_releasetime(params[:releasetime])

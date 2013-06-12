@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
+  filter_resource_access
   
   # GET /users
   # GET /users.json
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
-    @user = User.new
+    # @user = User.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,19 +36,18 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
   end
 
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(params[:user])
-
+    # @user = User.new(params[:user])
+    binding.pry
     respond_to do |format|
       if @user.save
 
-        # UserMailer.welcome_mail(@user).deliver
-        # binding.pry
+        # UserMailer.welcome_email(@user)
         format.html { redirect_to user_path(@user), notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
@@ -61,12 +60,25 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
-    @user = User.find(params[:id])
-    
+    # @user = User.find(params[:id])
+    commit = params[:commit]
+
+    # TODO Optimise using Case_Switch 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { head :no_content }
+        if commit=='Add memoid'
+          gflash :success => "Memoly was successfully created"
+          format.html { 
+            redirect_to @user,              
+            :notice => "Memoid was successfully created"
+          }
+        elsif commit=='Add Time'
+          format.html { redirect_to @user, notice: "Release Time was successfully updated"}
+        else
+          format.html { redirect_to @user, notice: 'User was successfully updated' }
+          notice = "User was successfully updated"
+          format.json { head :no_content }
+        end        
       else
         format.html { render action: "edit" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -77,7 +89,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     @user.destroy
 
     respond_to do |format|

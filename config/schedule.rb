@@ -21,6 +21,6 @@
 
 set :output, "#{path}/log/cron.log"
 
-every :hour do 
-    runner "echo 'Welcome to Project Godyilz'"
+every 5.minutes do 
+    runner "Memoid.run_notifier"
 end

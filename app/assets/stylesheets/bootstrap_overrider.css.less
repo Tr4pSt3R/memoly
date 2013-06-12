@@ -29,9 +29,12 @@
 //
 // Example:
 // @linkColor: #ff0000;
+@import url(http://fonts.googleapis.com/css?family=Crete+Round:400,400italic);
+
 
 body{
-	background: url("/assets/tiny_grid.png") repeat scroll 50% 0% transparent;	
+	/* background: url("/assets/tiny_grid.png") repeat scroll 50% 0% transparent;	*/
+  width: inherit;
 }
 
 #main {
@@ -42,10 +45,27 @@ body{
 @head_colour: lighten(#6B6A6A, 10%);
 
 .head1 {
-  font-size: 40px; 
+  font-family: Crete Round;
+  font-size: 72px; 
   font-weight: normal;
+  color: white;
+  text-align: center;
+}
+
+.head2 {
+  font-family: Crete Round;
   color: @head_colour;
-  text-align: center !important;
+}
+
+.head3{
+  font-family: Crete Round;
+  font-size: 1.5em;
+  color: white;
+}
+
+.subhead {
+  font-family: Helvetica;
+  color: #cccccc;
 }
 
 .hero-unit1{
@@ -60,6 +80,10 @@ body{
 .shift0 {
   width: inherit;
   margin-right: 40px;
+}
+
+.span1_half{
+  width: 73px;
 }
 
 .center { 
@@ -97,4 +121,48 @@ body{
 
 .centerise_text{
   text-align: center;
+}
+
+.hero-unit {
+  padding: 0px;
+}
+
+.summary {
+  background-color: #cccccc;
+}
+
+.summarise {
+  display: block;
+  margin: 20px auto 30px auto;
+}
+
+
+
+.footer {
+  background-color: #cccccc;
+}
+
+.jumbotron{
+  position: relative;
+  padding: 40px 0;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
+  background: #3399cc; /* Old browsers */
+  
+}
+
+.side-bar{
+  background-color: #333333; 
+  width: 83px important!;
+}
+
+.cog_size {
+  width: 25px;
+  height: 25px;
+  /*margin: 0px 0px 20px 0;*/
+}
+
+.side-icon-list{
+  margin-left: 10px;
 }

@@ -11,10 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130508150604) do
+ActiveRecord::Schema.define(:version => 20130610072244) do
 
   create_table "alpha_users", :force => true do |t|
     t.string   "email"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "assignments", :id => false, :force => true do |t|
+    t.integer  "role_id"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -34,17 +41,18 @@ ActiveRecord::Schema.define(:version => 20130508150604) do
   end
 
   create_table "memoids", :force => true do |t|
-    t.text     "note",       :limit => 255
+    t.text     "note"
     t.integer  "page"
     t.integer  "rating"
     t.string   "title"
     t.string   "author"
     t.string   "ISBN"
     t.datetime "expires_on"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.boolean  "public"
     t.integer  "user_id"
+    t.integer  "topic_id"
   end
 
   create_table "posts", :force => true do |t|
@@ -60,7 +68,7 @@ ActiveRecord::Schema.define(:version => 20130508150604) do
     t.integer  "item"
     t.string   "table"
     t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 5
+    t.integer  "year",       :limit => 8
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
   end
@@ -72,24 +80,20 @@ ActiveRecord::Schema.define(:version => 20130508150604) do
     t.integer  "memoid_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.boolean  "released"
   end
 
   create_table "releasetimes", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
     t.integer  "user_id"
-    t.time     "pingtime"
+    t.time     "pingtime",   :default => '2000-01-01 08:00:00'
   end
 
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "roles_users", :id => false, :force => true do |t|
-    t.integer "role_id"
-    t.integer "user_id"
   end
 
   create_table "settings", :force => true do |t|
@@ -103,7 +107,15 @@ ActiveRecord::Schema.define(:version => 20130508150604) do
 
   add_index "settings", ["target_type", "target_id", "var"], :name => "index_settings_on_target_type_and_target_id_and_var", :unique => true
 
+  create_table "topics", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "turbo_memoids", :force => true do |t|
+    t.string   "filename"
+    t.string   "filetype"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

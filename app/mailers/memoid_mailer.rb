@@ -7,4 +7,12 @@ class MemoidMailer < ActionMailer::Base
      mail(	:to => email, 
      		:subject => "New Memoly for #{Time.current}")
   end
+
+  def notification_email(memoid)
+  	@memoid = memoid
+  	@user = @memoid.user
+    
+    @url = "http://www.memolyapp.com/"
+    mail(:to => @user.email, :subject => "Memoly::Today")
+  end
 end

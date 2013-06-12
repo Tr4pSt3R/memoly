@@ -1,31 +1,153 @@
-<div class="add_memoid">
-	<%= form_for @user do |f| %>	
-		<h4>Memoid</h4>
-		<%= f.fields_for :memoids, @user.memoids.build do |m| %>
-			<div>
-				<%= m.label :note, "Note" %>
-					<%= m.text_area :note, 
-									:size => "40x4", 
-									:placeholder => "Enter memoid..."  %>
+<div class="row-fluid jumbotron">
+	<div class="span12">
+		<!--Logo-->
+			<div class="span2">
+				<h1 class="head1">Memoly </h1>
 			</div>
-			<div class="actions">
-				<%= m.submit "Add memoid"%>
+
+		<!--Mid-section-->
+			<div class="span6">				<%= gflash :success => "It has been successful!" %>
 			</div>
-		<% end %>		
-	<% end %>
+
+		<!--Profile Media-->
+			<span class="span4">
+				<div class="media">
+					<a href="/" class="pull-right">
+						<%= image_tag("user.svg") %>
+					</a>
+					<div class="media-body pull-right">
+						<h4 class="media-heading head3">
+							<%= @user.username %>
+						</h4>
+						<div class="media">
+							<span> <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete, :confirm => "Are you sure you want to sign out?" %>
+							</span>
+							<%= image_tag("cog.svg", :class => "cog_size") %>
+						</div>
+					</div>
+				</div>
+			</span>
+	</div>
 </div>
 
-<div class="add-time">
-	<%= form_for @user do |f| %>
-		<h4>Release Time</h4>
-		<%= f.fields_for :releasetime do |r_builder| %>
-			<div>
-				<%= r_builder.label :pingtime, "Time" %>
-				<%= r_builder.time_select :pingtime %>
+
+<div class="row-fluid">
+	<!--side-panel-->
+	<div class="span1 side-bar">
+		<!--Sidebar content-->
+		<ul class="side-icon-list">
+			<li>
+				<a href=<%=user_path(@user) %>>
+					<%= image_tag("earth.svg", :class => "summarise") %>
+				</a>
+			</li>
+			<li>
+				<a href="/">
+					<%= image_tag("books.svg", :class => "summarise") %>
+				</a>
+			</li>
+			<li>
+				<a href=<%=user_releasetime_path(@user)%>>					
+					<%= image_tag("watch.svg", :class => "summarise") %>
+				</a>
+			</li>
+			<li>
+				<a href="/">
+					<%= image_tag("graph.svg", :class => "summarise") %>
+				</a>
+			</li>
+		</ul>
+		<hr>
+		<ul>
+			<li class="nav nav-pill"><a href="/">Get Support</a></li>
+			<li><a href="/">Meet The Team</a></li>
+			<li><a href="/">Memoly Blog</a></li>
+			<li><a href="/">Our Privacy Policy</a></li>
+			<li><a href="/">Terms of Use</a></li>
+		</ul>
+		<hr>
+		<ul>
+			<li>
+				<p class="head2">
+					&copy;<%= Time.zone.now.year %> MemolyApp. 
+				</p>
+				<p class="head2">
+					All rights reserved.
+				</p>
+			</li>
+		</ul>
+	</div>
+	<!--end-of-side-panel-->
+
+	<!--main-arena-->
+	<div class="span11">
+		<!--Memoid and Time Forms-->
+		<div class="span6">
+			<% if notice then %>
+				<div class="alert">
+					<%= notice %>
+				</div>
+			<% end %>			
+
+			<div class="add_memoid">
+				<%= form_for @user do |f| %>
+					<%= f.fields_for :memoids, @user.memoids.build do |m| %>
+						<div>
+							<%= m.label :note, "Note" %>
+								<%= m.text_area :note, 
+												:size => "40x4", 
+												:placeholder => "Enter memoid..."  %>
+						</div>
+						<div>
+							<%= m.check_box :public, :checked => true %><span>   Public</span>
+						</div>
+						<div class="actions">
+							<%= m.submit "Add memoid"%>
+						</div>
+					<% end %>		
+				<% end %>
 			</div>
-			<div class="submit">
-				<%= r_builder.submit "Add Time" %>
+
+			<div class="add_time">
+				<%= form_for @user do |f| %>
+					<h4>Release Time</h4>
+					<%= f.fields_for :releasetime do |g| %>
+						<div>
+							<%= g.label :pingtime, "Time" %>
+							<%= g.time_select :pingtime %>
+						</div>
+						<div class="submit">
+							<%= g.submit "Add Time" %>
+						</div>
+					<% end %>
+				<% end %>
 			</div>
-		<% end %>
-	<% end %>
+		</div>
+		<!--End_of_Memoid and Time Forms-->
+
+		<!--Memoid Stream-->
+		<div class="span5">
+			<h2>Public Memoids</h2>
+				<% @user.memoids.public.each do |m| %>
+					<blockquote>
+						<p>
+							<%= link_to "*", [@user, m], :method => :delete, :confirm => "Are you sure?" %>
+							<%= m.note %></p>
+						<small>by <%= @user.username %> <cite title="Source Title"><%= time_ago_in_words m.created_at %> ago</cite></small>
+					</blockquote>
+				<% end -%>
+			<h2>Private Memoids</h2>
+				<% @user.memoids.private.each do |m| %>
+					<blockquote>
+						<p>
+							<%= link_to "*", [@user, m], :method => :delete, :confirm => "Are you sure?" %>
+							<%= m.note %></p>
+						<small>by <%= @user.username %> <cite title="Source Title"><%= time_ago_in_words m.created_at %> ago</cite></small>
+					</blockquote>
+				<% end -%>
+		</div>
+		<!--End of Memoid-->
+	</div>
+	<!--end-of-main-arena-->
 </div>
+

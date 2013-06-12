@@ -1,63 +1,48 @@
-<%= render 'layouts/banner' %> </br >
-
-<div align="center"><!--570px * 370px-->
-	<iframe width="60.638297%" 
+<header class="jumbotron">
+	<h1 class="head1">Memoly </h1>
+	<h2 class="subhead">Hey. Let's Get Smarter. Together.</h2>
+	<p class="row-fluid">
+		<a  href=<%= new_user_session_path %> 
+			class="btn btn-large">
+					Get Started
+				</a>
+	</p>
+</header>
+<div class="container">
+	<div class="row-fluid summary">
+		<div class="span4">
+			<%= image_tag("alarm.svg", :class => "summarise")%>
+			<h4 class="centerise_text">Choose A Time To Revise</h4>
+		</div>
+		<div class="span4">
+			<%= image_tag("books.svg", :class => "summarise") %>
+			<h4 class="centerise_text">Add Condensed Class Notes</h4>
+		</div>
+		<div class="span4">
+			<%= image_tag("watch.svg", :class => "summarise") %>
+			<h4 class="centerise_text">Receive Scientifically-spaced Revision on any device</h4>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<iframe width="100%" 
 			height="300em" 
 			src="http://www.youtube.com/embed/E2YP8Ln1MNU" 
 			frameborder="0" 
 			align="middle"
 			allowfullscreen></iframe>
-</div></br >
+</div>
 
-<section class="span7 center">
-	<div class="media">
-	    <a class="pull-left" href="#">
-	    	<%= image_tag("1-40x40.png", 	 
-	    							:class=>"media-object",
-	    							:alt=>"first item")%>
-	    </a>
-	    <div class="media-body">
-		    <h3 class="media-heading media-heading-0">Choose Time To Revise</h3>
-		    <!-- Nested media object -->
-		    <div class="media media-0 ">
-			    For example 19:30 when I am on the bus
-		    </div>
-	    </div>
-    </div>
-
-    <div class="media">
-	    <a class="pull-left" href="#">
-		    <%= image_tag("2-40x40.png", 	 
-	    							:class=>"media-object",
-	    							:alt=>"second item")%>
-	    </a>
-	    <div class="media-body">
-		    <h3 class="media-heading media-heading-0">Add condensed notes into Memoly</h3>
-		    <!-- Nested media object -->
-		    <div class="media media-0">
-			    Manually or through bulk uploads
-		    </div>
-	    </div>
-    </div>
-
-    <div class="media">
-	    <a class="pull-left" href="#">
-		    <%= image_tag("3-40x40.png", 
-	    							:class=>"media-object",
-	    							:alt=>"third item")%>
-	    </a>
-	    <div class="media-body">
-		    <h3 class="media-heading media-heading-0">Receive scientifically-spaced revision</h3>
-		    <!-- Nested media object -->
-		    <div class="media media-0">
-			    Never will you cram again
-		    </div>
-	    </div>
-    </div>
-    <p class="span3 center">
-		<%= link_to "Get Started", new_alpha_user_path, :class => "btn btn-large btn-info center" %>
-		<!--<a href=""></a>href= <%= new_alpha_user_path %> class="btn btn-large btn-info">
-		Start Free Trial 
-		</a> -->
-	</p>
-</section>
+<footer class="footer">
+	<div class="container">
+		<div class="center">
+			<ul class="nav nav-pills">
+			<li><a href="/">What's Memoly?</a></li>
+			<li><a href="/">The Team</a></li>
+			<li><a href="/">Our Privacy Policy</a></li>
+			<li><a href="/">Terms of Use</a></li>
+			<li><a href="/">Community</a></li>
+		</ul>
+		</div>
+	</div>
+</footer>

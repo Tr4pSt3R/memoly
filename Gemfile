@@ -21,6 +21,11 @@ gem 'html-pipeline'
 gem 'twitter-bootstrap-rails'
 gem 'libv8', '>3.11.8'
 gem 'less-rails'
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
+gem 'gritter', "1.0.3"
+gem 'declarative_authorization'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -36,7 +41,6 @@ end
 group :test do
 	gem 'shoulda-matchers'
 	gem 'cucumber-rails', :require => false
-	gem 'guard-rspec'
 	gem 'launchy'
 	gem "factory_girl_rails", "~> 4.0"
 	# A gem providing "time travel", "time freezing" and "time acceleration" 
@@ -50,12 +54,17 @@ group :tests, :development do
 	gem "faker"
 	gem 'capybara'
 	gem 'database_cleaner'
+	gem 'guard-rspec'
+	gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+	gem 'timecop'
 end
 
 group :development do
 	gem 'better_errors'
 	gem 'binding_of_caller'
 	gem 'meta_request'
+	gem 'growl'
+	gem 'ruby_gntp'
 end
 
  

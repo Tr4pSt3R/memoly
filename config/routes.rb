@@ -1,19 +1,23 @@
+require 'sidekiq/web'
 Memoly::Application.routes.draw do
+  resources :topics
+
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
-  # resources :groups
+  mount Sidekiq::Web, at: '/sidekiq'
 
   root :to => "home#index"
 
   devise_for :users
 
   devise_scope :users do
-    get "/users/sign_out" => "sessions#destroy"
+    # get "/users/sign_out" => "sessions#destroy"
   end
 
-  get "privacy", to: "info#privacy"
-  get "terms", to: "info#terms"
-  get "contact", to: "info#contact"
-  get "about", to: "info#about"
+  get "privacy",  to: "info#privacy"
+  get "terms",    to: "info#terms"
+  get "contact",  to: "info#contact"
+  get "about",    to: "info#about"
   
   resources :users do 
     resources :posts do
@@ -22,11 +26,6 @@ Memoly::Application.routes.draw do
     resources :memoids
     resources :releasetimes
   end
-
-
-
-
-
 
 # resources :users do
 #   resources :memoids

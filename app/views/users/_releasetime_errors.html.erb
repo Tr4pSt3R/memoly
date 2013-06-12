@@ -1,0 +1,11 @@
+<% if @releasetime.errors.any? %>
+	<div id="error_explanation">
+	    <h2><%= pluralize(@releasetime.errors.count, "error") %> prohibited this Release from being saved:</h2>
+
+	    <ul>
+		    <% @releasetime.errors.full_messages.each do |msg| %>
+		      <li><%= msg %></li>
+		    <% end %>
+	    </ul>
+	</div>
+<% end %> <!--#error_probe--> -->

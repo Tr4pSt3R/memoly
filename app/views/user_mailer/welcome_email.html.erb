@@ -4,13 +4,13 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Welcome to MemolyApp.com, <%#= @user.name %></h1>
+    <h1>Welcome to MemolyApp.com, <%= @user.firstname %></h1>
     <p>
       You have successfully signed up to MemolyApp.com,
-      your log-in email is: <%#= @user.email %>.<br/>
+      your log-in email is: <%= @user.email %>.<br/>
     </p>
     <p>
-      To log in to the site, just follow this link: <%= @url %>.
+      To log in to the site, just follow this link: <%= link_to 'User Profile', user_path(@user) %>.
     </p>
     <p>Thanks for joining us and have a great day!</p>
   </body>

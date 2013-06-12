@@ -19,7 +19,7 @@ feature "Add Memoid" do
       end
       click_on "Add memoid"
 
-      page.should have_content("Your Memoid was successfully created")
+      page.should have_content("Memoid was successfully created")
     end
 
     private 
