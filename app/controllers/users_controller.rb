@@ -44,7 +44,6 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     # @user = User.new(params[:user])
-    binding.pry
     respond_to do |format|
       if @user.save
 
@@ -68,15 +67,12 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update_attributes(params[:user])
         if commit=='Add memoid'
-          gflash :success => "Memoly was successfully created"
-          format.html { 
-            redirect_to @user,              
-            :notice => "Memoid was successfully created"
+          format.html { redirect_to @user, :success => "Memoid was successfully created"
           }
         elsif commit=='Add Time'
-          format.html { redirect_to @user, notice: "Release Time was successfully updated"}
+          format.html { redirect_to @user, success: "Release Time was successfully updated"}
         else
-          format.html { redirect_to @user, notice: 'User was successfully updated' }
+          format.html { redirect_to @user, success: 'User was successfully updated' }
           notice = "User was successfully updated"
           format.json { head :no_content }
         end        
