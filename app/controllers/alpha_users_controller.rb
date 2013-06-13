@@ -3,8 +3,11 @@ class AlphaUsersController < ApplicationController
   # load_and_authorize_resource
   # GET /alpha_users
   # GET /alpha_users.json
+
+  filter_resource_access
+
   def index
-    @alpha_users = AlphaUser.all
+    # @alpha_users = AlphaUser.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +18,7 @@ class AlphaUsersController < ApplicationController
   # GET /alpha_users/1
   # GET /alpha_users/1.json
   def show
-    @alpha_user = AlphaUser.find(params[:id])
+    # @alpha_user = AlphaUser.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,7 +29,7 @@ class AlphaUsersController < ApplicationController
   # GET /alpha_users/new
   # GET /alpha_users/new.json
   def new
-    @alpha_user = AlphaUser.new
+    # @alpha_user = AlphaUser.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,13 +39,13 @@ class AlphaUsersController < ApplicationController
 
   # GET /alpha_users/1/edit
   def edit
-    @alpha_user = AlphaUser.find(params[:id])
+    # @alpha_user = AlphaUser.find(params[:id])
   end
 
   # POST /alpha_users
   # POST /alpha_users.json
   def create
-    @alpha_user = AlphaUser.new(params[:alpha_user])
+    # @alpha_user = AlphaUser.new(params[:alpha_user])
 
     respond_to do |format|
       if @alpha_user.save
@@ -58,11 +61,11 @@ class AlphaUsersController < ApplicationController
   # PUT /alpha_users/1
   # PUT /alpha_users/1.json
   def update
-    @alpha_user = AlphaUser.find(params[:id])
+    # @alpha_user = AlphaUser.find(params[:id])
 
     respond_to do |format|
       if @alpha_user.update_attributes(params[:alpha_user])
-        format.html { redirect_to @alpha_user, notice: 'Alpha user was successfully updated.' }
+        format.html { redirect_to @alpha_user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -74,11 +77,11 @@ class AlphaUsersController < ApplicationController
   # DELETE /alpha_users/1
   # DELETE /alpha_users/1.json
   def destroy
-    @alpha_user = AlphaUser.find(params[:id])
+    # @alpha_user = AlphaUser.find(params[:id])
     @alpha_user.destroy
 
     respond_to do |format|
-      format.html { redirect_to alpha_users_url }
+      format.html { redirect_to alpha_users_url, notice: 'Alpha User has been successfully deleted.' }
       format.json { head :no_content }
     end
   end

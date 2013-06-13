@@ -1,27 +1,34 @@
 <div class="container-fluid">
 	<div class="hero-unit hero-unit1 center" style="height: 2.1em;">
-		<%= render 'layouts/hero_banner' %></br >
+		<%= render 'layouts/banner' %></br >
+		<%= render 'layouts/flash_messages' %>
 
-		<div class="row-fluid span12">
+		<div class="span3">
+		</div>
+		<div class="span6">
 			<blockquote>
 				<p>	
 					Whatever we possess becomes of double value when we have the opportunity to share it with others
 				</p>
 				<small>by Jean-Nicholas Bouilly <cite title="Source Title">(24 January 1763 – 14 April 1842) French Playwright</cite></small>
 			</blockquote>
-		</div>
-		<p class="row-fluid span12">
-			<%= @alpha_user.email %> | <%= link_to 'Change', edit_alpha_user_path(@alpha_user) %>
-		</p>
+			<p class="">
+				<%= @alpha_user.email %> | <%= link_to 'Change', edit_alpha_user_path(@alpha_user) %>
+			</p>
 
-		<p class="row-fluid span12">
-			MemolyApp can't wait to help you devour and share knowledge
-		</p><br/ >
-		<p class="row-fluid span12">
-			<a  href=<%= root_path %> 
-				class="btn btn-info btn-large">
-						Go Home
-					</a>
-		</p>
+			<p class="">
+				MemolyApp can't wait to help you devour and share knowledge
+			</p><br/ >
+			<p class="">
+				<a  href=<%= root_path %> 
+					class="btn btn-info btn-large">
+							Go Home
+						</a>
+			</p>
+		</div>
+		
+		<div class="span3">
+		</div>
+		
 	</div>
 </div>
