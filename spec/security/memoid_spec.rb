@@ -7,7 +7,7 @@ describe Memoid do
 
 	it "should read" do 
 		without_access_control do 
-			memoid = memoid :create
+			# memoid = memoid :create
 		end
 
 		
