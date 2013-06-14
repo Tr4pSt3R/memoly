@@ -9,8 +9,9 @@ class ApplicationController < ActionController::Base
   end
 
   def permission_denied
+    reset_session
     flash[:error] = "Sorry, you are not allowed to access that page"
-    redirect_to root_url
+    redirect_to root_url 
   end
 
   protected

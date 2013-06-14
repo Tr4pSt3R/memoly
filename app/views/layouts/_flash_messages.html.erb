@@ -16,3 +16,9 @@
 		<%= flash[:error] %>
 	</div>
 <% end -%>
+<% if flash[:alert] then %>
+	<div class="alert">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<%= flash[:alert] %>
+	</div>
+<% end %>
