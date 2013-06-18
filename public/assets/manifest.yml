@@ -31,6 +31,8 @@ RemindMe.png: RemindMe.png
 RemindMe/index.png: RemindMe.png
 StartFreeTrial.png: StartFreeTrial.png
 StartFreeTrial/index.png: StartFreeTrial.png
+add-notes.png: add-notes.png
+add-notes/index.png: add-notes.png
 alarm.svg: alarm.svg
 alarm/index.svg: alarm.svg
 books.svg: books.svg
@@ -63,6 +65,8 @@ inputboxonly.png: inputboxonly.png
 inputboxonly/index.png: inputboxonly.png
 key.svg: key.svg
 key/index.svg: key.svg
+memoly-iOS7-icon.jpg: memoly-iOS7-icon.jpg
+memoly-iOS7-icon/index.jpg: memoly-iOS7-icon.jpg
 memoly_icon.png: memoly_icon.png
 memoly_icon/index.png: memoly_icon.png
 memoly_team_cem_jones.png: memoly_team_cem_jones.png
@@ -71,6 +75,10 @@ play.svg: play.svg
 play/index.svg: play.svg
 rails.png: rails.png
 rails/index.png: rails.png
+set-revision-time.png: set-revision-time.png
+set-revision-time/index.png: set-revision-time.png
+spaced-icon.png: spaced-icon.png
+spaced-icon/index.png: spaced-icon.png
 tiny_grid.png: tiny_grid.png
 tiny_grid/index.png: tiny_grid.png
 tiny_grid_@2X.png: tiny_grid_@2X.png
