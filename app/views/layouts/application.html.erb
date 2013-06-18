@@ -51,7 +51,11 @@
                   <a href="#">Community</a>
                 </li>
                 <li>
-                  <a href=<%= new_user_session_path%>>Sign in</a>
+                  <% if user_signed_in? then %>
+                    <%= link_to "Sign Out", destroy_user_session_path, :method => :delete, :confirm => "Are you sure you want to sign out?" %>
+                    <% else %>
+                      <%= link_to "Sign in", new_user_session_path %>
+                    <% end %>
                 </li>
               </ul>
             </div>

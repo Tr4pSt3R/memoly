@@ -190,8 +190,11 @@ body{
   color: #fff;
   text-align: center;
   text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
-  background: #3399cc; /* Old browsers */
-  
+  background-color: #3399cc; 
+  @include filter-gradient(#3399cc, #ffffff, horizontal);
+  @include background-image(radial-gradient(center, ellipse cover,  #3399cc 0%,#ccc 35%,#ffffff 100%));
+  /*background: #3399cc; /* Old browsers */
+  /*@include background-image(radial-gradient(center, ellipse cover,  #feffff 0%,#ddf1f9 35%,#a0d8ef 100%)); */
 }
 
 .side-bar{
