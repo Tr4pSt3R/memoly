@@ -67,13 +67,13 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update_attributes(params[:user])
         if commit=='Add memoid'
-          format.html { redirect_to @user, :success => "Memoid was successfully created"
-          }
+          format.html { redirect_to @user, :success => "Memoid was successfully created"}
+          format.json { head :no_content }
         elsif commit=='Add Time'
           format.html { redirect_to @user, success: "Release Time was successfully updated"}
+          format.json { head :no_content }
         else
           format.html { redirect_to @user, success: 'User was successfully updated' }
-          notice = "User was successfully updated"
           format.json { head :no_content }
         end        
       else

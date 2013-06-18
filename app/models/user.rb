@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
           :validatable
   
   #Associations 
-  has_many :memoids, :after_add => :set_memoid_defaults
+  has_many :memoids, :after_add => [:set_memoid_defaults, :set_topic]
   has_many :posts
   has_many :comments, :through => :posts  
   has_many :groups
@@ -37,7 +37,6 @@ class User < ActiveRecord::Base
                   :remember_me, 
                   :releasetime_attributes, 
                   :memoids_attributes
-
 
   def after_initialize
     self.releasetime ||= self.build_releasetime()    
@@ -74,6 +73,18 @@ class User < ActiveRecord::Base
   end
 
   private
+    def set_topic(memoid)
+      memoid.note = "" if memoid.note.nil?
+      memoid.note.each_line(' ') do |s|
+        if s.include? '#' then
+          _,_,topic_name = s.partition '#'
+          topic_name = topic_name.rstrip.titleize
+          t = Topic.where(:name => topic_name).first_or_create
+          t.memoids << memoid
+        end
+      end
+    end
+
     def set_memoid_defaults(memoid)
       default_dates = ReleaseDate::DEFAULT_DATES.dup
 

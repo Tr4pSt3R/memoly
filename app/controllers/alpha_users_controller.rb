@@ -49,11 +49,11 @@ class AlphaUsersController < ApplicationController
 
     respond_to do |format|
       if @alpha_user.save
-        format.html { redirect_to @alpha_user, notice: 'Thank you for your interest in MemolyApp.' }
-        format.json { render json: @alpha_user, status: :created, location: @alpha_user }
+        format.html { redirect_to root_url, notice: 'Thank you for your interest in MemolyApp.' }
+        # format.json { render json: @alpha_user, status: :created, location: @alpha_user }
       else
         format.html { render action: "new" }
-        format.json { render json: @alpha_user.errors, status: :unprocessable_entity }
+        # format.json { render json: @alpha_user.errors, status: :unprocessable_entity }
       end
     end
   end

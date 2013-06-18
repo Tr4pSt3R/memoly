@@ -36,7 +36,7 @@
 
 <div class="row-fluid">
 	<!--side-panel-->
-	<div class="span1 side-bar">
+	<div class="span2 side-bar">
 		<!--Sidebar content-->
 		<ul class="side-icon-list">
 			<li>
@@ -83,7 +83,7 @@
 	<!--end-of-side-panel-->
 
 	<!--main-arena-->
-	<div class="span11">
+	<div class="span10">
 		<!--Memoid and Time Forms-->
 		<div class="span6">
 			<% if notice then %>
@@ -137,6 +137,7 @@
 							<%= link_to "*", [@user, m], :method => :delete, :confirm => "Are you sure?" %>
 							<%= m.note %></p>
 						<small>by <%= @user.username %> <cite title="Source Title"><%= time_ago_in_words m.created_at %> ago</cite></small>
+						<small>Topic: <%= m.topic %></small>
 					</blockquote>
 				<% end -%>
 			<h2>Private Memoids</h2>
@@ -146,6 +147,7 @@
 							<%= link_to "*", [@user, m], :method => :delete, :confirm => "Are you sure?" %>
 							<%= m.note %></p>
 						<small>by <%= @user.username %> <cite title="Source Title"><%= time_ago_in_words m.created_at %> ago</cite></small>
+						<small>Topic: <%= m.topic.name if !m.topic.nil? %></small>
 					</blockquote>
 				<% end -%>
 		</div>

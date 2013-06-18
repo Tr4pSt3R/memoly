@@ -1,19 +1,24 @@
-<%= render 'layouts/banner' %>
+<%= form_for(@alpha_user = AlphaUser.new) do |f| %>
+  <div>
+    <% if @alpha_user.errors.any? %>
+      <div id="error_explanation">
+        <h2><small><%= pluralize(@alpha_user.errors.count, "error") %> prohibited this email from being saved:</small></h2>
 
-<div class="row-fluid">
-	<div class="span3"></div>
-	<div class="span6">
-	<h3 id="head1">
-		Hello! You caught us before we were ready.
-	</h3>
-	<p class="body_text0">We are working really hard to put the finishing touches to Memoly. Being ex students ourselves we understand that your current revision process is wasting time on what you will later refer to as the best years of your life but we promise that as soon as we are ready we'll let you know. 
-	<p><strong>Pop in your email</strong></p> </p>
-	<div class="center">
-		<%= render 'form' %>
-	</div>
-	
-</div>
-	<div class="span3"></div>
-</div>
+        <ul>
+        <% @alpha_user.errors.full_messages.each do |msg| %>
+          <li><small><%= msg %></small></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
 
-
+    <div class="input-append">
+      <%= f.email_field :email, 
+                        :id => "appendedInputButton", 
+                        :type => "email", 
+                        :placeholder => "email..."%>
+      <%= f.submit "Remind me", 
+                        :class => "btn btn-cta" %>
+    </div>
+<% end %>

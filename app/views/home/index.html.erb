@@ -5,52 +5,38 @@
 		</h1>
 	</a>
 	
-	<h2 class="subhead">Hey. Let's Get Smarter. Together.</h2>
-	<p class="row-fluid">
-		<a  href=<%= new_alpha_user_path %> 
-			class="btn btn-large">
-					Get Started
-				</a>
-	</p>
-</header>
-<div class="container">
-	<%= render "layouts/flash_messages" %>
+	<h2 class="subhead">Let's get smarter together.</h2>
+		<p class="lead">We're almost ready, but if you fancy feeding our egos and showing </p>
+		<p class="lead">us that you're interested in our product please leave <strong>your email</strong> below. </p>
+		<p class="lead">We promise to do a celebratory dance for each one we receive.</p>
 	
-	<div class="row-fluid summary">
-		<div class="span4">
-			<%= image_tag("alarm.svg", :class => "summarise")%>
-			<h4 class="centerise_text">Choose A Time To Revise</h4>
-		</div>
-		<div class="span4">
-			<%= image_tag("books.svg", :class => "summarise") %>
-			<h4 class="centerise_text">Add Condensed Class Notes</h4>
-		</div>
-		<div class="span4">
-			<%= image_tag("watch.svg", :class => "summarise") %>
-			<h4 class="centerise_text">Receive Scientifically-spaced Revision on any device</h4>
-		</div>
-	</div>
-</div>
-<div class="container">
-	<iframe width="100%" 
-			height="300em" 
+	
+	<p class="row-fluid">
+		<%= render template: 'alpha_users/new' %>
+	</p>
+	<iframe width="50%" 
+			height="150em" 
 			src="http://www.youtube.com/embed/E2YP8Ln1MNU" 
 			frameborder="0" 
 			align="middle"
 			allowfullscreen></iframe>
-</div>
-
-<footer class="footer">
-	<div class="container">
-		<div class="center">
-			<ul class="nav nav-pills">
-			<li><a href="/">What's Memoly?</a></li>
-			<li><a href="/">The Team</a></li>
-			<li><a href="/">Our Privacy Policy</a></li>
-			<li><a href="/">Terms of Use</a></li>
-			<li><a href="/">Community</a></li>
-			<li><a href=<%= new_user_session_path%>>Sign In</a></li>
-		</ul>
+</header>
+<div class="container">
+	<%= render "layouts/flash_messages" %>
+	<h2 id="how_it_works" class="centerise_text muted">How it works...</h2>
+		<div class="row-fluid summary">
+		<div class="span4">
+			<%= image_tag("set-revision-time.png", :class => "summarise summarise_time")%>
+			<h4 class="summary_text muted">Choose A Time To Revise</h4>
+		</div>
+		<div class="span4">
+			<%= image_tag("add-notes.png", :class => "summarise summarise_notes") %>
+			<h4 class="summary_text muted">Add Condensed Class Notes</h4>
+		</div>
+		<div class="span4">
+			<%= image_tag("spaced-icon.png", :class => "summarise summarise_space") %>
+			<h4 class="summary_text muted">Receive Scientifically-spaced Revision on any device</h4>
 		</div>
 	</div>
-</footer>
+</div>
+
