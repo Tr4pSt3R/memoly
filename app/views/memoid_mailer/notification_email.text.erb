@@ -1,4 +1,14 @@
+
 <h1>Memoly Update</h1> 
 
+<!--Group_by topics-->
 <h2>Summary of Memolies due for Today</h2>
-<%= @memoid.note %>
+<ul><%#= binding.pry %>
+	<%= @memoids.each do |memoid|%>
+		<li>
+			<%= memoid.note.slice 0,30 %>
+		</li>
+	<% end %>
+</ul>
+
+<p> <%#= link_to "The Greatest Hits", user_path(@user) %> </p>

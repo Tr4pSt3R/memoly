@@ -1,6 +1,10 @@
 authorization do 
 	role :admin do 
-		has_permission_on [:users, :alpha_users], :to => :manage
+		has_permission_on [:users, :alpha_users, :memoids], :to => :manage
+	end
+
+	role :beta_user do
+		has_permission_on :memoids, :to => [:read]
 	end
 
 	role :guest do 

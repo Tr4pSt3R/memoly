@@ -47,7 +47,16 @@ class User < ActiveRecord::Base
   end
 
   def make_admin
-    self.roles.create(:admin)
+    self.roles.create(:name => "admin")
+  end
+
+  def delivery_time
+    if self.releasetime then
+      ping_hour   = self.releasetime.pingtime.hour
+      ping_min    = self.releasetime.pingtime.min
+      t = Time.zone.now
+      Time.zone.local(t.year, t.month, t.day, ping_hour, ping_min)
+    end
   end
   
   # def role?(role)

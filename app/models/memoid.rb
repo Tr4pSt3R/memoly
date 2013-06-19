@@ -33,14 +33,19 @@ class Memoid < ActiveRecord::Base
 
   def self.run_notifier
     ripe_memoids = collect_ripe_memoids
-    
-    # ripe_memoids.each do |m|
-    #   email = m.user.email
+    grouped_ripe_memoids = ripe_memoids.group_by { |m| m.user_id }
+    grouped_ripe_memoids.each {|_,v| v.map!{ |m| m.id}}
 
-    #   # if the difference between releasetime and Time.now is not negative
-    #   # binding.pry
-    #   (MailWorker.new).perform_notification_delivery(m.id)
-    # end
+    grouped_ripe_memoids.each do |user, memoids|
+      _user = User.find user
+      # binding.pry
+      # binding.pry
+      if (_user.delivery_time).past? then
+        MailWorker.perform_async(user, memoids)
+      else
+        MailWorker.perform_at(user.delivery_time, user, memoids)
+      end
+    end
   end
 
   # Objective: A memoid is ripe if it is due today
