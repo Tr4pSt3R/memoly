@@ -6,6 +6,7 @@ require 'rspec/autorun'
 require 'capybara/rspec'
 require 'Timecop'
 require 'declarative_authorization/maintenance'
+require 'sidekiq/testing'
 include Authorization::TestHelper
 
 

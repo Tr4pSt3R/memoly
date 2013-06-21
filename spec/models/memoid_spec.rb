@@ -125,7 +125,10 @@ describe Memoid do
 
 			Timecop.travel(1.day) do 
 				Memoid.run_notifier
-				ActionMailer::Base.deliveries.should_not be_empty
+				expect {
+  					MailWorker.perform_async(@user.id, [memoid.id])}.to change(MailWorker.jobs, :size).by(1)
+  					
+				# ActionMailer::Base.deliveries.should_not be_empty
 			end
 		end
 
