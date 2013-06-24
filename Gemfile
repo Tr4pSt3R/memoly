@@ -26,6 +26,7 @@ gem 'sinatra', require: false
 gem 'slim'
 gem 'gritter', "1.0.3"
 gem 'declarative_authorization'
+gem 'tinymce-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.

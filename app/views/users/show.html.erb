@@ -89,13 +89,16 @@
 			<%= render 'layouts/flash_messages'	%>		
 
 			<div class="add_memoid">
+				<%= tinymce_assets %> 
 				<%= form_for @user do |f| %>
 					<%= f.fields_for :memoids, @user.memoids.build do |m| %>
 						<div>
 							<%= m.label :note, "Note" %>
-								<%= m.text_area :note, 
+								<%#= m.text_area :note, 
 												:size => "40x4", 
 												:placeholder => "Enter memoid..."  %>
+								<%= m.text_area :note, :class => "tinymce", :rows => 5, :cols => 10 %>
+								<%= tinymce %>
 						</div>
 						<div>
 							<%= m.check_box :public, :checked => true %><span>   Public</span>
@@ -131,7 +134,7 @@
 					<blockquote>
 						<p>
 							<%= link_to "*", [@user, m], :method => :delete, :confirm => "Are you sure?" %>
-							<%= m.note %></p>
+							<%= m.note.html_safe %></p>
 						<small>by <%= @user.username %> <cite title="Source Title"><%= time_ago_in_words m.created_at %> ago</cite></small>
 						<small>Topic: <%= m.topic %></small>
 					</blockquote>
