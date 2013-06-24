@@ -86,11 +86,7 @@
 	<div class="span10">
 		<!--Memoid and Time Forms-->
 		<div class="span6">
-			<% if notice then %>
-				<div class="alert">
-					<%= notice %>
-				</div>
-			<% end %>			
+			<%= render 'layouts/flash_messages'	%>		
 
 			<div class="add_memoid">
 				<%= form_for @user do |f| %>

@@ -38,8 +38,6 @@ class Memoid < ActiveRecord::Base
 
     grouped_ripe_memoids.each do |user_id, memoid_ids|
       _user = User.find_by_id user_id
-      # binding.pry
-      # binding.pry
       if (_user.delivery_time).past? then
         MailWorker.perform_async(user_id, memoid_ids)
       else

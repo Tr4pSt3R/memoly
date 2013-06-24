@@ -10,9 +10,7 @@ class MemoidMailer < ActionMailer::Base
 
   def notification(user, memoids)
   	@user    = User.find_by_id user
-    @memoids = Memoid.find memoids
-
-    # binding.pry 
+    @memoids = Memoid.find memoids 
     @url = "http://www.memolyapp.com/"
     mail(:to => @user.email , :subject => "Memoly::Today")
   end

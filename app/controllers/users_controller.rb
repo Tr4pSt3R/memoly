@@ -77,6 +77,7 @@ class UsersController < ApplicationController
           format.json { head :no_content }
         end        
       else
+        binding.pry
         format.html { render action: "edit" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end

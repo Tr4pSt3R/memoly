@@ -1,6 +1,28 @@
-<h1>Editing memoid</h1>
+<h1>Edit memoid</h1>
 
-<%= render 'form' %>
+<%= form_for(@memoid, :url => user_memoids_path(@memoid), :html => { method: :put}) do |f| %>
+  <% if @memoid.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@memoid.errors.count, "error") %> prohibited this memoid from being saved:</h2>
 
-<%= link_to 'Show', @memoid %> |
-<%= link_to 'Back', memoids_path %>
+      <ul>
+      <% @memoid.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form_content">
+    <div class="field">
+      <%= f.text_area :note, :placeholder => "Add memoid", :rows => 5, :columns => 100 %>
+    </div>
+    <div class="field">
+      <%= f.label :public, "Public", :style => "display: inline-block;"  %>
+      <%= f.check_box :public%>
+    </div>
+    <div class="actions">
+      <%= f.submit :class => "btn btn-cta" %>
+    </div>
+<% end %>
+
+<%= link_to 'Back', user_path(@user) %>
