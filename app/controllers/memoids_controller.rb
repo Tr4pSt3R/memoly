@@ -1,4 +1,8 @@
 class MemoidsController < ApplicationController
+  def index
+    @memoids = Memoid.all
+  end
+
   #GET /users/1/memoids/80/edit
   def edit
   	# binding.pry

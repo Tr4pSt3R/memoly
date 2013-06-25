@@ -14,6 +14,7 @@
 *.rdb
 /log/*.log
 /tmp
+/config/ec2.yml
 .elasticbeanstalk/
 Gemfile.lock
 brakeman_output.html

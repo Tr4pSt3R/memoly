@@ -27,6 +27,9 @@ gem 'slim'
 gem 'gritter', "1.0.3"
 gem 'declarative_authorization'
 gem 'tinymce-rails'
+gem 'capistrano'
+gem 'capistrano-ext'
+gem 'capify-ec2'
 
 # Gems used only for assets and not required
 # in production environments by default.

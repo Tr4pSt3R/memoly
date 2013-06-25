@@ -1,24 +1,101 @@
-<h1>Listing All Memolies</h1>
+<%= render 'layouts/banner' %>
 
-<table>
-  <tr>
-    <th>Note</th>
-    <th>Published</th>
-    <th></th>
-    <th></th>
-  </tr>
+<h2>Memoly Stream</h2>
 
-<% @memoids.each do |memoid| %>
-  <tr>
-    <td><%= link_to memoid.note, memoid %></td>
-    <td><%= memoid.public %></td>
-    <td><%= link_to 'Show', memoid %></td>
-    <td><%= link_to 'Edit', edit_memoid_path(memoid) %></td>
-    <td><%= link_to 'Destroy', memoid, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
+<div class="row-fluid">
+  <!--side-panel-->
+  <div class="span2 side-bar">
+    <!--Sidebar content-->
+    <ul class="side-icon-list">
+      <li>
+        <a href=<%=user_memoids_path( current_user ) %>>
+          <%= image_tag("earth.svg", :class => "summarise") %>
+        </a>
+      </li>
+      <li>
+        <a href="/">
+          <%= image_tag("books.svg", :class => "summarise") %>
+        </a>
+      </li>
+      <li>
+        <a href=<%#=user_releasetime_path( current_user)%>>          
+          <%= image_tag("watch.svg", :class => "summarise") %>
+        </a>
+      </li>
+      <li>
+        <a href="/">
+          <%= image_tag("graph.svg", :class => "summarise") %>
+        </a>
+      </li>
+    </ul>
+    <hr>
+    <ul>
+      <li class="nav nav-pill"><a href="/">Get Support</a></li>
+      <li><a href="/">Meet The Team</a></li>
+      <li><a href="/">Memoly Blog</a></li>
+      <li><a href="/">Our Privacy Policy</a></li>
+      <li><a href="/">Terms of Use</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li>
+        <p class="head2">
+          &copy;<%= Time.zone.now.year %> MemolyApp. 
+        </p>
+        <p class="head2">
+          All rights reserved.
+        </p>
+      </li>
+    </ul>
+  </div>
+  <!--end-of-side-panel-->
 
-<br />
+  <div class="span10">
+    <!--Memoid and Time Forms-->
+    <div class="span6">
+      <%= render 'layouts/flash_messages' %> 
+    </div>
+    <div class="span8">
+      <ul class="thumbnails">
+        <% Memoid.public.each do |memoid| %>
+          <li class="">
+            <div class="thumbnail">
+              <h3><%= memoid.topic.name if memoid.topic %></h3>
+              <p><%= memoid.note.html_safe %></p>
+              <small>
+                by <%= link_to memoid.user.username, user_path(memoid.user.id) %> </br >
+                <cite title="Source Title">
+                  <%= time_ago_in_words memoid.created_at %> ago
+                </cite>
+              </small>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+      
+      <!-- <table>
+        <tr>
+          <th>Note</th>
+          <th>Published</th>
+          <th></th>
+          <th></th>
+        </tr>
 
-<%= link_to 'New Memoid', new_memoid_path %>
+      <% @memoids.each do |memoid| %>
+        <tr>
+          <td><%= link_to memoid.note %></td>
+          <td><%= memoid.public %></td>
+          <td><%= link_to 'Show', user_memoid_path(memoid.user, memoid) %></td>
+          <td><%= link_to 'Edit', edit_user_memoid_path(memoid.user, memoid) %></td>
+          <td><%= link_to 'Destroy', [memoid.user,memoid], confirm: 'Are you sure?', method: :delete %></td>
+        </tr>
+      <% end %>
+      </table>
+
+      <br /> -->
+
+      <%= link_to 'New Memoid', new_user_memoid_path %>
+
+    </div>
+  </div>

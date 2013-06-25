@@ -40,7 +40,7 @@
 		<!--Sidebar content-->
 		<ul class="side-icon-list">
 			<li>
-				<a href=<%=user_path(@user) %>>
+				<a href=<%=user_memoids_path(@user) %>>
 					<%= image_tag("earth.svg", :class => "summarise") %>
 				</a>
 			</li>
@@ -89,6 +89,7 @@
 			<%= render 'layouts/flash_messages'	%>		
 
 			<div class="add_memoid">
+
 				<%= tinymce_assets %> 
 				<%= form_for @user do |f| %>
 					<%= f.fields_for :memoids, @user.memoids.build do |m| %>
@@ -99,6 +100,13 @@
 												:placeholder => "Enter memoid..."  %>
 								<%= m.text_area :note, :class => "tinymce", :rows => 5, :cols => 10 %>
 								<%= tinymce %>
+								<!--script type="text/javascript">
+									tinyMCE.init({
+										selector: "textarea", 
+										plugins: ["advlist", 
+												  "code"]
+									});
+								</script-->
 						</div>
 						<div>
 							<%= m.check_box :public, :checked => true %><span>   Public</span>
