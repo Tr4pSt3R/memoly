@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def permission_denied
-    current_user ||= User.find(params[:id])
+    # current_user ||= User.find(params[:id])
     # reset_session if current_user.role_symbols.include?(:guest)
     flash[:error] = "Sorry, you are not allowed to access that page"
     redirect_to root_url 

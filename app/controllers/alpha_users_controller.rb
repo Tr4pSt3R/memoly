@@ -52,8 +52,8 @@ class AlphaUsersController < ApplicationController
         format.html { redirect_to root_url, notice: 'Thank you for your interest in MemolyApp.' }
         # format.json { render json: @alpha_user, status: :created, location: @alpha_user }
       else
-        format.html { render action: "new" }
-        # format.json { render json: @alpha_user.errors, status: :unprocessable_entity }
+        format.html { redirect_to root_url, notice: @alpha_user.errors.full_messages.first }
+        format.json { render json: @alpha_user.errors, status: :unprocessable_entity }
       end
     end
   end

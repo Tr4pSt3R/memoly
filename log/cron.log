@@ -1,0 +1,10 @@
+/Users/AgyemangFamily/.rvm/gems/ruby-1.9.3-p0/gems/railties-3.2.11/lib/rails/commands/runner.rb:53:in `eval': undefined method `past?' for nil:NilClass (NoMethodError)
+	from /Users/AgyemangFamily/Projects/memoly_core/app/models/memoid.rb:39:in `each'
+	from /Users/AgyemangFamily/Projects/memoly_core/app/models/memoid.rb:39:in `run_notifier'
+	from (eval):1:in `<top (required)>'
+	from /Users/AgyemangFamily/.rvm/gems/ruby-1.9.3-p0/gems/railties-3.2.11/lib/rails/commands/runner.rb:53:in `eval'
+	from /Users/AgyemangFamily/.rvm/gems/ruby-1.9.3-p0/gems/railties-3.2.11/lib/rails/commands/runner.rb:53:in `<top (required)>'
+	from /Users/AgyemangFamily/.rvm/gems/ruby-1.9.3-p0/gems/railties-3.2.11/lib/rails/commands.rb:64:in `require'
+	from /Users/AgyemangFamily/.rvm/gems/ruby-1.9.3-p0/gems/railties-3.2.11/lib/rails/commands.rb:64:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'

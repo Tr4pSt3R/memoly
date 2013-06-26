@@ -18,6 +18,6 @@ privileges do
 	end
 
 	privilege :express_interest do 
-		includes :new, :show, :edit, :update, :new
+		includes :new, :show, :edit, :update, :create
 	end
 end
