@@ -11,9 +11,9 @@
                     :height => "100%", 
                     :alt  => "compatible devices")%>
   </div-->
-  <%= link_to "New Blog Post", new_post_path %>
+  <%= link_to "New Blog Post", new_user_post_path %>
   <% @posts.each do |post| %>
-    <h2><%= link_to post.title, post  %></h2>
+    <h2><%= link_to post.title, user_post_path(post.user.id, post.id)  %></h2>
     <small> Posted <%= time_ago_in_words post.created_at %> ago</small>
     <p><%= truncate post.text  %></p>
   <% end %> 

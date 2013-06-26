@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130610072244) do
+ActiveRecord::Schema.define(:version => 20130626150234) do
 
   create_table "alpha_users", :force => true do |t|
     t.string   "email"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20130610072244) do
     t.text     "text"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
 
   create_table "rails_admin_histories", :force => true do |t|
