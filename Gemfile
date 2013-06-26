@@ -12,7 +12,7 @@ gem 'pry-doc'
 gem 'devise' 
 gem 'mail'
 gem 'jquery-rails'
-gem 'whenever', require: false
+gem 'whenever', :require => false
 gem 'ledermann-rails-settings', "~>1.2.1", :require => 'rails-settings'
 gem 'brakeman'
 gem 'cancan'
@@ -22,7 +22,7 @@ gem 'twitter-bootstrap-rails'
 gem 'libv8', '>3.11.8'
 gem 'less-rails'
 gem 'sidekiq'
-gem 'sinatra', require: false
+gem 'sinatra', :require => false
 gem 'slim'
 gem 'gritter', "1.0.3"
 gem 'declarative_authorization'

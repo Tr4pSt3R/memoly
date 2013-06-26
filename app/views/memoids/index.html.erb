@@ -58,7 +58,7 @@
     <div class="span8">
       <ul class="thumbnails">
         <% Memoid.public.each do |memoid| %>
-          <li class="">
+          <li>
             <div class="thumbnail">
               <h3><%= memoid.topic.name.html_safe if memoid.topic %></h3>
               <p><%= memoid.note.html_safe %></p>
