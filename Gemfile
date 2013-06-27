@@ -56,7 +56,7 @@ group :tests, :development do
 	gem "redis", "~> 3.0.2"
 	gem "rspec-rails", "~> 2.0"
 	gem "faker"
-	gem 'capybara'
+	# gem 'capybara'
 	gem 'database_cleaner'
 	gem 'guard-rspec'
 	gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i

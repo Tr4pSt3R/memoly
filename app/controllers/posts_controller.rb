@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  filter_resource_access
+  
   def new
     @user = User.find_by_id(params[:user_id])
     @post = @user.posts.create
