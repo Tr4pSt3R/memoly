@@ -370,6 +370,7 @@ DEPENDENCIES
   capify-ec2
   capistrano
   capistrano-ext
+  capybara
   coffee-rails (~> 3.2.1)
   cucumber-rails
   database_cleaner
