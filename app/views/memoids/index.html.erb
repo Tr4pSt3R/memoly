@@ -53,6 +53,7 @@
   <div class="span10">
     <!--Memoid and Time Forms-->
     <div class="span6">
+      <%= link_to 'New Memoid', new_user_memoid_path %>
       <%= render 'layouts/flash_messages' %> 
     </div>
     <div class="span8">
@@ -72,30 +73,5 @@
           </li>
         <% end %>
       </ul>
-    </div>
-      
-      <!-- <table>
-        <tr>
-          <th>Note</th>
-          <th>Published</th>
-          <th></th>
-          <th></th>
-        </tr>
-
-      <% @memoids.each do |memoid| %>
-        <tr>
-          <td><%= link_to memoid.note %></td>
-          <td><%= memoid.public %></td>
-          <td><%= link_to 'Show', user_memoid_path(memoid.user, memoid) %></td>
-          <td><%= link_to 'Edit', edit_user_memoid_path(memoid.user, memoid) %></td>
-          <td><%= link_to 'Destroy', [memoid.user,memoid], confirm: 'Are you sure?', method: :delete %></td>
-        </tr>
-      <% end %>
-      </table>
-
-      <br /> -->
-
-      <%= link_to 'New Memoid', new_user_memoid_path %>
-
     </div>
   </div>
