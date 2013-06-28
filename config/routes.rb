@@ -2,8 +2,10 @@ require 'sidekiq/web'
 Memoly::Application.routes.draw do
   resources :topics
 
-  mount RailsAdmin::Engine => '/rails_admin', :as => 'rails_admin'
-  mount Sidekiq::Web, at: '/sidekiq'
+  authenticate :user, lambda { |u| u.role_symbols.include?(:admin) } do
+    mount RailsAdmin::Engine => '/rails_admin', :as => 'rails_admin'
+    mount Sidekiq::Web, at: '/sidekiq'
+  end
 
   root :to => "home#index"
 
