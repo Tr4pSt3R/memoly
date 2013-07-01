@@ -16,7 +16,7 @@
         <%= yield %>
     </div><!--end_of_main_body_container-->
     <footer>
-      <div class="navbar">
+      <div class="navbar" style="margin-bottom: 0px;">
         <div class="navbar-inner">
           <div class="container">
 
@@ -39,17 +39,17 @@
                   <a href="#">What's Memoly?</a>
                 </li>
                 <li>
-                  <a href="#">The Team</a>
+                  <a href=<%= about_path %>>The Team</a>
                 </li>
                 <li>
-                  <a href="#">Our Privacy Policy</a>
+                  <a href=<%= privacy_path %>>Our Privacy Policy</a>
                 </li>
                 <li>
-                  <a href="#">Terms of Use</a>
+                  <a href=<%= terms_path %>>Terms of Use</a>
                 </li>
-                <li>
+                <!--li>
                   <a href="#">Community</a>
-                </li>
+                </li-->
                 <li>
                   <% if user_signed_in? then %>
                     <%= link_to "Sign Out", destroy_user_session_path, :method => :delete, :confirm => "Are you sure you want to sign out?" %>
