@@ -5,10 +5,10 @@
 <ul>
 	<% @memoids.each do |memoid|%>
 		<li>
-			<%= memoid.note.slice 0,30 %>
+			<%= memoid.note.html_safe %>
 		</li>
 	<% end %>
 </ul>
 
-<p> <%#= link_to "The Greatest Hits", user_path(@user) %> </p>
+<p> <%= link_to "The Greatest Hits", "memolyapp.com" + user_path(@user) %> </p>
 
