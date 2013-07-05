@@ -22,7 +22,9 @@ Memoly::Application.configure do
 
   #Ensure you have defined default url options in your environments files. Here 
   #   is an example of default_url_options appropriate for a development environment
-  #config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => 'memolyapp.com' }
+
+  config.action_mailer.perform_deliveries = true
 
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
