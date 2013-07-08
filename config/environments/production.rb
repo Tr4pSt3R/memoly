@@ -26,6 +26,9 @@ Memoly::Application.configure do
 
   config.action_mailer.perform_deliveries = true
 
+  # Do care if the mailer can't send
+  config.action_mailer.raise_delivery_errors = true
+  
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
 
