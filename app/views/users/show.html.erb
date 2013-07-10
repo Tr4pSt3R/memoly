@@ -144,7 +144,7 @@
 							<%= link_to "*", [@user, m], :method => :delete, :confirm => "Are you sure?" %>
 							<%= m.note.html_safe %></p>
 						<small>by <%= @user.username %> <cite title="Source Title"><%= time_ago_in_words m.created_at %> ago</cite></small>
-						<small>Topic: <%= m.topic.name.html_safe %></small>
+						<small>Topic: <%= m.topic.name.html_safe if m.topic %></small>
 					</blockquote>
 				<% end -%>
 			<h2>Private Memoids</h2>
