@@ -61,7 +61,7 @@
         <% Memoid.public.each do |memoid| %>
           <li>
             <div class="thumbnail">
-              <h3><%= memoid.topic.name.html_safe if memoid.topic %></h3>
+              <h3><%#= memoid.topic.name.html_safe if memoid.topic %></h3>
               <p><%= memoid.note.html_safe %></p>
               <small>
                 by <%= link_to memoid.user.username, user_path(memoid.user.id) %> </br >
