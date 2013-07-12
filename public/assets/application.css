@@ -8579,9 +8579,9 @@ ul.icons-ul > li .icon-li {
   content: "\f14d";
 }
 @font-face {
-  font-family: 'PoetsenOne-Regular';
-  src: url('fonts/PoetsenOne-Regular.ttf');
-  src: local('PoetsenOne'), local('PoetsenOne-Regular'), url('fonts/PoetsenOne-Regular.ttf'), format('truetype');
+  font-family: "PoetsenOne-Regular";
+  src: url(/assets/PoetsenOne-Regular.ttf);/*src: url('<%= asset_path("PoetsenOne-Regular.ttf") %>');*/
+  /*src: local('PoetsenOne'), local('PoetsenOne-Regular'), font-url('fonts/PoetsenOne-Regular.ttf'), format('truetype');*/
 }
 body {
   /* background: url("/assets/tiny_grid.png") repeat scroll 50% 0% transparent;	*/
@@ -8595,9 +8595,9 @@ body {
 }
 .head1 {
   font-family: PoetsenOne-Regular;
-  font-size: 5em;
+  font-size: 6em;
   font-weight: normal;
-  color: #ffffff;
+  color: #fffffe;
   text-align: center;
 }
 #how_it_works {
