@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
                   :memoids_attributes
 
   def after_initialize
-    self.releasetime ||= self.build_releasetime()    
+    self.releasetime ||= self.build_releasetime(:pingtime => "2000-01-01 08:00:00")    
   end
 
   def role_symbols

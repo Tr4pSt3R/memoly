@@ -12,9 +12,10 @@
 @fontAwesomeEotPath_iefix: asset-path("fontawesome-webfont.eot?#iefix&v=3.0.2");
 @fontAwesomeWoffPath: asset-path("fontawesome-webfont.woff?v=3.0.2");
 @fontAwesomeTtfPath: asset-path("fontawesome-webfont.ttf?v=3.0.2");
+@fontAwesomeSvgPath: asset-path("fontawesome-webfont.svg#fontawesomeregular");
 
 // Font Awesome
-@import "fontawesome";
+@import "fontawesome/font-awesome";
 
 // Glyphicons
 //@import "twitter/bootstrap/sprites.less";
@@ -31,6 +32,12 @@
 // @linkColor: #ff0000;
 @import url(http://fonts.googleapis.com/css?family=Crete+Round:400,400italic);
 
+@font-face {
+  font-family: "PoetsenOne-Regular";
+  src: asset-url("PoetsenOne-Regular.ttf");
+  /*src: url('<%= asset_path("PoetsenOne-Regular.ttf") %>');*/
+  /*src: local('PoetsenOne'), local('PoetsenOne-Regular'), font-url('fonts/PoetsenOne-Regular.ttf'), format('truetype');*/
+}
 
 body{
 	/* background: url("/assets/tiny_grid.png") repeat scroll 50% 0% transparent;	*/
@@ -46,10 +53,10 @@ body{
 @head_colour: lighten(#6B6A6A, 10%);
 
 .head1 {
-  font-family: Crete Round;
-  font-size: 5em; 
+  font-family: PoetsenOne-Regular;
+  font-size: 6em; 
   font-weight: normal;
-  color: #ffffff;
+  color: #fffffe;
   text-align: center;
 }
 
@@ -200,6 +207,8 @@ body{
 .side-bar{
   background-color: #333333; 
   width: 83px important!;
+  border-bottom-right-radius: 10px;
+
 }
 
 .cog_size {
@@ -210,8 +219,15 @@ body{
 
 .side-icon-list{
   margin-left: 10px;
+  margin-right: 10px;
 }
 
 .remind_btn {
   background-color: #99cc66;
+}
+
+.side-info{
+  font-weight: bold;
+  color: #3399cc;
+  padding-left: 10px;
 }

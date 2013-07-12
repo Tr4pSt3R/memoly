@@ -35,52 +35,7 @@
 
 
 <div class="row-fluid">
-	<!--side-panel-->
-	<div class="span2 side-bar">
-		<!--Sidebar content-->
-		<ul class="side-icon-list">
-			<li>
-				<a href=<%=user_memoids_path(@user) %>>
-					<%= image_tag("earth.svg", :class => "summarise") %>
-				</a>
-			</li>
-			<li>
-				<a href="/">
-					<%= image_tag("books.svg", :class => "summarise") %>
-				</a>
-			</li>
-			<li>
-				<a href=<%=user_releasetime_path(@user)%>>					
-					<%= image_tag("watch.svg", :class => "summarise") %>
-				</a>
-			</li>
-			<li>
-				<a href="/">
-					<%= image_tag("graph.svg", :class => "summarise") %>
-				</a>
-			</li>
-		</ul>
-		<hr>
-		<ul>
-			<li class="nav nav-pill"><a href="/">Get Support</a></li>
-			<li><a href="/">Meet The Team</a></li>
-			<li><a href="/">Memoly Blog</a></li>
-			<li><a href="/">Our Privacy Policy</a></li>
-			<li><a href="/">Terms of Use</a></li>
-		</ul>
-		<hr>
-		<ul>
-			<li>
-				<p class="head2">
-					&copy;<%= Time.zone.now.year %> MemolyApp. 
-				</p>
-				<p class="head2">
-					All rights reserved.
-				</p>
-			</li>
-		</ul>
-	</div>
-	<!--end-of-side-panel-->
+	<%= render 'layouts/side_panel' %>
 
 	<!--main-arena-->
 	<div class="span10">
