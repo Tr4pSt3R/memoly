@@ -67,6 +67,8 @@ key.svg: key.svg
 key/index.svg: key.svg
 memoly-iOS7-icon.jpg: memoly-iOS7-icon.jpg
 memoly-iOS7-icon/index.jpg: memoly-iOS7-icon.jpg
+memoly.ico: memoly.ico
+memoly/index.ico: memoly.ico
 memoly_icon.png: memoly_icon.png
 memoly_icon/index.png: memoly_icon.png
 memoly_team_cem_jones.png: memoly_team_cem_jones.png
