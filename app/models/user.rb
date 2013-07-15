@@ -88,6 +88,8 @@ class User < ActiveRecord::Base
         if s.include? '#' then
           _,_,topic_name = s.partition '#'
           topic_name = topic_name.rstrip.titleize
+          binding.pry
+          # topic_name = Sanitize.clean(topic_name)
           t = Topic.where(:name => topic_name).first_or_create
           t.memoids << memoid
         end

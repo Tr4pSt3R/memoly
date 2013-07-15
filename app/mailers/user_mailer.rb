@@ -7,9 +7,9 @@ class UserMailer < ActionMailer::Base
   #    mail(:to => user.email, :subject => "Welcome To MemolyApp")
   # end
 
-  def welcome_email(user)
-     @user = user
-     @url = "http://www.memoly/users/sign_in"
+  def welcome_email(user_id)
+     @user = AlphaUser.find_by_id user_id
+     @url = "memolyapp.com/"
      mail(:to => @user.email, :subject => "Welcome To MemolyApp")
   end  
 end

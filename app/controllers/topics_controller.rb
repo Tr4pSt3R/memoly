@@ -40,6 +40,7 @@ class TopicsController < ApplicationController
   # POST /topics
   # POST /topics.json
   def create
+    # binding.pry
     @topic = Topic.new(params[:topic])
 
     respond_to do |format|

@@ -49,6 +49,8 @@ class AlphaUsersController < ApplicationController
 
     respond_to do |format|
       if @alpha_user.save
+        UserMailer.welcome_email(@alpha_user.id).deliver
+        
         format.html { redirect_to root_url, notice: 'Thank you for your interest in MemolyApp.' }
         # format.json { render json: @alpha_user, status: :created, location: @alpha_user }
       else
