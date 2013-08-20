@@ -398,6 +398,7 @@ DEPENDENCIES
   redis (~> 3.0.2)
   rspec-rails (~> 2.0)
   ruby_gntp
+  sanitize
   sass-rails (~> 3.2.3)
   shoulda-matchers
   sidekiq

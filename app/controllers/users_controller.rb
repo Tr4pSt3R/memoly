@@ -72,12 +72,14 @@ class UsersController < ApplicationController
         elsif commit=='Add Time'
           format.html { redirect_to @user, success: "Release Time was successfully updated"}
           format.json { head :no_content }
+        elseif commit='Create Post'
+          format.html { redirect_to @user, success: "Post successfully created. "}
+          format.json { head :no_content }
         else
           format.html { redirect_to @user, success: 'User was successfully updated' }
           format.json { head :no_content }
         end        
       else
-        binding.pry
         format.html { render action: "edit" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end

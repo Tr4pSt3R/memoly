@@ -1,38 +1,56 @@
+<%= render "layouts/banner" %>
 <p id="notice"><%= notice %></p>
-<p>
-	<h2><%= @post.title %></h2>
-	<small> Posted <%= time_ago_in_words @post.created_at %> ago</small><br />
-	<%= @post.text.html_safe %>
-</p>
-
-<p>
-	<%= link_to 'Edit', edit_user_post_path(@post) %> |
-	<%= link_to 'Back', user_posts_path %> | 
-	<%= link_to 'Delete', [@user, @post], :method => :delete, :confirm => "Are you sure you want to delete post?" %> 
-</p>
-
-<h3>Comments</h3>
-<div>
-	<ul>
-		<% @post.comments.each do |comment| %>
-			<li>
-				<%= comment.text %> 
-				<small> 
-					Commented <%= time_ago_in_words comment.created_at %> ago
-				</small>
-			</li>
-		<% end %>
-	</ul>
+<div class="row-fluid">
+	<div class="span5 offset1">
+		<h2>
+			<%= @post.title.html_safe %>
+		</h2>
+		<small> 
+			Posted <%= time_ago_in_words @post.created_at %> ago by <%= @post.user.username %>
+		</small><br />
+		<%= Sanitize.clean(@post.text) %>
+	</div> 
+	<div class="span5">
+		<h3>All Posts</h3>
+			<% @posts.each do |post| %>
+				<p><%= link_to post.title, user_post_path(post) %></p>
+			<% end %>
+		<h3>Tags</h3>
+		<p>addition, multiplication, endless, tag, cloud</p>
+	</div>
 </div>
 
-<!-- <div>
-	<%#= form_for [@post, @post.comments.build] do |f| %>
-		<p><%#= f.text_area :text, :size => '40x10' %></p>
-		<p><%#= f.submit "Post comment" %></p>
-	<%# end %>
-</div> -->
+<div class="row-fluid">
+	<div class="offset1">
+		<%= link_to 'Edit', edit_user_post_path(@post) %> |
+		<%= link_to 'Back', user_posts_path %> |  
+		<%= link_to 'Delete', user_post_path(@post), method: :delete, :confirm => "Are you sure you want to delete post?" %>
+	</div>
+</div>
 
+<div>
 
+</div>
 
+<div class="row-fluid">
+	<div class="span8 offset1">
+		<h3>Comments</h3>
+		<div>
+			<ul>
+				<% @post.comments.each do |comment| %>
+					<li>
+						<%= comment.text %> 
+						<small> 
+							Commented <%= time_ago_in_words comment.created_at %> ago
+						</small>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>
 
-<%#= form_for(@menu_items, :url => restaurant_menu_items_path(@menu_items.restaurant)) do |f| %>
+<div>
+	<%= form_for (@post.comments.build) do |f| %>
+	<% end %>
+</div>

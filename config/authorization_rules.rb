@@ -1,6 +1,9 @@
 authorization do 
 	role :admin do 
-		has_permission_on [:users, :alpha_users, :memoids], :to => :manage
+		description "to be assigned to an administrative personnel"
+		has_permission_on [:alpha_users, :memoids], :to => :manage
+		has_permission_on :users, :to => :manage 
+		has_permission_on :posts, :to => :manage
 	end
 
 	role :beta_user do
@@ -14,7 +17,7 @@ end
 
 privileges do 
 	privilege :manage do 
-		includes :show, :update, :edit, :create, :destroy, :new
+		includes :update, :edit, :create, :destroy, :new, :show, :index
 	end
 
 	privilege :express_interest do 

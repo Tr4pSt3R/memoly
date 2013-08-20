@@ -2,7 +2,6 @@
   <% if @memoid.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@memoid.errors.count, "error") %> prohibited this memoid from being saved:</h2>
-
       <ul>
       <% @memoid.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>

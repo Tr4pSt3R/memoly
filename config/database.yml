@@ -3,7 +3,7 @@ common: &common
   username: root
   password: saint17
   database: 
-  pool:     5
+  pool:     25
   timeout:  5000
 
 development: &development

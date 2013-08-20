@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   has_one  :releasetime
   
   # nested attrs
-  accepts_nested_attributes_for :releasetime, :memoids
+  accepts_nested_attributes_for :releasetime, :memoids, :posts
   
   # Mass-assignables
   attr_accessible :firstname, 
@@ -36,7 +36,8 @@ class User < ActiveRecord::Base
                   :password_confirmation, 
                   :remember_me, 
                   :releasetime_attributes, 
-                  :memoids_attributes
+                  :memoids_attributes, 
+                  :posts_attributes
 
   def after_initialize
     self.releasetime ||= self.build_releasetime(:pingtime => "2000-01-01 08:00:00")    

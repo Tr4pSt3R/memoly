@@ -1,21 +1,18 @@
-<div class="span-box0 span12">
-  <h1 class="offset0"> 
-    <span id="head0">Blog</span> 
-    <%= image_tag("MemolyLogo.png", :width  => "250px", 
-                  :height => "100%", 
-                  :alt  => "Memoly logo")%>
-  </h1>
+<% require "Sanitize" %>
+<%= render "layouts/banner" %>
 
-  <!--div class="offset2">
-    <%#= image_tag("DeviceOutlines.png", :width  => "500px", 
-                    :height => "100%", 
-                    :alt  => "compatible devices")%>
-  </div-->
-  <%= link_to "New Blog Post", new_user_post_path %>
-  <% @posts.each do |post| %>
-    <h2><%= link_to post.title, user_post_path(post.user.id, post.id)  %></h2>
-    <small> Posted <%= time_ago_in_words post.created_at %> ago</small>
-    <p><%= truncate post.text  %></p>
-  <% end %> 
-
+<div class="row-fluid">
+	<div class="offset1 span6">
+	  <%#= link_to "New Blog Post", new_user_post_path %>
+	  <% @posts.each do |post| %>
+	    <h2><%= link_to post.title.html_safe, user_post_path(post.user.id, post.id)  %>
+	    </h2>
+	    <small> 
+	    	Posted <%= time_ago_in_words post.created_at %> ago by <%= post.user.username %>
+	    </small>
+	    <p>
+	    	<%= truncate(Sanitize.clean(post.text), :length => 200) %>
+	    </p><br />
+	  <% end %> 
+  </div>
 </div>
