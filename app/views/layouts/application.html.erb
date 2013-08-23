@@ -8,6 +8,8 @@
     <meta name="author" content="">
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
+    <%#= javascript_include_tag "nprogress" %>
+    <%#= stylesheet_link_tag "nprogress" %>
     <%= favicon_link_tag 'memoly.ico' %>
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
@@ -92,5 +94,16 @@
           w.attachEvent("onload", gs);
       })(window);
     </script>
+    <script>
+       $('body').show();
+       $('.version').text(NProgress.version);
+       NProgress.start();
+       setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 1000);
+
+       $("#b-0").click(function() { NProgress.start(); });
+       $("#b-40").click(function() { NProgress.set(0.4); });
+       $("#b-inc").click(function() { NProgress.inc(); });
+       $("#b-100").click(function() { NProgress.done(); });
+     </script>
   </body>
 </html>

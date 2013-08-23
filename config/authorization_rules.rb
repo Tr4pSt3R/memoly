@@ -1,9 +1,9 @@
 authorization do 
 	role :admin do 
 		description "to be assigned to an administrative personnel"
-		has_permission_on [:alpha_users, :memoids], :to => :manage
-		has_permission_on :users, :to => :manage 
-		has_permission_on :posts, :to => :manage
+			has_permission_on [:alpha_users, :memoids], :to => :manage
+			has_permission_on :users, :to => :manage 
+			has_permission_on :posts, :to => :manage
 	end
 
 	role :beta_user do
