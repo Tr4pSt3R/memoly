@@ -31,6 +31,7 @@ gem 'capistrano'
 gem 'capistrano-ext'
 gem 'capify-ec2'
 gem 'sanitize'
+gem 'i18n', '< 0.6.5'
 
 # Gems used only for assets and not required
 # in production environments by default.
