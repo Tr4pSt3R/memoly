@@ -1,5 +1,5 @@
 /*!
- * jQuery JavaScript Library v1.10.1
+ * jQuery JavaScript Library v1.10.2
  * http://jquery.com/
  *
  * Includes Sizzle.js
@@ -9,7 +9,7 @@
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2013-05-30T21:49Z
+ * Date: 2013-07-03T13:48Z
  */
 
 (function( window, undefined ) {
@@ -47,7 +47,7 @@ var
 	// List of deleted data cache ids, so we can reuse them
 	core_deletedIds = [],
 
-	core_version = "1.10.1",
+	core_version = "1.10.2",
 
 	// Save a reference to some core methods
 	core_concat = core_deletedIds.concat,
@@ -1001,14 +1001,14 @@ function isArraylike( obj ) {
 // All jQuery objects should point back to these
 rootjQuery = jQuery(document);
 /*!
- * Sizzle CSS Selector Engine v1.9.4-pre
+ * Sizzle CSS Selector Engine v1.10.2
  * http://sizzlejs.com/
  *
  * Copyright 2013 jQuery Foundation, Inc. and other contributors
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2013-05-27
+ * Date: 2013-07-03
  */
 (function( window, undefined ) {
 
@@ -1041,7 +1041,13 @@ var i,
 	tokenCache = createCache(),
 	compilerCache = createCache(),
 	hasDuplicate = false,
-	sortOrder = function() { return 0; },
+	sortOrder = function( a, b ) {
+		if ( a === b ) {
+			hasDuplicate = true;
+			return 0;
+		}
+		return 0;
+	},
 
 	// General-purpose constants
 	strundefined = typeof undefined,
@@ -1285,14 +1291,6 @@ function Sizzle( selector, context, results, seed ) {
 }
 
 /**
- * For feature detection
- * @param {Function} fn The function to test for native support
- */
-function isNative( fn ) {
-	return rnative.test( fn + "" );
-}
-
-/**
  * Create key-value caches of limited size
  * @returns {Function(string, Object)} Returns the Object data after storing it on itself with
  *	property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
@@ -1345,58 +1343,14 @@ function assert( fn ) {
 /**
  * Adds the same handler for all of the specified attrs
  * @param {String} attrs Pipe-separated list of attributes
- * @param {Function} handler The method that will be applied if the test fails
- * @param {Boolean} test The result of a test. If true, null will be set as the handler in leiu of the specified handler
+ * @param {Function} handler The method that will be applied
  */
-function addHandle( attrs, handler, test ) {
-	attrs = attrs.split("|");
-	var current,
-		i = attrs.length,
-		setHandle = test ? null : handler;
+function addHandle( attrs, handler ) {
+	var arr = attrs.split("|"),
+		i = attrs.length;
 
 	while ( i-- ) {
-		// Don't override a user's handler
-		if ( !(current = Expr.attrHandle[ attrs[i] ]) || current === handler ) {
-			Expr.attrHandle[ attrs[i] ] = setHandle;
-		}
-	}
-}
-
-/**
- * Fetches boolean attributes by node
- * @param {Element} elem
- * @param {String} name
- */
-function boolHandler( elem, name ) {
-	// XML does not need to be checked as this will not be assigned for XML documents
-	var val = elem.getAttributeNode( name );
-	return val && val.specified ?
-		val.value :
-		elem[ name ] === true ? name.toLowerCase() : null;
-}
-
-/**
- * Fetches attributes without interpolation
- * http://msdn.microsoft.com/en-us/library/ms536429%28VS.85%29.aspx
- * @param {Element} elem
- * @param {String} name
- */
-function interpolationHandler( elem, name ) {
-	// XML does not need to be checked as this will not be assigned for XML documents
-	return elem.getAttribute( name, name.toLowerCase() === "type" ? 1 : 2 );
-}
-
-/**
- * Uses defaultValue to retrieve value in IE6/7
- * @param {Element} elem
- * @param {String} name
- */
-function valueHandler( elem ) {
-	// Ignore the value *property* on inputs by using defaultValue
-	// Fallback to Sizzle.attr by returning undefined where appropriate
-	// XML does not need to be checked as this will not be assigned for XML documents
-	if ( elem.nodeName.toLowerCase() === "input" ) {
-		return elem.defaultValue;
+		Expr.attrHandle[ arr[i] ] = handler;
 	}
 }
 
@@ -1404,7 +1358,7 @@ function valueHandler( elem ) {
  * Checks document order of two siblings
  * @param {Element} a
  * @param {Element} b
- * @returns Returns -1 if a precedes b, 1 if a follows b
+ * @returns {Number} Returns less than 0 if a precedes b, greater than 0 if a follows b
  */
 function siblingCheck( a, b ) {
 	var cur = b && a,
@@ -1494,7 +1448,7 @@ support = Sizzle.support = {};
  */
 setDocument = Sizzle.setDocument = function( node ) {
 	var doc = node ? node.ownerDocument || node : preferredDoc,
-		parent = doc.parentWindow;
+		parent = doc.defaultView;
 
 	// If no document and documentElement is available, return
 	if ( doc === document || doc.nodeType !== 9 || !doc.documentElement ) {
@@ -1511,7 +1465,8 @@ setDocument = Sizzle.setDocument = function( node ) {
 	// Support: IE>8
 	// If iframe document is assigned to "document" variable and if iframe has been reloaded,
 	// IE will throw "permission denied" error when accessing "document" variable, see jQuery #13936
-	if ( parent && parent.frameElement ) {
+	// IE6-8 do not support the defaultView property so parent will be undefined
+	if ( parent && parent.attachEvent && parent !== parent.top ) {
 		parent.attachEvent( "onbeforeunload", function() {
 			setDocument();
 		});
@@ -1523,31 +1478,9 @@ setDocument = Sizzle.setDocument = function( node ) {
 	// Support: IE<8
 	// Verify that getAttribute really returns attributes and not properties (excepting IE8 booleans)
 	support.attributes = assert(function( div ) {
-
-		// Support: IE<8
-		// Prevent attribute/property "interpolation"
-		div.innerHTML = "<a href='#'></a>";
-		addHandle( "type|href|height|width", interpolationHandler, div.firstChild.getAttribute("href") === "#" );
-
-		// Support: IE<9
-		// Use getAttributeNode to fetch booleans when getAttribute lies
-		addHandle( booleans, boolHandler, div.getAttribute("disabled") == null );
-
 		div.className = "i";
 		return !div.getAttribute("className");
 	});
-
-	// Support: IE<9
-	// Retrieving value should defer to defaultValue
-	support.input = assert(function( div ) {
-		div.innerHTML = "<input>";
-		div.firstChild.setAttribute( "value", "" );
-		return div.firstChild.getAttribute( "value" ) === "";
-	});
-
-	// IE6/7 still return empty string for value,
-	// but are actually retrieving the property
-	addHandle( "value", valueHandler, support.attributes && support.input );
 
 	/* getElement(s)By*
 	---------------------------------------------------------------------- */
@@ -1657,7 +1590,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 	// See http://bugs.jquery.com/ticket/13378
 	rbuggyQSA = [];
 
-	if ( (support.qsa = isNative(doc.querySelectorAll)) ) {
+	if ( (support.qsa = rnative.test( doc.querySelectorAll )) ) {
 		// Build QSA regex
 		// Regex strategy adopted from Diego Perini
 		assert(function( div ) {
@@ -1709,7 +1642,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 		});
 	}
 
-	if ( (support.matchesSelector = isNative( (matches = docElem.webkitMatchesSelector ||
+	if ( (support.matchesSelector = rnative.test( (matches = docElem.webkitMatchesSelector ||
 		docElem.mozMatchesSelector ||
 		docElem.oMatchesSelector ||
 		docElem.msMatchesSelector) )) ) {
@@ -1735,7 +1668,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 	// Element contains another
 	// Purposefully does not implement inclusive descendent
 	// As in, an element does not contain itself
-	contains = isNative(docElem.contains) || docElem.compareDocumentPosition ?
+	contains = rnative.test( docElem.contains ) || docElem.compareDocumentPosition ?
 		function( a, b ) {
 			var adown = a.nodeType === 9 ? a.documentElement : a,
 				bup = b && b.parentNode;
@@ -1758,13 +1691,6 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 	/* Sorting
 	---------------------------------------------------------------------- */
-
-	// Support: Webkit<537.32 - Safari 6.0.3/Chrome 25 (fixed in Chrome 27)
-	// Detached nodes confoundingly follow *each other*
-	support.sortDetached = assert(function( div1 ) {
-		// Should return 1, but returns 4 (following)
-		return div1.compareDocumentPosition( doc.createElement("div") ) & 1;
-	});
 
 	// Document order sorting
 	sortOrder = docElem.compareDocumentPosition ?
@@ -1908,9 +1834,9 @@ Sizzle.attr = function( elem, name ) {
 
 	var fn = Expr.attrHandle[ name.toLowerCase() ],
 		// Don't get fooled by Object.prototype properties (jQuery #13807)
-		val = ( fn && hasOwn.call( Expr.attrHandle, name.toLowerCase() ) ?
+		val = fn && hasOwn.call( Expr.attrHandle, name.toLowerCase() ) ?
 			fn( elem, name, !documentIsHTML ) :
-			undefined );
+			undefined;
 
 	return val === undefined ?
 		support.attributes || !documentIsHTML ?
@@ -2455,6 +2381,8 @@ Expr = Sizzle.selectors = {
 	}
 };
 
+Expr.pseudos["nth"] = Expr.pseudos["eq"];
+
 // Add button/input type pseudos
 for ( i in { radio: true, checkbox: true, file: true, password: true, image: true } ) {
 	Expr.pseudos[ i ] = createInputPseudo( i );
@@ -2462,6 +2390,11 @@ for ( i in { radio: true, checkbox: true, file: true, password: true, image: tru
 for ( i in { submit: true, reset: true } ) {
 	Expr.pseudos[ i ] = createButtonPseudo( i );
 }
+
+// Easy API for creating new setFilters
+function setFilters() {}
+setFilters.prototype = Expr.filters = Expr.pseudos;
+Expr.setFilters = new setFilters();
 
 function tokenize( selector, parseOnly ) {
 	var matched, match, tokens, type,
@@ -2974,26 +2907,67 @@ function select( selector, context, results, seed ) {
 	return results;
 }
 
-// Deprecated
-Expr.pseudos["nth"] = Expr.pseudos["eq"];
-
-// Easy API for creating new setFilters
-function setFilters() {}
-setFilters.prototype = Expr.filters = Expr.pseudos;
-Expr.setFilters = new setFilters();
-
 // One-time assignments
 
 // Sort stability
 support.sortStable = expando.split("").sort( sortOrder ).join("") === expando;
 
+// Support: Chrome<14
+// Always assume duplicates if they aren't passed to the comparison function
+support.detectDuplicates = hasDuplicate;
+
 // Initialize against the default document
 setDocument();
 
-// Support: Chrome<<14
-// Always assume duplicates if they aren't passed to the comparison function
-[0, 0].sort( sortOrder );
-support.detectDuplicates = hasDuplicate;
+// Support: Webkit<537.32 - Safari 6.0.3/Chrome 25 (fixed in Chrome 27)
+// Detached nodes confoundingly follow *each other*
+support.sortDetached = assert(function( div1 ) {
+	// Should return 1, but returns 4 (following)
+	return div1.compareDocumentPosition( document.createElement("div") ) & 1;
+});
+
+// Support: IE<8
+// Prevent attribute/property "interpolation"
+// http://msdn.microsoft.com/en-us/library/ms536429%28VS.85%29.aspx
+if ( !assert(function( div ) {
+	div.innerHTML = "<a href='#'></a>";
+	return div.firstChild.getAttribute("href") === "#" ;
+}) ) {
+	addHandle( "type|href|height|width", function( elem, name, isXML ) {
+		if ( !isXML ) {
+			return elem.getAttribute( name, name.toLowerCase() === "type" ? 1 : 2 );
+		}
+	});
+}
+
+// Support: IE<9
+// Use defaultValue in place of getAttribute("value")
+if ( !support.attributes || !assert(function( div ) {
+	div.innerHTML = "<input/>";
+	div.firstChild.setAttribute( "value", "" );
+	return div.firstChild.getAttribute( "value" ) === "";
+}) ) {
+	addHandle( "value", function( elem, name, isXML ) {
+		if ( !isXML && elem.nodeName.toLowerCase() === "input" ) {
+			return elem.defaultValue;
+		}
+	});
+}
+
+// Support: IE<9
+// Use getAttributeNode to fetch booleans when getAttribute lies
+if ( !assert(function( div ) {
+	return div.getAttribute("disabled") == null;
+}) ) {
+	addHandle( booleans, function( elem, name, isXML ) {
+		var val;
+		if ( !isXML ) {
+			return (val = elem.getAttributeNode( name )) && val.specified ?
+				val.value :
+				elem[ name ] === true ? name.toLowerCase() : null;
+		}
+	});
+}
 
 jQuery.find = Sizzle;
 jQuery.expr = Sizzle.selectors;
@@ -3178,9 +3152,9 @@ jQuery.Callbacks = function( options ) {
 			},
 			// Call all callbacks with the given context and arguments
 			fireWith: function( context, args ) {
-				args = args || [];
-				args = [ context, args.slice ? args.slice() : args ];
 				if ( list && ( !fired || stack ) ) {
+					args = args || [];
+					args = [ context, args.slice ? args.slice() : args ];
 					if ( firing ) {
 						stack.push( args );
 					} else {
@@ -4184,8 +4158,11 @@ jQuery.fn.extend({
 	},
 
 	toggleClass: function( value, stateVal ) {
-		var type = typeof value,
-			isBool = typeof stateVal === "boolean";
+		var type = typeof value;
+
+		if ( typeof stateVal === "boolean" && type === "string" ) {
+			return stateVal ? this.addClass( value ) : this.removeClass( value );
+		}
 
 		if ( jQuery.isFunction( value ) ) {
 			return this.each(function( i ) {
@@ -4199,13 +4176,15 @@ jQuery.fn.extend({
 				var className,
 					i = 0,
 					self = jQuery( this ),
-					state = stateVal,
 					classNames = value.match( core_rnotwhite ) || [];
 
 				while ( (className = classNames[ i++ ]) ) {
 					// check each className given, space separated list
-					state = isBool ? state : !self.hasClass( className );
-					self[ state ? "addClass" : "removeClass" ]( className );
+					if ( self.hasClass( className ) ) {
+						self.removeClass( className );
+					} else {
+						self.addClass( className );
+					}
 				}
 
 			// Toggle whole class name
@@ -6949,10 +6928,12 @@ jQuery.fn.extend({
 		return showHide( this );
 	},
 	toggle: function( state ) {
-		var bool = typeof state === "boolean";
+		if ( typeof state === "boolean" ) {
+			return state ? this.show() : this.hide();
+		}
 
 		return this.each(function() {
-			if ( bool ? state : isHidden( this ) ) {
+			if ( isHidden( this ) ) {
 				jQuery( this ).show();
 			} else {
 				jQuery( this ).hide();
@@ -6983,6 +6964,7 @@ jQuery.extend({
 		"fontWeight": true,
 		"lineHeight": true,
 		"opacity": true,
+		"order": true,
 		"orphans": true,
 		"widows": true,
 		"zIndex": true,
@@ -9826,6 +9808,7 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 
   // Shorthand to make it a little easier to call public rails functions from within rails.js
   var rails;
+  var $document = $(document);
 
   $.rails = rails = {
     // Link elements bound by jquery-ujs
@@ -10087,15 +10070,15 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 
   };
 
-  if (rails.fire($(document), 'rails:attachBindings')) {
+  if (rails.fire($document, 'rails:attachBindings')) {
 
     $.ajaxPrefilter(function(options, originalOptions, xhr){ if ( !options.crossDomain ) { rails.CSRFProtection(xhr); }});
 
-    $(document).delegate(rails.linkDisableSelector, 'ajax:complete', function() {
+    $document.delegate(rails.linkDisableSelector, 'ajax:complete', function() {
         rails.enableElement($(this));
     });
 
-    $(document).delegate(rails.linkClickSelector, 'click.rails', function(e) {
+    $document.delegate(rails.linkClickSelector, 'click.rails', function(e) {
       var link = $(this), method = link.data('method'), data = link.data('params');
       if (!rails.allowAction(link)) return rails.stopEverything(e);
 
@@ -10119,7 +10102,7 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
       }
     });
 
-    $(document).delegate(rails.buttonClickSelector, 'click.rails', function(e) {
+    $document.delegate(rails.buttonClickSelector, 'click.rails', function(e) {
       var button = $(this);
       if (!rails.allowAction(button)) return rails.stopEverything(e);
 
@@ -10127,7 +10110,7 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
       return false;
     });
 
-    $(document).delegate(rails.inputChangeSelector, 'change.rails', function(e) {
+    $document.delegate(rails.inputChangeSelector, 'change.rails', function(e) {
       var link = $(this);
       if (!rails.allowAction(link)) return rails.stopEverything(e);
 
@@ -10135,7 +10118,7 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
       return false;
     });
 
-    $(document).delegate(rails.formSubmitSelector, 'submit.rails', function(e) {
+    $document.delegate(rails.formSubmitSelector, 'submit.rails', function(e) {
       var form = $(this),
         remote = form.data('remote') !== undefined,
         blankRequiredInputs = rails.blankInputs(form, rails.requiredInputSelector),
@@ -10170,7 +10153,7 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
       }
     });
 
-    $(document).delegate(rails.formInputClickSelector, 'click.rails', function(event) {
+    $document.delegate(rails.formInputClickSelector, 'click.rails', function(event) {
       var button = $(this);
 
       if (!rails.allowAction(button)) return rails.stopEverything(event);
@@ -10182,11 +10165,11 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
       button.closest('form').data('ujs:submit-button', data);
     });
 
-    $(document).delegate(rails.formSubmitSelector, 'ajax:beforeSend.rails', function(event) {
+    $document.delegate(rails.formSubmitSelector, 'ajax:beforeSend.rails', function(event) {
       if (this == event.target) rails.disableFormElements($(this));
     });
 
-    $(document).delegate(rails.formSubmitSelector, 'ajax:complete.rails', function(event) {
+    $document.delegate(rails.formSubmitSelector, 'ajax:complete.rails', function(event) {
       if (this == event.target) rails.enableFormElements($(this));
     });
 
@@ -10202,8 +10185,8 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 // This [jQuery](http://jquery.com/) plugin implements an `<iframe>`
 // [transport](http://api.jquery.com/extending-ajax/#Transports) so that
 // `$.ajax()` calls support the uploading of files using standard HTML file
-// input fields. This is done by switching the exchange from `XMLHttpRequest` to
-// a hidden `iframe` element containing a form that is submitted.
+// input fields. This is done by switching the exchange from `XMLHttpRequest`
+// to a hidden `iframe` element containing a form that is submitted.
 
 // The [source for the plugin](http://github.com/cmlenz/jquery-iframe-transport)
 // is available on [Github](http://github.com/) and dual licensed under the MIT
@@ -10211,7 +10194,7 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 
 // ## Usage
 
-// To use this plugin, you simply add a `iframe` option with the value `true`
+// To use this plugin, you simply add an `iframe` option with the value `true`
 // to the Ajax settings an `$.ajax()` call, and specify the file fields to
 // include in the submssion using the `files` option, which can be a selector,
 // jQuery object, or a list of DOM elements containing one or more
@@ -10226,12 +10209,11 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 //         });
 //     });
 
-// The plugin will construct a hidden `<iframe>` element containing a copy of
-// the form the file field belongs to, will disable any form fields not
-// explicitly included, submit that form, and process the response.
+// The plugin will construct hidden `<iframe>` and `<form>` elements, add the
+// file field(s) to that form, submit the form, and process the response.
 
-// If you want to include other form fields in the form submission, include them
-// in the `data` option, and set the `processData` option to `false`:
+// If you want to include other form fields in the form submission, include
+// them in the `data` option, and set the `processData` option to `false`:
 
 //     $("#myform").submit(function() {
 //         $.ajax(this.action, {
@@ -10244,70 +10226,83 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 //         });
 //     });
 
-// ### The Server Side
+// ### Response Data Types
 
-// If the response is not HTML or XML, you (unfortunately) need to apply some
-// trickery on the server side. To send back a JSON payload, send back an HTML
-// `<textarea>` element with a `data-type` attribute that contains the MIME
+// As the transport does not have access to the HTTP headers of the server
+// response, it is not as simple to make use of the automatic content type
+// detection provided by jQuery as with regular XHR. If you can't set the
+// expected response data type (for example because it may vary depending on
+// the outcome of processing by the server), you will need to employ a
+// workaround on the server side: Send back an HTML document containing just a
+// `<textarea>` element with a `data-type` attribute that specifies the MIME
 // type, and put the actual payload in the textarea:
 
 //     <textarea data-type="application/json">
 //       {"ok": true, "message": "Thanks so much"}
 //     </textarea>
 
-// The iframe transport plugin will detect this and attempt to apply the same
-// conversions that jQuery applies to regular responses. That means for the
-// example above you should get a Javascript object as the `data` parameter of
-// the `complete` callback, with the properties `ok: true` and
-// `message: "Thanks so much"`.
+// The iframe transport plugin will detect this and pass the value of the
+// `data-type` attribute on to jQuery as if it was the "Content-Type" response
+// header, thereby enabling the same kind of conversions that jQuery applies
+// to regular responses. For the example above you should get a Javascript
+// object as the `data` parameter of the `complete` callback, with the
+// properties `ok: true` and `message: "Thanks so much"`.
+
+// ### Handling Server Errors
+
+// Another problem with using an `iframe` for file uploads is that it is
+// impossible for the javascript code to determine the HTTP status code of the
+// servers response. Effectively, all of the calls you make will look like they
+// are getting successful responses, and thus invoke the `done()` or
+// `complete()` callbacks. You can only determine communicate problems using
+// the content of the response payload. For example, consider using a JSON
+// response such as the following to indicate a problem with an uploaded file:
+
+//     <textarea data-type="application/json">
+//       {"ok": false, "message": "Please only upload reasonably sized files."}
+//     </textarea>
 
 // ### Compatibility
 
-// This plugin has primarily been tested on Safari 5, Firefox 4, and Internet
-// Explorer all the way back to version 6. While I haven't found any issues with
-// it so far, I'm fairly sure it still doesn't work around all the quirks in all
-// different browsers. But the code is still pretty simple overall, so you
-// should be able to fix it and contribute a patch :)
+// This plugin has primarily been tested on Safari 5 (or later), Firefox 4 (or
+// later), and Internet Explorer (all the way back to version 6). While I
+// haven't found any issues with it so far, I'm fairly sure it still doesn't
+// work around all the quirks in all different browsers. But the code is still
+// pretty simple overall, so you should be able to fix it and contribute a
+// patch :)
 
 // ## Annotated Source
 
 (function($, undefined) {
+  "use strict";
 
   // Register a prefilter that checks whether the `iframe` option is set, and
-  // switches to the iframe transport if it is `true`.
+  // switches to the "iframe" data type if it is `true`.
   $.ajaxPrefilter(function(options, origOptions, jqXHR) {
     if (options.iframe) {
       return "iframe";
     }
   });
 
-  // Register an iframe transport, independent of requested data type. It will
-  // only activate when the "files" option has been set to a non-empty list of
-  // enabled file inputs.
+  // Register a transport for the "iframe" data type. It will only activate
+  // when the "files" option has been set to a non-empty list of enabled file
+  // inputs.
   $.ajaxTransport("iframe", function(options, origOptions, jqXHR) {
     var form = null,
         iframe = null,
-        origAction = null,
-        origTarget = null,
-        origEnctype = null,
-        addedFields = [],
-        disabledFields = [],
-        files = $(options.files).filter(":file:enabled");
+        name = "iframe-" + $.now(),
+        files = $(options.files).filter(":file:enabled"),
+        markers = null,
+        accepts;
 
     // This function gets called after a successful submission or an abortion
     // and should revert all changes made to the page to enable the
     // submission via this transport.
     function cleanUp() {
-      $(addedFields).each(function() {
-        this.remove();
-      });
-      $(disabledFields).each(function() {
-        this.disabled = false;
-      });
-      form.attr("action", origAction || "")
-          .attr("target", origTarget || "")
-          .attr("enctype", origEnctype || "");
-      iframe.attr("src", "javascript:false;").remove();
+      markers.prop('disabled', false);
+      form.remove();
+      iframe.bind("load", function() { iframe.remove(); });
+      iframe.attr("src", "javascript:false;");
     }
 
     // Remove "iframe" from the data types list so that further processing is
@@ -10316,51 +10311,30 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
     options.dataTypes.shift();
 
     if (files.length) {
-      // Determine the form the file fields belong to, and make sure they all
-      // actually belong to the same form.
-      files.each(function() {
-        if (form !== null && this.form !== form) {
-          jQuery.error("All file fields must belong to the same form");
-        }
-        form = this.form;
-      });
-      form = $(form);
-
-      // Store the original form attributes that we'll be replacing temporarily.
-      origAction = form.attr("action");
-      origTarget = form.attr("target");
-      origEnctype = form.attr("enctype");
-
-      // We need to disable all other inputs in the form so that they don't get
-      // included in the submitted data unexpectedly.
-      form.find(":input:not(:submit)").each(function() {
-        if (!this.disabled && (this.type != "file" || files.index(this) < 0)) {
-          this.disabled = true;
-          disabledFields.push(this);
-        }
-      });
+      form = $("<form enctype='multipart/form-data' method='post'></form>").
+        hide().attr({action: options.url, target: name});
 
       // If there is any additional data specified via the `data` option,
       // we add it as hidden fields to the form. This (currently) requires
       // the `processData` option to be set to false so that the data doesn't
       // get serialized to a string.
       if (typeof(options.data) === "string" && options.data.length > 0) {
-        jQuery.error("data must not be serialized");
+        $.error("data must not be serialized");
       }
       $.each(options.data || {}, function(name, value) {
         if ($.isPlainObject(value)) {
           name = value.name;
           value = value.value;
         }
-        addedFields.push($("<input type='hidden'>").attr("name", name)
-          .attr("value", value).appendTo(form));
+        $("<input type='hidden' />").attr({name:  name, value: value}).
+          appendTo(form);
       });
 
       // Add a hidden `X-Requested-With` field with the value `IFrame` to the
       // field, to help server-side code to determine that the upload happened
       // through this transport.
-      addedFields.push($("<input type='hidden' name='X-Requested-With'>")
-        .attr("value", "IFrame").appendTo(form));
+      $("<input type='hidden' value='IFrame' name='X-Requested-With' />").
+        appendTo(form);
 
       // Borrowed straight from the JQuery source
       // Provides a way of specifying the accepted data type similar to HTTP_ACCEPTS
@@ -10368,16 +10342,25 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
         options.accepts[ options.dataTypes[0] ] + ( options.dataTypes[ 0 ] !== "*" ? ", */*; q=0.01" : "" ) :
         options.accepts[ "*" ]
 
-      addedFields.push($("<input type='hidden' name='X-Http-Accept'>")
-        .attr("value", accepts).appendTo(form));
+      $("<input type='hidden' name='X-Http-Accept'>")
+        .attr("value", accepts).appendTo(form);
+
+      // Move the file fields into the hidden form, but first remember their
+      // original locations in the document by replacing them with disabled
+      // clones. This should also avoid introducing unwanted changes to the
+      // page layout during submission.
+      markers = files.after(function(idx) {
+        return $(this).clone().prop("disabled", true);
+      }).next();
+      files.appendTo(form);
 
       return {
 
         // The `send` function is called by jQuery when the request should be
         // sent.
         send: function(headers, completeCallback) {
-          iframe = $("<iframe src='javascript:false;' name='iframe-" + $.now()
-            + "' style='display:none'></iframe>");
+          iframe = $("<iframe src='javascript:false;' name='" + name +
+            "' id='" + name + "' style='display:none'></iframe>");
 
           // The first load event gets fired after the iframe has been injected
           // into the DOM, and is used to prepare the actual submission.
@@ -10388,34 +10371,36 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
             // actual payload is embedded in a `<textarea>` element, and
             // prepares the required conversions to be made in that case.
             iframe.unbind("load").bind("load", function() {
-
               var doc = this.contentWindow ? this.contentWindow.document :
                 (this.contentDocument ? this.contentDocument : this.document),
                 root = doc.documentElement ? doc.documentElement : doc.body,
                 textarea = root.getElementsByTagName("textarea")[0],
-                type = textarea ? textarea.getAttribute("data-type") : null;
-
-              var status = textarea ? parseInt(textarea.getAttribute("response-code")) : 200,
-                statusText = "OK",
-                responses = { text: type ? textarea.value : root ? root.innerHTML : null },
-                headers = "Content-Type: " + (type || "text/html")
-
-              completeCallback(status, statusText, responses, headers);
-
-              setTimeout(cleanUp, 50);
+                type = textarea && textarea.getAttribute("data-type") || null,
+                status = textarea && textarea.getAttribute("data-status") || 200,
+                statusText = textarea && textarea.getAttribute("data-statusText") || "OK",
+                content = {
+                  html: root.innerHTML,
+                  text: type ?
+                    textarea.value :
+                    root ? (root.textContent || root.innerText) : null
+                };
+              cleanUp();
+              if (!jqXHR.responseText) {
+                jqXHR.responseText = content.text;
+              }
+              completeCallback(status, statusText, content, type ?
+                ("Content-Type: " + type) :
+                null);
             });
 
-            // Now that the load handler has been set up, reconfigure and
-            // submit the form.
-            form.attr("action", options.url)
-              .attr("target", iframe.attr("name"))
-              .attr("enctype", "multipart/form-data")
-              .get(0).submit();
+            // Now that the load handler has been set up, submit the form.
+            form[0].submit();
           });
 
-          // After everything has been set up correctly, the iframe gets
-          // injected into the DOM so that the submission can be initiated.
-          iframe.insertAfter(form);
+          // After everything has been set up correctly, the form and iframe
+          // get injected into the DOM so that the submission can be
+          // initiated.
+          $("body").append(form, iframe);
         },
 
         // The `abort` function is called by jQuery when the request should be
@@ -21170,7 +21155,6 @@ $.support.pjax ? enable() : disable()
   $(document).ready(function() {
     return window.nestedFormEvents.insertFields = function(content, assoc, link) {
       var tab_content;
-
       tab_content = $(link).closest(".controls").siblings(".tab-content");
       tab_content.append(content);
       return tab_content.children().last();
@@ -21179,7 +21163,6 @@ $.support.pjax ? enable() : disable()
 
   $(document).on('nested:fieldAdded', 'form', function(content) {
     var controls, field, nav, new_tab, parent_group, toggler;
-
     field = content.field.addClass('tab-pane').attr('id', 'unique-id-' + (new Date().getTime()));
     new_tab = $('<li><a data-toggle="tab" href="#' + field.attr('id') + '">' + field.children('.object-infos').data('object-label') + '</a></li>');
     parent_group = field.closest('.control-group');
@@ -21197,7 +21180,6 @@ $.support.pjax ? enable() : disable()
 
   $(document).on('nested:fieldRemoved', 'form', function(content) {
     var controls, current_li, field, nav, parent_group, toggler;
-
     field = content.field;
     nav = field.closest(".control-group").children('.controls').children('.nav');
     current_li = nav.children('li').has('a[href=#' + field.attr('id') + ']');
@@ -21225,11 +21207,9 @@ $.support.pjax ? enable() : disable()
   $(document).on('rails_admin.dom_ready', function() {
     var $editors, array, config_options, goBootstrapWysihtml5s, goCkeditors, goCodeMirrors, options,
       _this = this;
-
     if ($('form').length) {
       $('form [data-color]').each(function() {
         var that;
-
         that = this;
         return $(this).ColorPicker({
           color: $(that).val(),
@@ -21259,7 +21239,6 @@ $.support.pjax ? enable() : disable()
       });
       $('form [data-fileupload]').each(function() {
         var input;
-
         input = this;
         return $(this).on('click', ".delete input[type='checkbox']", function() {
           return $(input).children('.toggle').toggle('slow');
@@ -21267,7 +21246,6 @@ $.support.pjax ? enable() : disable()
       });
       $('form [data-fileupload]').change(function() {
         var ext, image_container, input, reader;
-
         input = this;
         image_container = $("#" + input.id).parent().children(".preview");
         if (!image_container.length) {
@@ -21304,7 +21282,6 @@ $.support.pjax ? enable() : disable()
       });
       $('form [data-nestedmany]').each(function() {
         var content, field, nav, toggler;
-
         field = $(this).parents('.control-group').first();
         nav = field.find('> .controls > .nav');
         content = field.find('> .tab-content');
@@ -21334,7 +21311,6 @@ $.support.pjax ? enable() : disable()
       });
       $('form [data-nestedone]').each(function() {
         var content, field, first_tab, nav, toggler;
-
         field = $(this).parents('.control-group').first();
         nav = field.find("> .controls > .nav");
         content = field.find("> .tab-content");
@@ -21355,7 +21331,6 @@ $.support.pjax ? enable() : disable()
       });
       $('form [data-polymorphic]').each(function() {
         var field, object_select, type_select, urls;
-
         type_select = $(this);
         field = type_select.parents('.control-group').first();
         object_select = field.find('select').last();
@@ -21375,7 +21350,6 @@ $.support.pjax ? enable() : disable()
               },
               success: function(data, status, xhr) {
                 var html;
-
                 html = '<option></option>';
                 $(data).each(function(i, el) {
                   return html += '<option value="' + el.id + '">' + el.label + '</option>';
@@ -21389,7 +21363,6 @@ $.support.pjax ? enable() : disable()
       goCkeditors = function() {
         return $('form [data-richtext=ckeditor]').not('.ckeditored').each(function(index, domEle) {
           var instance;
-
           try {
             if (instance = window.CKEDITOR.instances[this.id]) {
               instance.destroy(true);
@@ -21414,7 +21387,6 @@ $.support.pjax ? enable() : disable()
       goCodeMirrors = function(array) {
         return array.each(function(index, domEle) {
           var textarea;
-
           options = $(this).data('options');
           textarea = this;
           return $.getScript(options['locations']['mode'], function(script, textStatus, jqXHR) {
@@ -21547,7 +21519,6 @@ $.support.pjax ? enable() : disable()
   $(document).on('rails_admin.dom_ready', function() {
     $('.animate-width-to').each(function() {
       var length, width;
-
       length = $(this).data("animate-length");
       width = $(this).data("animate-width-to");
       return $(this).animate({
@@ -21564,7 +21535,6 @@ $.support.pjax ? enable() : disable()
 
   $(document).on('click', '#fields_to_export label input#check_all', function() {
     var elems;
-
     elems = $('#fields_to_export label input');
     if ($('#fields_to_export label input#check_all').is(':checked')) {
       return $(elems).prop('checked', true);

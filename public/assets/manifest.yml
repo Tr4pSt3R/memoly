@@ -365,5 +365,5 @@ tinymce/skins/lightgray/content.min.css: tinymce/skins/lightgray/content.min.css
 tinymce/skins/lightgray/skin.ie7.min.css: tinymce/skins/lightgray/skin.ie7.min.css
 tinymce/skins/lightgray/skin.min.css: tinymce/skins/lightgray/skin.min.css
 tinymce/themes/modern/theme.js: tinymce/themes/modern/theme.js
+tinymce/tinymce.jquery.js: tinymce/tinymce.jquery.js
 tinymce/tinymce.js: tinymce/tinymce.js
-tinymce/tinymce_jquery.js: tinymce/tinymce_jquery.js
