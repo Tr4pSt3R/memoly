@@ -9085,7 +9085,7 @@ body {
 @include background-image(radial-gradient(center, ellipse cover, #3399cc 0%, #cccccc 35%, #ffffff 100%));
 .side-bar {
   background-color: #333333;
-  width: 83px important!;
+  width: 83px;
   border-bottom-right-radius: 10px;
 }
 .cog_size {
