@@ -1,5 +1,5 @@
 require "bundler/capistrano"
-require "rvm/capistrano"
+# require "rvm/capistrano"
 
 server "162.243.25.180", :web, :app, :db, primary: true
 
