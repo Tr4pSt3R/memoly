@@ -1,7 +1,7 @@
 require "bundler/capistrano"
 require "rvm/capistrano"
 
-server "162.243.11.79", :web, :app, :db, primary: true
+server "162.243.25.180", :web, :app, :db, primary: true
 
 set :application, "memoly"
 set :user, "root"
@@ -13,7 +13,7 @@ set :use_sudo, false
 set :ssh_options, {:forward_agent => true}
 
 set :scm, "git"
-set :repository, "git@git.assembla.com:memoly.git"
+set :repository, "git@github.com:Tr4pSt3R/memoly.git"
 set :branch, "memoly_core"
 
 
