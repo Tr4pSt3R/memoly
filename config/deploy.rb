@@ -17,6 +17,13 @@ set :default_stage, :staging
 set :ssh_options, {:forward_agent => true}
 
 default_run_options[:pty] = true
+
+set :default_environment, {
+  :PATH     => "/usr/local/rvm/gems/ruby-1.9.3-p429/bin:/usr/local/rvm/gems/ruby-1.9.3-p429@global/bin:/usr/local/rvm/rubies/ruby-1.9.3-p429/bin:/usr/local/rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games",
+  :RUBY_VERSION => "ruby 1.9.3",
+  :GEM_HOME => "/usr/local/rvm/gems/ruby-1.9.3-p429",
+  :GEM_PATH => "/usr/local/rvm/gems/ruby-1.9.3-p429"
+}
 set :use_sudo, false
 
 # GET FROM HERE
@@ -48,7 +55,7 @@ namespace :deploy do
     # puts "Now edit the config files in #{shared_path}."
   end
 
-  after "deploy:finalize_update", "deploy:setup"
+  after  "deploy:setup", "deploy:finalize_update"
 
   # desc "Make sure local git is in sync with remote."
   # task :check_revision, roles: :web do
