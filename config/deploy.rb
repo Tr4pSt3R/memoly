@@ -1,27 +1,36 @@
+require 'capistrano/ext/multistage'
 require "bundler/capistrano"
-# require "rvm/capistrano"
+require "rvm/capistrano"
 
-server "162.243.25.180", :web, :app, :db, primary: true
+set :rvm_ruby_string, :local        # use the same ruby as used locally for deployment
 
+# before 'deploy', 'rvm:install_rvm'  # install/update RVM
+# before 'deploy', 'rvm:install_ruby' # install Ruby and create gemset (both if missing)
+
+# APPLICATION SETUP
 set :application, "memoly"
-set :user, "root"
-set :port, 22
-set :deploy_to, "/home/rails/"
-set :deploy_via, :copy
-set :use_sudo, false
+
+# MULTI-STAGE
+set :stages, %w(staging)
+set :default_stage, :staging
 
 set :ssh_options, {:forward_agent => true}
 
-set :scm, "git"
-set :repository, "git@github.com:Tr4pSt3R/memoly.git"
-set :deploy_via, :remote_cache
-set :branch, "memoly_core"
-
-
 default_run_options[:pty] = true
-ssh_options[:forward_agent] = true
+set :use_sudo, false
 
-after "deploy", "deploy:cleanup" # keep only the last 5 releases
+# GET FROM HERE
+set :scm,           :git
+set :repository,    "git@github.com:Tr4pSt3R/memoly.git"
+# set :deploy_via,    :remote_cache
+set :use_sudo,      false
+set :keep_release,  1
+
+if ENV['BRANCH'].nil?
+  set :branch,  -> {"#{rails_env}" == 'production' ? :release : :master }
+else
+  set :branch, "#{ENV['BRANCH']}"
+end
 
 namespace :deploy do
   %w[start stop restart].each do |command|
@@ -34,24 +43,20 @@ namespace :deploy do
   task :setup_config, roles: :app do
     sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
     sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
-    run "mkdir -p #{shared_path}/config"
-    put File.read("config/database.yml"), "#{shared_path}/config/database.yml"
-    puts "Now edit the config files in #{shared_path}."
+    # run "mkdir -p #{shared_path}/config"
+    # put File.read("config/database.yml"), "#{shared_path}/config/database.yml"
+    # puts "Now edit the config files in #{shared_path}."
   end
-  after "deploy:setup", "deploy:setup_config"
 
-  task :symlink_config, roles: :app do
-    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-  end
-  after "deploy:finalize_update", "deploy:symlink_config"
+  after "deploy:finalize_update", "deploy:setup"
 
-  desc "Make sure local git is in sync with remote."
-  task :check_revision, roles: :web do
-    unless `git rev-parse HEAD` == `git rev-parse origin/master`
-      puts "WARNING: HEAD is not the same as origin/master"
-      puts "Run `git push` to sync changes."
-      exit
-    end
-  end
-  before "deploy", "deploy:check_revision"
+  # desc "Make sure local git is in sync with remote."
+  # task :check_revision, roles: :web do
+  #   unless `git rev-parse HEAD` == `git rev-parse origin/master`
+  #     puts "WARNING: HEAD is not the same as origin/master"
+  #     puts "Run `git push` to sync changes."
+  #     exit
+  #   end
+  # end
+  # before "deploy", "deploy:check_revision"
 end
