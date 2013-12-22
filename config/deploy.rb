@@ -1,24 +1,35 @@
 require "bundler/capistrano"
+require "capistrano/ext/multistage"
 # require "rvm/capistrano"
+set :application, 	"memoly"
 
-server "162.243.25.180", :web, :app, :db, primary: true
+# Git Repo-Access
+set :scm, 			"git"
+set :repository, 	"git@github.com:Tr4pSt3R/memoly.git"
+set :scm_passphrase, "" 
 
-set :application, "memoly"
+# Set user
 set :user, "root"
-set :port, 22
-set :deploy_to, "/home/rails/"
-set :deploy_via, :copy
-set :use_sudo, false
 
-set :ssh_options, {:forward_agent => true}
+# Specify your environments
+set :stages, ["staging", "production"]
+set :default_stage, "staging"
 
-set :scm, "git"
-set :repository, "git@github.com:Tr4pSt3R/memoly.git"
-set :branch, "memoly_core"
+# server "162.243.25.180", :web, :app, :db, primary: true
+# set :port, 22
+# set :deploy_to, "/home/rails/"
+# set :deploy_via, :copy
+# set :use_sudo, false
+
+# set :ssh_options, {:forward_agent => true}
 
 
-default_run_options[:pty] = true
-ssh_options[:forward_agent] = true
+
+# set :branch, "memoly_core"
+
+
+# default_run_options[:pty] = true
+# ssh_options[:forward_agent] = true
 
 # after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
