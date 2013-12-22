@@ -83,7 +83,7 @@ end
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
@@ -93,5 +93,4 @@ end
 
 group :production do
 	gem 'mysql2'
-	gem 'unicorn'
 end
