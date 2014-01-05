@@ -27,14 +27,18 @@ gem 'slim'
 gem 'gritter', "1.0.3"
 gem 'declarative_authorization'
 gem 'tinymce-rails'
-gem 'capistrano'
-gem 'capistrano-ext'
-gem 'capify-ec2'
+
+# Deployment
+gem 'capistrano', '~> 3.0.1'
+
+# Rails specific Capistrano functions
+gem 'capistrano-rails', '~> 1.1.0'
+
+# integrate bundler with Capistrano
+gem 'capistrano-bundler'
+
 gem 'sanitize'
 gem 'i18n', '< 0.6.5'
-gem 'rvm-capistrano'
-gem 'rb-fsevent'
-gem 'atomic', '~>1.1.14', :require => false
 
 # Gems used only for assets and not required
 # in production environments by default.

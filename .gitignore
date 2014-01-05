@@ -13,6 +13,7 @@
 # Ignore all logfiles and tempfiles.
 *.rdb
 /log/*.log
+log/cron.log
 /tmp
 /config/ec2.yml
 .elasticbeanstalk/
