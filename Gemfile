@@ -34,8 +34,11 @@ gem 'capistrano', '~> 3.0.1'
 # Rails specific Capistrano functions
 gem 'capistrano-rails', '~> 1.1.0'
 
-# integrate bundler with Capistrano
+# Integrate bundler with Capistrano
 gem 'capistrano-bundler'
+
+# RVM-Capistrano
+gem 'capistrano-rvm'
 
 gem 'sanitize'
 gem 'i18n', '< 0.6.5'
