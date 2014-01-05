@@ -27,6 +27,7 @@ gem 'slim'
 gem 'gritter', "1.0.3"
 gem 'declarative_authorization'
 gem 'tinymce-rails'
+gem 'rb-fsevent', :require => false
 
 # Deployment
 gem 'capistrano', '~> 3.0.1'
