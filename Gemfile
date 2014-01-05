@@ -34,6 +34,7 @@ gem 'sanitize'
 gem 'i18n', '< 0.6.5'
 gem 'rvm-capistrano'
 gem 'rb-fsevent'
+gem 'atomic', '~>1.1.14'
 
 # Gems used only for assets and not required
 # in production environments by default.
