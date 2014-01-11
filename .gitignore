@@ -13,6 +13,7 @@
 # Ignore all logfiles and tempfiles.
 *.rdb
 /log/*.log
+log/cron.log
 /tmp
 /config/ec2.yml
 .elasticbeanstalk/
@@ -23,3 +24,4 @@ config/initializers/setup_mail.rb
 app/assets/stylesheets/.DS_Store
 public/assets/.DS_Store
 Whenever_prod.sh
+log/cron.log
