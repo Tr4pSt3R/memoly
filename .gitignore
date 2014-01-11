@@ -12,6 +12,7 @@
 
 # Ignore all logfiles and tempfiles.
 *.rdb
+config/database.yml
 /log/*.log
 log/cron.log
 /tmp

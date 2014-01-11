@@ -31,6 +31,7 @@ gem 'rb-fsevent', :require => false
 
 # Deployment
 gem 'capistrano', '~> 2.15.5'
+gem 'rvm-capistrano'
 
 # Rails specific Capistrano functions
 # gem 'capistrano-rails', '~> 1.1.0'
@@ -39,7 +40,7 @@ gem 'capistrano', '~> 2.15.5'
 # gem 'capistrano-bundler'
 
 # # RVM-Capistrano
-# gem 'capistrano-rvm'
+
 
 gem 'sanitize'
 gem 'i18n', '< 0.6.5'

@@ -272,6 +272,8 @@ GEM
     ruby_gntp (0.3.4)
     ruby_parser (3.2.2)
       sexp_processor (~> 4.1)
+    rvm-capistrano (1.5.1)
+      capistrano (~> 2.15.4)
     safe_yaml (0.9.7)
     sanitize (2.0.6)
       nokogiri (>= 1.4.4)
@@ -379,6 +381,7 @@ DEPENDENCIES
   redis (~> 3.0.2)
   rspec-rails (~> 2.0)
   ruby_gntp
+  rvm-capistrano
   sanitize
   sass-rails (~> 3.2.3)
   shoulda-matchers
