@@ -1,0 +1,31 @@
+common: &common
+  adapter:  mysql2
+  username: root
+  password: saint17
+  database: 
+  pool:     25
+  timeout:  5000
+
+development: &development
+  <<: *common
+  database: memoly_development
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test: &test
+  <<: *common
+  database: memoly_test
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  database: <%= ENV['RDS_DB_NAME'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  # password: b1Rd_DoGtoR
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  port: <%= ENV['RDS_PORT'] %>
+
+cucumber:
+  <<: *test

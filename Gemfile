@@ -45,8 +45,6 @@ gem 'rvm-capistrano'
 gem 'sanitize'
 gem 'i18n', '< 0.6.5'
 
-gem 'unicorn'
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
