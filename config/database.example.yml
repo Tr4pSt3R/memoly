@@ -1,7 +1,7 @@
 common: &common
   adapter:  mysql2
   username: root
-  password: saint17
+  password: 
   database: 
   pool:     25
   timeout:  5000
@@ -20,12 +20,11 @@ test: &test
 production:
   adapter: mysql2
   encoding: utf8
-  database: <%= ENV['RDS_DB_NAME'] %>
-  username: <%= ENV['RDS_USERNAME'] %>
-  # password: b1Rd_DoGtoR
-  password: <%= ENV['RDS_PASSWORD'] %>
-  host: <%= ENV['RDS_HOSTNAME'] %>
-  port: <%= ENV['RDS_PORT'] %>
+  database: memoly_pro
+  username: root
+  password: 
+  host: 
+  port: 
 
 cucumber:
   <<: *test
