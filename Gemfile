@@ -28,6 +28,7 @@ gem 'gritter', "1.0.3"
 gem 'declarative_authorization'
 gem 'tinymce-rails'
 gem 'rb-fsevent', :require => false
+gem 'clear_migrations'
 
 # Deployment
 gem 'capistrano', '~> 2.15.5'
