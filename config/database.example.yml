@@ -20,7 +20,7 @@ test: &test
 production:
   adapter: mysql2
   encoding: utf8
-  database: memoly_pro
+  database: rails
   username: rails
   password: B5V7U5bmwn
   host: 
