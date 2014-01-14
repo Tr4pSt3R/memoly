@@ -39,6 +39,11 @@ namespace :deploy do
   end
   after "deploy:setup", "deploy:setup_config"
 
+  after "deploy:migrate", "deploy:precompile_assets"
+  task :precompile_assets do
+    run "cd #{latest_release} && bundle exec rake RAILS_ENV=#{rails_env} RAILS_GROUP=ASSETS assets:precompile:all"
+  end
+
   task :symlink_config, roles: :app do 
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
   end
