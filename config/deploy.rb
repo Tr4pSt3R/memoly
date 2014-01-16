@@ -74,14 +74,14 @@ namespace :deploy do
   end
 
 
-  # desc ""
-  # task :migrate do 
-  #   begin
-  #     run "cd #{latest_release} && bundle exec rake RAILS_ENV=#{rails_env} db:migrate"
-  #   rescue
-  #     run "cd #{latest_release} && bundle exec rake RAILS_ENV=#{rails_env} db:schema:load"
-  #   end
-  # end
+  desc "Run migration"
+  task :migrate do 
+    begin
+      run "cd #{latest_release} && bundle exec rake RAILS_ENV=#{rails_env} db:migrate"
+    rescue
+      run "cd #{latest_release} && bundle exec rake RAILS_ENV=#{rails_env} db:schema:load"
+    end
+  end
 
   task :symlink_config, roles: :app do 
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
