@@ -20,6 +20,7 @@ default_run_options[:pty] = true
 
 ssh_options[:forward_agent] = true
 
+set :keep_releases, 5
 after "deploy", "deploy:cleanup"  #keep only the last five releases
 
 namespace :deploy do 
