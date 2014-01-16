@@ -41,7 +41,8 @@ namespace :deploy do
 
   after "deploy:migrate", "deploy:precompile_assets"
   task :precompile_assets do
-    run "cd #{latest_release} && bundle exec rake RAILS_ENV=#{rails_env} assets:precompile:primary"
+    puts "Rails Env: #{rails_env}"
+    # run "cd #{latest_release} && bundle exec rake RAILS_ENV=#{rails_env} assets:precompile:primary"
   end
 
   task :symlink_config, roles: :app do 
