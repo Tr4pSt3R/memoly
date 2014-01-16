@@ -79,7 +79,7 @@ namespace :deploy do
     begin
       run "cd #{latest_release} && bundle exec rake RAILS_ENV=#{rails_env} db:migrate"
     rescue
-      run "cd #{latest_release} && bundle exec rake RAILS_ENV=#{rails_env} db:schema:load"
+      run "cd #{latest_release} && bundle exec rake RAILS_ENV=#{rails_env} db:setup"
     end
   end
 
