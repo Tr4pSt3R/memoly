@@ -43,7 +43,7 @@ namespace :deploy do
   # Precompile Assets Locally for CapDeploy
   # http://www.rostamizadeh.net/blog/2012/04/14/precompiling-assets-locally-for-capistrano-deployment
   before 'deploy:finalize_update', 'deploy:assets:symlink'
-  after 'deploy:update_code', 'deploy:assets:precompile'
+  after 'deploy:migrate', 'deploy:assets:precompile'
   namespace :assets do
     task :precompile, :roles => :web do
       from = source.next_revision(current_revision)
