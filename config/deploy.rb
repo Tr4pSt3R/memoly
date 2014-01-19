@@ -46,7 +46,7 @@ namespace :deploy do
   before 'deploy:finalize_update', 'deploy:assets:symlink'
   after 'deploy:migrate', 'deploy:assets:precompile'
   namespace :assets do
-    # task :precompile, :roles => :web do
+    task :precompile, :roles => :web do
     #   from = source.next_revision(current_revision)
     #   run_locally("rake assets:clean && rake assets:precompile")
     #   run_locally "cd public && tar -jcf assets.tar.bz2 assets"
