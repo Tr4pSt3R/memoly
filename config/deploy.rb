@@ -47,7 +47,7 @@ namespace :deploy do
   after 'deploy:migrate', 'deploy:assets:precompile'
   namespace :assets do
     task :precompile, :roles => :web do
-    #   from = source.next_revision(current_revision)
+      from = source.next_revision(current_revision)
     #   run_locally("rake assets:clean && rake assets:precompile")
     #   run_locally "cd public && tar -jcf assets.tar.bz2 assets"
     #   top.upload "public/assets.tar.bz2", "#{shared_path}", :via => :scp
