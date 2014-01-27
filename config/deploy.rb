@@ -1,5 +1,6 @@
 require "bundler/capistrano"
 require "whenever/capistrano"
+require "sidekiq/capistrano"
 require "rvm/capistrano"
 
 server "162.243.25.180", :app, :web, :db, :primary => true
@@ -18,6 +19,7 @@ set :repository,     "git@github.com:Tr4pSt3R/memoly.git"
 set :branch,         "master"
 
 set :whenever_command, 'bundle exec whenever'
+# set :sidekiq_cmd, "bundle exec sidekiq" 
 
 default_run_options[:pty] = true
 
