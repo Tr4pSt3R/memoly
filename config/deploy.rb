@@ -1,4 +1,6 @@
 require "bundler/capistrano"
+require "whenever/capistrano"
+require "sidekiq/capistrano"
 require "rvm/capistrano"
 
 server "162.243.25.180", :app, :web, :db, :primary => true
@@ -15,6 +17,9 @@ set :use_sudo, false
 set :scm,            :git
 set :repository,     "git@github.com:Tr4pSt3R/memoly.git"
 set :branch,         "master"
+
+set :whenever_command, 'bundle exec whenever'
+# set :sidekiq_cmd, "bundle exec sidekiq" 
 
 default_run_options[:pty] = true
 
@@ -40,6 +45,7 @@ namespace :deploy do
     puts "Now edit the config files in #{shared_path}."
   end
   after "deploy:setup", "deploy:setup_config"
+  after 'deploy:update_code','whenever:update_crontab'
 
   # Precompile Assets Locally for CapDeploy
   # http://www.rostamizadeh.net/blog/2012/04/14/precompiling-assets-locally-for-capistrano-deployment
