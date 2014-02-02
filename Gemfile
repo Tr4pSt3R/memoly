@@ -27,12 +27,24 @@ gem 'slim'
 gem 'gritter', "1.0.3"
 gem 'declarative_authorization'
 gem 'tinymce-rails'
-gem 'capistrano'
-gem 'capistrano-ext'
-gem 'capify-ec2'
+gem 'rb-fsevent', :require => false
+gem 'clear_migrations'
+
+# Deployment
+gem 'capistrano', '~> 2.15.5'
+gem 'rvm-capistrano'
+
+# Rails specific Capistrano functions
+# gem 'capistrano-rails', '~> 1.1.0'
+
+# # Integrate bundler with Capistrano
+# gem 'capistrano-bundler'
+
+# # RVM-Capistrano
+
+
 gem 'sanitize'
 gem 'i18n', '< 0.6.5'
-gem 'rvm-capistrano'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -83,7 +95,7 @@ end
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'

@@ -5,9 +5,9 @@
 @iconSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings.png");
 @iconWhiteSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings-white.png");
 
-// Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
-// Note: If you use asset_path() here, your compiled bootstrap_and_overrides.css will not
-//       have the proper paths. So for now we use the absolute path.
+/*Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
+Note: If you use asset_path() here, your compiled bootstrap_and_overrides.css will not
+       have the proper paths. So for now we use the absolute path.*/
 @fontAwesomeEotPath: asset-path("fontawesome-webfont.eot?v=3.0.2");
 @fontAwesomeEotPath_iefix: asset-path("fontawesome-webfont.eot?#iefix&v=3.0.2");
 @fontAwesomeWoffPath: asset-path("fontawesome-webfont.woff?v=3.0.2");
@@ -44,6 +44,7 @@ body{
   width: inherit;
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
+
 
 #main {
  margin:0 auto;
@@ -109,13 +110,13 @@ body{
   background-image: -o-linear-gradient(top, #99cc66, #99cc00);
   background-image: linear-gradient(to bottom, #99cc66, #99cc00);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff2f96b4', GradientType=0);
+  /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff2f96b4', GradientType=0);*/
   border-color: #99cc66 #99cc66 #1f6377;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   *background-color: #99cc66;
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
 
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  /*filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);*/
 }
 .center { 
   display: block;
@@ -199,8 +200,8 @@ body{
   text-align: center;
   text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
   background-color: #3399cc; 
-  @include filter-gradient(#3399cc, #ffffff, horizontal);
-  @include background-image(radial-gradient(center, ellipse cover,  #3399cc 0%,#ccc 35%,#ffffff 100%));
+  /*@include filter-gradient(#3399cc, #ffffff, horizontal);*/
+  /*@include background-image(radial-gradient(center, ellipse cover,  #3399cc 0%,#ccc 35%,#ffffff 100%));*/
   /*background: #3399cc; /* Old browsers */
   /*@include background-image(radial-gradient(center, ellipse cover,  #feffff 0%,#ddf1f9 35%,#a0d8ef 100%)); */
 }
