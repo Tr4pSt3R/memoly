@@ -11,6 +11,9 @@
 /db/*.sqlite3
 
 # Ignore all logfiles and tempfiles.
+.DS_Store
+REDIS_Caveats.txt
+Build_Notes
 config/database.yml
 *.rdb
 /log/*.log
