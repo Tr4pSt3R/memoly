@@ -31,6 +31,7 @@ set :whenever_command, 'bundle exec whenever'
 default_run_options[:pty] = true
 
 ssh_options[:forward_agent] = true
+ssh_options[:auth_methods] = %w(password)
 
 set :keep_releases, 5
 after "deploy", "deploy:cleanup"  #keep only the last five releases
