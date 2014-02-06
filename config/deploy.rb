@@ -18,7 +18,7 @@ set :port, 22
 
 set :deploy_to, "/var/www/memoly_staging"
 
-# set :deploy_via, :remote_cache
+set :deploy_via, :remote_cache
 set :use_sudo, false
 
 set :scm,            :git
