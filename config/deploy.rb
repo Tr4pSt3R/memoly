@@ -6,7 +6,7 @@ require "rvm/capistrano"
 server "162.243.25.180", :app, :web, :db, :primary => true
 
 set :application, "memoly"
-set :user, "root"
+set :user, "rails"
 set :port, 22
 
 set :deploy_to, "/var/www/memoly_staging"
