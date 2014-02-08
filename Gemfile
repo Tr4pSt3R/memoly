@@ -29,20 +29,6 @@ gem 'declarative_authorization'
 gem 'tinymce-rails'
 gem 'rb-fsevent', :require => false
 gem 'clear_migrations'
-
-# Deployment
-gem 'capistrano', '~> 2.15.5'
-gem 'rvm-capistrano'
-
-# Rails specific Capistrano functions
-# gem 'capistrano-rails', '~> 1.1.0'
-
-# # Integrate bundler with Capistrano
-# gem 'capistrano-bundler'
-
-# # RVM-Capistrano
-
-
 gem 'sanitize'
 gem 'i18n', '< 0.6.5'
 
@@ -84,6 +70,12 @@ group :development do
 	gem 'meta_request'
 	gem 'growl'
 	gem 'ruby_gntp'
+
+	# Deployment
+	gem 'capistrano', '~> 3.1', 		require: false
+	gem 'capistrano-rails', '~> 1.1', 	require: false
+	gem 'capistrano-bundler', '~> 1.1.2', require: false
+	gem 'capistrano-rvm'
 end
 
  
