@@ -14,12 +14,9 @@
 # definition into the server list. The second argument
 # something that quacks like a hash can be used to set
 # extended properties on the server.
-server '162.243.25.180', 
-       user: 'rails', 
-       roles: :all, 
-       my_property: :my_value
+server '162.243.25.180', user: 'rails', roles: :all, port: 22
 
-set ssh_options: {       	
+set :ssh_options, {       	
 	forward_agent: true
 }
 
