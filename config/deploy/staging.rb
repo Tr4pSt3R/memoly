@@ -18,9 +18,10 @@ server '162.243.25.180',
        user: 'rails', 
        roles: :all, 
        my_property: :my_value
-       ssh_options: {
-       	forward_agent: true
-       }
+
+set ssh_options: {       	
+	forward_agent: true
+}
 
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options
